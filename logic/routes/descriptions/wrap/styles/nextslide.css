@@ -1,0 +1,65 @@
+/*----------------------------------------
+Next Slide
+----------------------------------------*/
+
+.nextSlide {
+  height: 100%;
+  padding-right: 79px;
+  margin-left: 128px;
+  display: flex;
+  flex-direction: column;
+
+  .nextSlideContent {
+    margin: auto 0 -61px 0; }
+
+  .socialShare {
+    margin: auto 0 61px 0; }
+}
+
+
+
+/*--------------------
+Next Part
+--------------------*/
+
+.nextSlideContent {
+  text-align: right;
+  margin: 0 79px 0 148px;
+
+  &:hover .articleName {
+    color: rgba(255, 255, 255, .60); }
+
+  .articleName {
+    font-family: Tw Cen Regular;
+    font-size: 46px;
+    color: rgba(255, 255, 255, .4);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transition: color 0.4s ease-in-out;
+    cursor: pointer; }
+
+  .nextPart {
+    font-family: Tw Cen Semibold;
+    font-size: 18px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    margin: -14px 0 0 0; }
+}
+
+
+
+/*--------------------
+Image
+--------------------*/
+
+.nextSlideImage {
+  height: 100%;
+  width: auto;
+  display: inline-block;
+  z-index: 3;
+
+  img {
+    height: 100%;
+    width: auto;
+    cursor: pointer; }
+}

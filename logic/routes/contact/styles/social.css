@@ -1,0 +1,122 @@
+@import '../../../wrap/styles/mixins/fontsharper.css';
+
+/*--------------------------------------------
+Social Networks
+--------------------------------------------*/
+
+.networks {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+
+
+/*----------------------
+Social Link
+----------------------*/
+
+.socialLink {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-weight: 500;
+  font-size: 28px;
+  display: block;
+  overflow: visible;
+  margin-top: 25px;
+  cursor: pointer;
+
+  &:first-child {
+    margin-top: 54px; }
+
+  &Margin {
+    margin-top: 51px;
+  }
+
+  &:hover .socialIcon {
+    background-color: rgba(255, 255, 255, 1); }
+}
+
+
+
+/*----------------------
+Link Text
+----------------------*/
+
+.linkWrap {
+  overflow: hidden;
+  display: inline-block;
+  height: 24px;
+  transform: translateY(-1px);
+}
+
+.linkText {
+  display: inline-block;
+  margin: 0;
+  transform: translateY(28px);
+  animation: slideText .4s linear forwards;
+  animation-delay: 1.36s;
+}
+
+
+
+/*----------------------
+Icons
+----------------------*/
+
+.socialIcon {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin: 0 30px 0 0;
+  background-color: rgba(255, 255, 255, .6);
+  transition: background-color .6s ease-in-out;
+  animation: fadeIn .4s ease-in forwards;
+  opacity: 0;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, .9); }
+}
+
+.twitter {
+  mask-image: url('../../../wrap/assets/icons/twitter.svg');
+  transform: translateY(6px);
+  animation-delay: 1.2s;
+}
+
+.facebook {
+  mask-image: url('../../../wrap/assets/icons/facebook.svg');
+  transform: translateY(5px);
+  animation-delay: 1.26s;
+}
+
+.pinterest {
+  mask-image: url('../../../wrap/assets/icons/pinterest.svg');
+  transform: translateY(7px);
+  animation-delay: 1.32s;
+
+}
+
+.google {
+  mask-image: url('../../../wrap/assets/icons/google.svg');
+  transform: translateY(8px);
+  animation-delay: 1.38s;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideText {
+  from { transform: translateY(28px);}
+  to { transform: translateY(0);}
+}
+
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}

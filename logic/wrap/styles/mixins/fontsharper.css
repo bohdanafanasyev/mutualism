@@ -1,0 +1,8 @@
+/*--------------------
+Font Sharper
+--------------------*/
+
+@define-mixin fontSharper {
+  -webkit-text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

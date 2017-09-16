@@ -1,0 +1,94 @@
+@import '../../../styles/mixins/fontsharper.css';
+@import './links.css';
+
+/*--------------------------------------------
+Navigation
+--------------------------------------------*/
+
+.navigation {
+  width: 134px;
+  height: 230px;
+  position: absolute;
+  padding-right: 25px;
+  right: 50px;
+  bottom: 48px;
+  z-index: 2;
+}
+
+
+/*--------------------------------------------
+Navigation Page Number
+--------------------------------------------*/
+
+.navigationPageNumber {
+  padding-right: 25px;
+  position: absolute;
+  bottom: 0;
+  right: 7px;
+  cursor: pointer;
+
+  &Wrap {
+    width: 68px;
+    height: 42px;
+    overflow: hidden; }
+
+  &:hover .allPages {
+    color: rgba(255, 255, 255, .9); }
+}
+
+
+/*----------------------
+Current Page
+----------------------*/
+
+.currentPage {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-size: 64px;
+  color: rgba(255, 255, 255, .9);
+  display: inline-block;
+  float: left;
+  line-height: 42px;
+  transform: translateY(100%);
+  animation: slideIn .6s ease-in forwards;
+}
+
+
+/*----------------------
+All Pages
+----------------------*/
+
+.allPages, .allPagesActive {
+  @mixin fontSharper;
+  font-family: Tw Cen Semibold;
+  font-size: 24px;
+  display: inline-block;
+  opacity: 0;
+  transform: translate(100%, -3px);
+  animation: slideSide .4s ease-in forwards;
+  animation-delay: .6s;
+}
+
+.allPages {
+  transition: color .4s ease-in-out;
+  color: rgba(255, 255, 255, .4);
+}
+
+.allPagesActive {
+  color: rgba(255, 255, 255, 1);
+}
+
+
+/*--------------------------------------------
+Animations
+--------------------------------------------*/
+
+@keyframes slideIn {
+  from { transform: translateY(100%) }
+  to { transform: translateY(0) }
+}
+
+@keyframes slideSide {
+  from { transform: translate(100%, -3px); opacity: 1; }
+  to { transform: translate(7px, -3px); opacity: 1;}
+}

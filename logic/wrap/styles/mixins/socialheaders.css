@@ -1,0 +1,52 @@
+@import './fontsharper.css';
+
+/*----------------------------------------
+Social Headers
+----------------------------------------*/
+
+@define-mixin backgroundHeader {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-size: 80px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.1);
+  cursor: default;
+  margin: 0 0 0 -2px;
+  font-weight: normal;
+  line-height: 0.65;
+  cursor: default;
+  transform: translate(-100%, 0);
+  animation: slideLeft .6s linear forwards;
+  animation-delay: .8s;
+}
+
+@define-mixin contextHeader {
+  @mixin fontSharper;
+  font-family: Soleil SemiBold;;
+  font-size: 24px;
+  letter-spacing: 1px;
+  cursor: default;
+  margin: 0;
+  font-weight: normal;
+  line-height: 1;
+  cursor: default;
+  transform: translateY(100%);
+  animation: slideUp .4s linear forwards;
+  animation-delay: 1.4s;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideLeft {
+  from { transform: translate(-100%, 0); }
+  to { transform: translate(0%, 0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0%); }
+}

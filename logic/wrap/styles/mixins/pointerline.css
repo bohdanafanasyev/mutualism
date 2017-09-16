@@ -1,0 +1,11 @@
+/*--------------------------------------------
+Pointer Line
+--------------------------------------------*/
+
+@define-mixin pointerLine {
+  display: inline-block;
+  width: 79px;
+  height: 2px;
+  background-color: white;
+  margin-right: 25px;
+}

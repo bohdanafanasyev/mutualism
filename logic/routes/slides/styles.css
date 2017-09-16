@@ -1,0 +1,142 @@
+@import '../../wrap/styles/mixins/fontsharper.css';
+@import '../../wrap/styles/mixins/clearfix.css';
+@import '../../wrap/styles/mixins/pointerline.css';
+
+/*--------------------------------------------
+General
+--------------------------------------------*/
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  /*transform: translateX(100%);*/
+  /*animation: slideIn .6s linear forwards;*/
+
+  .wrap {
+    position: relative;
+    transform: translateY(-50%);
+    top:50%;
+    left: 0;
+    margin-left: 18.25%;
+    width: 600px;
+    height: auto;
+    z-index: 1;
+    @mixin clearFix; }
+}
+
+
+/*----------------------
+Headers
+----------------------*/
+
+.headersWrap {
+  width: 100%;
+  height: 180px;
+  display: block;
+  position: relative;
+
+  .mainHeader, .subHeader {
+    @mixin fontSharper;
+    font-weight: normal;
+    display: block;
+  }
+
+  .mainHeaderWrap, .subHeaderWrap {
+    cursor: default;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute; }
+}
+
+
+/*----------------------
+Main Header
+----------------------*/
+
+.mainHeaderWrap {
+  height: 180px;
+  bottom: -3px;
+}
+
+.mainHeader {
+  font-family: Soleil Book;
+  font-size: 180px;
+  letter-spacing: 10px;
+  color: rgba(255, 255, 255, .18);
+  margin: 0 0 -10px -16px;
+  transform: translate(-100%, 0);
+  animation: slideLeft .6s linear forwards;
+  animation-delay: .6s;
+}
+
+
+/*----------------------
+Sub Header
+----------------------*/
+
+.subHeaderWrap {
+  height: 38px;
+  bottom: 0;
+}
+
+.subHeader {
+  font-family: Tw Cen Regular;
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin: 0;
+
+  transform: translateY(100%);
+  animation: slideUp .6s linear forwards;
+  animation-delay: 1.3s;
+}
+
+
+/*----------------------
+Description
+----------------------*/
+
+.description {
+  @mixin fontSharper;
+  font-family: Soleil Book;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 24px;
+  width: 600px;
+  display: inline-block;
+  margin: 31px 0 0 0;
+  cursor: default;
+
+  opacity: 0;
+  animation: fadeIn .6s ease-out forwards;
+  animation-delay: 1.95s;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideLeft {
+  from { transform: translate(-100%, 0); }
+  to { transform: translate(0%, 0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%);}
+  to { transform: translateX(0);}
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0%); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}

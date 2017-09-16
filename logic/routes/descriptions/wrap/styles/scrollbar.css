@@ -1,0 +1,15 @@
+/*----------------------------------------
+ScrollBar
+----------------------------------------*/
+
+.scrollBar {
+  height: 3px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: background-color .4s ease-in-out;
+
+  &Active {
+    background-color: rgba(255, 255, 255, 1); }
+}

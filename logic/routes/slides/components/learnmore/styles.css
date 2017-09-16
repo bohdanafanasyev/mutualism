@@ -1,0 +1,111 @@
+@import '../../../../wrap/styles/mixins/clearfix.css';
+@import '../../../../wrap/styles/mixins/pointerline.css';
+
+/*--------------------------------------------
+Learn More
+--------------------------------------------*/
+
+.learnMoreWrap {
+  @mixin clearFix;
+  margin-top: 33px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.learnMore {
+  display: inline-block;
+  order: 2;
+
+  &:hover ~ .pointerLine {
+    transfrom: scaleX(0); }
+
+  .learn, .more {
+    text-align: right;
+    margin: 0;
+    cursor: pointer; }
+
+  &:hover .learn {
+    color: rgba(255, 255, 255, .9); }
+}
+
+
+
+/*----------------------
+Learn
+----------------------*/
+
+.learnWrap {
+  overflow: hidden;
+  height: 27px;
+}
+
+.learn {
+  @mixin fontSharper;
+  font-family: Soleil Book;
+  font-size: 24px;
+  color: rgba(255, 255, 255, .68);
+  transition: color .4s ease-in-out;
+  transform: translateY(27px);
+  animation: slideUp .6s linear forwards;
+  animation-delay: 2.65s;
+
+}
+
+
+
+/*----------------------
+More
+----------------------*/
+
+.moreWrap {
+  overflow: hidden;
+  margin-right: 1px;
+}
+
+.more {
+  @mixin fontSharper;
+  font-family: Tw Cen Semibold;
+  font-size: 20px;
+  font-weight: normal;
+  transform: translateY(-24px);
+  animation: slideDown .4s linear forwards;
+  animation-delay: 2.85s;
+}
+
+
+
+/*----------------------
+Pointer Line
+----------------------*/
+
+.pointerLine {
+  @mixin pointerLine;
+  transform: translateY(-15px) scaleX(0);
+  transform-origin: left;
+  animation: growIn .6s linear forwards;
+  animation-delay: 2s;
+  order: 1;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes growIn {
+  from { transform: scaleX(0) }
+  to { transform: scaleX(1) }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(27px); }
+  to { transform: translateY(4px); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-24px); }
+  to { transform: translateY(-3px); }
+}

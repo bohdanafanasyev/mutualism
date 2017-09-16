@@ -1,0 +1,73 @@
+/*--------------------------------------------
+Soleil Family
+--------------------------------------------*/
+
+@font-face {
+  font-family: 'Soleil Book';
+  src: url('../assets/fonts/Soleil/Book/SoleilBk.woff') format('woff'),
+       url('../assets/fonts/Soleil/Book/SoleilBk.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Soleil Regular';
+  src: url('../assets/fonts/Soleil/Regular/Soleil.woff') format('woff'),
+       url('../assets/fonts/Soleil/Regular/Soleil.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Soleil Italic';
+  src: url('../assets/fonts/Soleil/Italic/SoleilIt.woff') format('woff'),
+       url('../assets/fonts/Soleil/Italic/SoleilIt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Soleil Regular';
+  src: url('../assets/fonts/Soleil/Regular/Soleil.woff') format('woff'),
+       url('../assets/fonts/Soleil/Regular/Soleil.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Soleil Semibold';
+  src: url('../assets/fonts/Soleil/Semibold/SoleilSb.woff') format('woff'),
+       url('../assets/fonts/Soleil/Semibold/SoleilSb.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Soleil Extrablack';
+  src: url('../assets/fonts/Soleil/Extrablack/SoleilXb.woff') format('woff'),
+       url('../assets/fonts/Soleil/Extrablack/SoleilXb.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+/*--------------------------------------------
+Twentieth Century MT
+--------------------------------------------*/
+
+@font-face {
+  font-family: 'Tw Cen Regular';
+  src: url('../assets/fonts/Tw Cen MT/Regular/Tw Cen Regular.woff') format('woff'),
+       url('../assets/fonts/Tw Cen MT/Regular/Tw Cen Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Tw Cen Semibold';
+  src: url('../assets/fonts/Tw Cen MT/Semibold/Tw Cen SemiBold.woff') format('woff'),
+       url('../assets/fonts/Tw Cen MT/Semibold/Tw Cen SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

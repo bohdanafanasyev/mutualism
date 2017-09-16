@@ -1,0 +1,174 @@
+@import '../../../wrap/styles/mixins/socialheaders.css';
+@import '../../../wrap/styles/mixins/pointerline.css';
+@import '../../../wrap/styles/mixins/fontsharper.css';
+@import './social.css';
+
+/*--------------------------------------------
+General
+--------------------------------------------*/
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /*transform: translateX(100%);*/
+  /*animation: slideIn .6s linear forwards;*/
+  position: absolute;
+
+  .wrap {
+    width: 800px;
+    height: 420px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; }
+}
+
+
+
+/*----------------------
+Headers
+----------------------*/
+
+.headersWrap {
+  height: 52px;
+  position: relative;
+}
+
+
+
+/*----------------------
+Background Header
+----------------------*/
+
+.backgroundHeaderWrap {
+  overflow: hidden;
+}
+
+.backgroundHeader {
+  @mixin backgroundHeader;
+}
+
+
+
+/*----------------------
+Context Header
+----------------------*/
+
+.contextHeaderWrap {
+  overflow: hidden;
+  transform: translateY(-23px);
+}
+
+.contextHeader {
+  @mixin contextHeader;
+}
+
+
+
+/*--------------------------------------
+Inputs
+--------------------------------------*/
+
+.emailForm {
+  z-index: 5;
+  display: inline-flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.input {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-size: 18px;
+  margin: 6px 0;
+  padding-left: 19px;
+  opacity: 0;
+  animation: fadeIn 1s linear forwards;
+  animation-delay: 1.2s;
+
+  &:active, &:focus {
+    cursor: text; }
+
+  &Margin {
+    margin-top: 41px; }
+
+  &Tall {
+    height: 111px;
+    padding-top: 17px;
+    margin-top: 6px; }
+}
+
+
+/*-------------------
+Send Button
+-------------------*/
+
+.sendButton {
+  text-align: right;
+  margin-top: 33px;
+}
+
+.buttonWrap {
+  overflow: hidden;
+  display: inline-block;
+  height: 21px;
+}
+
+.button {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-size: 24px;
+  margin-right: -1px;
+  cursor: pointer;
+  display: inline-block;
+  transform: translateY(24px);
+  animation: slideUp .4s linear forwards;
+  animation-delay: 2.55s;
+}
+
+
+
+/*-------------------
+Pointer Line
+-------------------*/
+
+.pointerLine {
+  @mixin pointerLine;
+  margin-bottom: 7px;
+  transform: translateY(-15px) scaleX(0);
+  transform-origin: left;
+  animation: growIn .6s linear forwards;
+  animation-delay: 2s;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideIn {
+  0% { transform: translateX(99%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(24px); }
+  to { transform: translateY(0px); }
+}
+
+@keyframes growIn {
+  from { transform: scaleX(0) }
+  to { transform: scaleX(1) }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}

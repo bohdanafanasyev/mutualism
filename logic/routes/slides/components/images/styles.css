@@ -1,0 +1,104 @@
+/*--------------------------------------------
+Images
+--------------------------------------------*/
+
+.images {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+
+  .imageUpper, .imageMain {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat; }
+}
+
+
+/*-------------------
+Main
+--------------------*/
+
+.imageMain {
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1) translate(0);
+  animation: fadeIn 38s linear forwards;
+}
+
+
+/*-------------------
+Upper
+--------------------*/
+
+.upperWrap {
+  width: 38%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: slideIn .6s linear forwards;
+  animation-delay: .6s;
+}
+
+.imageUpper {
+  background-position: 33% 100%;
+  transform: scale(1) translateX(100%);
+  animation: scaleIn 38s ease-in forwards;
+  animation-delay: 1.3s;
+}
+
+
+
+/*-------------------
+Filter
+--------------------*/
+
+.filterNormal, .filterHard {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.filterNormal {
+  background: linear-gradient(to right, rgba(0,0,0,0) -160%, rgba(0,0,0, .2) 256%);
+}
+
+.filterHard {
+  background: linear-gradient(to right, rgba(0,0,0,0) -160%, rgba(0,0,0, .6) 256%);
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  1% { opacity: .4 }
+  1.64% { opacity: 1; transform: scale(1) translate(0); }
+  100% { opacity: 1; transform: scale(1.05) translate(1%); }
+}
+
+
+@keyframes slideIn {
+  0% { transform: translateX(-100%); opacity: 0}
+  60%  { opacity: .4 }
+  100%  { transform: translateX(0); opacity: 1 }
+}
+
+
+
+@keyframes scaleIn {
+  0% { transform: scale(1) translateX(100%) }
+  1.64% { transform: translateX(0) }
+  100% { transform: scale(1.2) translate(-3%) }
+}

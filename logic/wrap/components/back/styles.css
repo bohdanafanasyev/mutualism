@@ -1,0 +1,82 @@
+@import '../../styles/mixins/fontsharper.css';
+
+/*--------------------------------------------
+General
+--------------------------------------------*/
+
+.container {
+  position: absolute;
+  text-align: right;
+  bottom: 47px;
+  right: 79px;
+  z-index: 3;
+
+  &:hover .back {
+    color: rgba(255, 255, 255, .60); }
+}
+
+
+
+/*----------------------
+Back
+----------------------*/
+
+.backWrap {
+  overflow: hidden;
+  height: 40px;
+}
+
+.back {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-size: 46px;
+  font-weight: inherit;
+  color: rgba(255, 255, 255, .2);
+  margin: 0;
+  letter-spacing: 1px;
+  transition: color 0.4s ease-in-out;
+  cursor: pointer;
+  transform: translateY(30px);
+  animation: slideUp .6s linear forwards;
+  animation-delay: .6s;
+}
+
+
+
+/*----------------------
+To Main
+----------------------*/
+
+.toMainWrap {
+  overflow: hidden;
+  height: 13px;
+}
+
+.toMain {
+  @mixin fontSharper;
+  font-family: Tw Cen Semibold;
+  font-size: 18px;
+  font-weight: inherit;
+  letter-spacing: 2px;
+  margin: 0 0 0 0;
+  cursor: pointer;
+  transform: translateY(-30px);
+  animation: slideDown .4s linear forwards;
+  animation-delay: .8s;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideUp {
+  from { transform: translateY(30px); }
+  to { transform: translateY(0px); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); }
+  to { transform: translateY(-1px); }
+}

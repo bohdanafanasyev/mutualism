@@ -1,0 +1,34 @@
+
+/*--------------------
+Page Enterings
+--------------------*/
+
+
+.enter {
+	animation: enterIn .6s ease-in forwards;
+	z-index: 2 !important;
+}
+
+.enterActive {
+	z-index: 2 !important;
+}
+
+.leave {
+	z-index: 1;
+}
+
+.leaveActive {
+	z-index: 1;
+}
+
+
+
+@keyframes enterIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translate(0%); opacity: 1;; }
+}
+
+/*@keyframes leave {
+  from { transform: translateY(0%); opacity: 1; }
+  to { transform: translate(100%); opacity: 0;; }
+}*/

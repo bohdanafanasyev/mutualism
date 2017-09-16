@@ -1,0 +1,88 @@
+@import '../../../styles/mixins/fontsharper.css';
+
+/*--------------------------------------------
+Navigation Links
+--------------------------------------------*/
+
+.navigationLinks,.navigationLinksEmpty {
+  width: 128px;
+  height: 144px;
+  position: absolute;
+  bottom: 86px;
+  right: 32px;
+}
+
+.navigationLinks {
+  display: block;
+
+  &Hidden {
+    display: none; }
+}
+
+
+/*--------------------
+Link
+---------------------*/
+
+.navigationLinkWrap {
+  overflow: hidden;
+  margin-bottom: 18px;
+  text-align: right;
+  display: block;
+
+  &:first-child .number {
+    margin: 0 -1px 0 20px; }
+}
+
+.navigationLink {
+  @mixin fontSharper;
+  font-family: Tw Cen Regular;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-block;
+  transform: translateY(90%);
+
+  &:hover .number {
+    color: rgba(255, 255, 255, 1); }
+}
+
+
+/*--------------------
+Number
+---------------------*/
+
+.number {
+  @mixin fontSharper;
+  font-family: Tw Cen Semibold;
+  font-size: 18px;
+  color: rgba(255, 255, 255, .4);
+  margin-left: 19px;
+  display: inline-block;
+  transform: translateY(0.5px);
+  transition: color .4s ease-in-out;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+.slideIn {
+  animation: slideIn .4s linear forwards;
+}
+
+.slideOut {
+  animation: slideOut .4s linear forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(90%) }
+  to { transform: translateY(0) }
+}
+
+@keyframes slideOut {
+  from { transform: translateY(0) }
+  to { transform: translateY(90%) }
+}

@@ -1,0 +1,73 @@
+@import './logotype.css';
+@import 'normalize.css';
+@import 'animations.css';
+@import 'fonts.css';
+
+/*--------------------------------------------
+General
+--------------------------------------------*/
+
+html, body {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+  background-color: black;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, div, span {
+	color: rgba(255, 255, 255, 1);
+	user-select: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+
+/*--------------------
+Input resets
+--------------------*/
+
+/* Input styling */
+::-webkit-resizer {
+  display: none;
+}
+
+input, textarea {
+	width: 334px;
+	max-width: 334px;
+	height: 49px;
+	outline: none;
+	border: none;
+	border-radius: 2px;
+	display: block;
+	background-color: rgba(0, 0, 0, .42);
+	color: white;
+	cursor: pointer;
+	resize: none;
+	line-height: 21px;
+}
+
+
+
+/*--------------------
+Scroll bar
+--------------------*/
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+  /*.progresLine  {
+    display: none;
+	}*/
+
+	::-webkit-scrollbar {
+		width: auto;  /* removes scrollbar space */
+		background: auto;  /* makes scrollbar invisible */
+	}
+}

@@ -1,0 +1,76 @@
+@import '../../../../../../wrap/styles/mixins/fontsharper.css';
+
+
+
+/*----------------------------------------
+Introduction
+----------------------------------------*/
+
+.introduction {
+  padding-left: 128px;
+
+  &Header {
+    @mixin fontSharper;
+    font-family:  Tw Cen Regular;
+    font-size: 36px; }
+
+  &Text {
+    @mixin fontSharper;
+    font-family: Soleil Regular;
+    font-size: 15px;
+    line-height: 22px;
+    width: 360px;
+    cursor: default; }
+}
+
+
+
+/*----------------------------------------
+Content Block
+----------------------------------------*/
+
+.contentBlock {
+  width: 70vh;
+  min-width: 400px;
+  max-width: 450px;
+  max-height: 500px;
+  margin-left: 207px;
+}
+
+
+/*-------------------
+Headline
+--------------------*/
+
+.headline {
+  .numeration, .header {
+    @mixin fontSharper;
+    font-family: Tw Cen Regular;
+    display: inline-block; }
+
+  .numeration {
+    font-size: 34px;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.4);
+    margin-left: -50px; }
+
+  .header {
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 0 0 27px; }
+}
+
+
+/*-------------------
+Text
+--------------------*/
+
+.text {
+  @mixin fontSharper;
+  font-family: Soleil Regular;
+  font-size: 15px;
+  line-height: 22px;
+  margin: 26px 30px 0 0;
+  display: block;
+}

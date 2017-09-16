@@ -1,0 +1,102 @@
+@import '../../wrap/styles/mixins/socialheaders.css';
+@import '../../wrap/styles/mixins/fontsharper.css';
+
+/*--------------------------------------------
+General
+--------------------------------------------*/
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /*transform: translateX(100%);*/
+  /*animation: slideIn .6s linear forwards;*/
+  position: absolute;
+
+  .wrap {
+    width: 38%;
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+}
+
+
+/*----------------------
+Headers
+----------------------*/
+
+.headersWrap {
+  height: 52px;
+  position: relative;
+}
+
+
+
+/*----------------------
+Background Header
+----------------------*/
+
+.backgroundHeaderWrap {
+  overflow: hidden;
+}
+
+.backgroundHeader {
+  @mixin backgroundHeader;
+}
+
+
+
+/*----------------------
+Context Header
+----------------------*/
+
+.contextHeaderWrap {
+  overflow: hidden;
+  transform: translateY(-23px);
+}
+
+.contextHeader {
+  @mixin contextHeader;
+}
+
+
+
+/*----------------------
+text
+----------------------*/
+
+.text {
+  @mixin fontSharper;
+  font-family: Tw Cen Semibold;
+  font-variant: small-caps;
+  font-size: 24px;
+  margin: 28px 0 0 0;
+  cursor: default;
+  opacity: 0;
+  animation: fadeIn 2s linear forwards;
+  animation-delay: 1.2s;
+
+  &:last-child {
+    animation-delay: 1.6s;
+  }
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideIn {
+  from { transform: translateX(100%);}
+  to { transform: translateX(0);}
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
