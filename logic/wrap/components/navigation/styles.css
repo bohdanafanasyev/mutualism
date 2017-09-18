@@ -61,7 +61,6 @@ Buttons
   animation: slideIn .6s linear forwards;
   transform: translate(0, 100%);
 
-
   &:after {
     content: '';
     width: 0%;

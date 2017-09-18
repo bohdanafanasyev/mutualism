@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import { hashHistory } from 'react-router';
+import React from 'react';
 import classNames from 'classnames';
 import styles from './styles/styles.css';
-import SocialIcons from '../../../wrap/components/socialicons/socialicons';
+
+// Helpers
 import Helpers from './Scripts/helpers';
 
+// Components
+import SocialIcons from '../../../wrap/components/socialicons/socialicons';
 
 
-export default class Wrap extends Component {
+
+export default class Wrap extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -20,8 +24,7 @@ export default class Wrap extends Component {
       scrollBarTimer: false,
 
       closeCross: false,
-      closePosition: 79
-    }
+      closePosition: 79 }
 
     this.closeVisibility = this.closeVisibility.bind(this);
     this.closePosition = this.closePosition.bind(this);
@@ -31,7 +34,6 @@ export default class Wrap extends Component {
     this.updateData = this.updateData.bind(this);
     this.scrollBarWidth = this.scrollBarWidth.bind(this);
   }
-
 
 
   //----------------------------------------------------------
@@ -44,7 +46,6 @@ export default class Wrap extends Component {
 
   closePosition() {
     Helpers.closePosition.call(null, this); }
-
 
 
   //----------------------------------------------------------
@@ -66,7 +67,6 @@ export default class Wrap extends Component {
     Helpers.scrollBarWidth.call(null, this); }
 
 
-
   //----------------------------------------------------------
   // Dynamicly handle background header position
   //----------------------------------------------------------
@@ -75,14 +75,12 @@ export default class Wrap extends Component {
     Helpers.backgroundHeaderPosition.call(null, e, this); }
 
 
-
   //----------------------------------------------------------
   // Navigate to subsequent slide
   //----------------------------------------------------------
 
   nextSlide() {
     hashHistory.push(this.props.nextRoute); }
-
 
 
   //----------------------------------------------------------
@@ -108,7 +106,6 @@ export default class Wrap extends Component {
   }
 
 
-
   //----------------------------------------------------------
   // Subscribe to wheel events
   //----------------------------------------------------------
@@ -131,7 +128,6 @@ export default class Wrap extends Component {
   }
 
 
-
   //----------------------------------------------------------
   // Un-Subscribe from wheel events
   //----------------------------------------------------------
@@ -146,10 +142,9 @@ export default class Wrap extends Component {
   }
 
 
-
-  //----------------------------------------------------------
+  //----------------------
   // Render
-  //----------------------------------------------------------
+  //----------------------
 
   render() {
 
