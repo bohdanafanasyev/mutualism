@@ -25,8 +25,9 @@ export default class About extends React.Component {
 
     return (
 
-      <div className={styles.container} style={background}>
-        <div className={styles.wrap}>
+      <div className={styles.container} >
+        <div className={styles.background} style={background} />
+        <div className={styles.wrap} >
         <div className={styles.headersWrap}>
             <div className={styles.backgroundHeaderWrap}>
               <p className={styles.backgroundHeader}>Mutualism</p>

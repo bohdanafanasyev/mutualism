@@ -14,9 +14,8 @@ class Back extends React.Component {
     super(props);
 
     // Component State
-    // let pathname = this.props.location.pathname
-    this.state = { previousRoute: '/intro' }
-    // this.state = { previousRoute: '/intro', display: (pathname == '/about' || pathname == '/contact') ? true : false }
+    let pathname = this.props.location.pathname
+    this.state = { previousRoute: '/intro', display: (pathname == '/about' || pathname == '/contact') ? true : false }
   }
 
 
@@ -26,8 +25,8 @@ class Back extends React.Component {
 
   componentWillMount() {
     // Check if it's "social" page
-    // let pathname = this.props.location.pathname
-    // this.setState({ display: (pathname == '/about' || pathname == '/contact') ? true : false })
+    let pathname = this.props.location.pathname
+    this.setState({ display: (pathname == '/about' || pathname == '/contact') ? true : false })
 
     // Filtering Store History for the last route
     function historyFilter(value) {
