@@ -42,7 +42,7 @@ class Wrap extends React.Component {
     if (this.props.state.history.length == 0) this.props.dispatch(historyUpdate(location.pathname));
 
     // // Redirect to intro
-    let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contat', '/about'],
+    let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
         pathName = this.props.location.pathname;
     if (pathName == '/' || !registredRoutes.includes(pathName)) this.props.history.push('/intro');
     // console.log(this.props)

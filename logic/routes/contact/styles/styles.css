@@ -35,29 +35,8 @@ Headers
   position: relative;
 }
 
-
-
-/*----------------------
-Background Header
-----------------------*/
-
-.backgroundHeaderWrap {
-  overflow: hidden;
-}
-
 .backgroundHeader {
   @mixin backgroundHeader;
-}
-
-
-
-/*----------------------
-Context Header
-----------------------*/
-
-.contextHeaderWrap {
-  overflow: hidden;
-  transform: translateY(-23px);
 }
 
 .contextHeader {
@@ -76,7 +55,6 @@ Inputs
   flex-direction: column;
   top: 0;
   left: 0;
-  overflow: hidden;
 }
 
 .input {
@@ -86,8 +64,14 @@ Inputs
   margin: 6px 0;
   padding-left: 19px;
   opacity: 0;
-  animation: fadeIn 1s linear forwards;
-  animation-delay: 1.2s;
+  animation: slideInput 1.14s ease-out forwards;
+  animation-delay: 1.25s;
+
+  &::placeholder {
+    transition: color .625s ease-out; }
+
+  &:hover::placeholder {
+    color: white; }
 
   &:active, &:focus {
     cursor: text; }
@@ -111,12 +95,6 @@ Send Button
   margin-top: 33px;
 }
 
-.buttonWrap {
-  overflow: hidden;
-  display: inline-block;
-  height: 21px;
-}
-
 .button {
   @mixin fontSharper;
   font-family: Tw Cen Regular;
@@ -124,9 +102,16 @@ Send Button
   margin-right: -1px;
   cursor: pointer;
   display: inline-block;
-  transform: translateY(24px);
-  animation: slideUp .4s linear forwards;
-  animation-delay: 2.55s;
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: slideButton 1.25s ease-out forwards;
+  animation-delay: 1.4s;
+
+  &:hover + .pointerLine {
+    animation: growLine .6s ease-out forwards;
+  }
+
+  float: right;
 }
 
 
@@ -137,11 +122,11 @@ Pointer Line
 
 .pointerLine {
   @mixin pointerLine;
-  margin-bottom: 7px;
-  transform: translateY(-15px) scaleX(0);
+  transform: scaleX(0);
+  margin-bottom: -1px;
   transform-origin: left;
-  animation: growIn .6s linear forwards;
-  animation-delay: 2s;
+  animation: growLine .6s ease-out forwards;
+
 }
 
 
@@ -150,22 +135,18 @@ Pointer Line
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes slideIn {
-  0% { transform: translateX(99%); }
-  100% { transform: translateX(0); }
+
+@keyframes slideButton {
+  from { transform: translateX(-6px); opacity: 0; }
+  to { transform: translateX(0px); opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(24px); }
-  to { transform: translateY(0px); }
-}
-
-@keyframes growIn {
+@keyframes growLine {
   from { transform: scaleX(0) }
   to { transform: scaleX(1) }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
+@keyframes slideInput {
+  from { opacity: 0; transform: translateY(4px);}
+  to { opacity: 1; transform: translateY(0)}
 }

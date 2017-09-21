@@ -22,7 +22,6 @@ Social Link
   font-weight: 500;
   font-size: 28px;
   display: block;
-  overflow: visible;
   margin-top: 25px;
   cursor: pointer;
 
@@ -43,19 +42,13 @@ Social Link
 Link Text
 ----------------------*/
 
-.linkWrap {
-  overflow: hidden;
-  display: inline-block;
-  height: 24px;
-  transform: translateY(-1px);
-}
-
 .linkText {
+  height: 24px;
   display: inline-block;
   margin: 0;
-  transform: translateY(28px);
-  animation: slideText .4s linear forwards;
-  animation-delay: 1.36s;
+  opacity: 0;
+  animation: slideText 1.14s ease-out forwards;
+  animation-delay: 1.25s;
 }
 
 
@@ -72,37 +65,35 @@ Icons
   cursor: pointer;
   margin: 0 30px 0 0;
   background-color: rgba(255, 255, 255, .6);
-  transition: background-color .6s ease-in-out;
-  animation: fadeIn .4s ease-in forwards;
   opacity: 0;
+  transition: background-color .6s ease-out;
+  animation: fadeIcon 1.14s ease-out forwards;
+  animation-delay: 1.25s;
+
 
   &:hover {
-    background-color: rgba(255, 255, 255, .9); }
+    background-color: rgba(255, 255, 255, 1); }
 }
 
 .twitter {
   mask-image: url('../../../wrap/assets/icons/twitter.svg');
   transform: translateY(6px);
-  animation-delay: 1.2s;
 }
 
 .facebook {
   mask-image: url('../../../wrap/assets/icons/facebook.svg');
   transform: translateY(5px);
-  animation-delay: 1.26s;
 }
 
 .pinterest {
   mask-image: url('../../../wrap/assets/icons/pinterest.svg');
   transform: translateY(7px);
-  animation-delay: 1.32s;
 
 }
 
 .google {
   mask-image: url('../../../wrap/assets/icons/google.svg');
-  transform: translateY(8px);
-  animation-delay: 1.38s;
+  transform: translateY(9px);
 }
 
 
@@ -112,11 +103,11 @@ Animation Keyframes
 --------------------------------------------*/
 
 @keyframes slideText {
-  from { transform: translateY(28px);}
-  to { transform: translateY(0);}
+  from { transform: translateX(6px); opacity: 0;}
+  to { transform: translateX(0); opacity: 1}
 }
 
-@keyframes fadeIn {
-  from { opacity: 0;}
-  to { opacity: 1;}
+@keyframes fadeIcon {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

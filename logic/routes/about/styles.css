@@ -31,11 +31,6 @@ General
   /*animation-delay: 4s;*/
 }
 
-/*@keyframes test {
-  from { transform: scale(1);}
-  to { transform: scale(1.05);}
-}*/
-
 
 @keyframes test {
   0% { height: 0; margin-top: 100vh; }
@@ -52,29 +47,8 @@ Headers
   position: relative;
 }
 
-
-
-/*----------------------
-Background Header
-----------------------*/
-
-.backgroundHeaderWrap {
-  overflow: hidden;
-}
-
 .backgroundHeader {
   @mixin backgroundHeader;
-}
-
-
-
-/*----------------------
-Context Header
-----------------------*/
-
-.contextHeaderWrap {
-  overflow: hidden;
-  transform: translateY(-23px);
 }
 
 .contextHeader {
@@ -95,11 +69,11 @@ text
   margin: 28px 0 0 0;
   cursor: default;
   opacity: 0;
-  animation: fadeIn 2s linear forwards;
-  animation-delay: 1.2s;
+  animation: fadeIn 1.83s ease-out forwards;
+  animation-delay: 1.39s;
 
   &:last-child {
-    animation-delay: 1.6s;
+    /*animation-delay: 1s;*/
   }
 }
 
@@ -109,17 +83,12 @@ text
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes slideIn {
-  from { transform: translateX(100%);}
-  to { transform: translateX(0);}
-}
-
-@keyframes growIn {
-  from { height: 0; margin-top: 100%;}
-  to { height: 100%; margin-top: 0%;}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(5%); }
+  100% { opacity: 1; transform: translateY(0%); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
+  0% { opacity: 0; transform: translateY(5%); }
+  100% { opacity: 1; transform: translateY(0%); }
 }

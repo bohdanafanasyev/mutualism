@@ -28,13 +28,9 @@ export default class About extends React.Component {
       <div className={styles.container} >
         <div className={styles.background} style={background} />
         <div className={styles.wrap} >
-        <div className={styles.headersWrap}>
-            <div className={styles.backgroundHeaderWrap}>
-              <p className={styles.backgroundHeader}>Mutualism</p>
-            </div>
-            <div className={styles.contextHeaderWrap}>
-              <p className={styles.contextHeader}>ABOUT</p>
-            </div>
+          <div className={styles.headersWrap}>
+            <p className={styles.backgroundHeader}>Mutualism</p>
+            <p className={styles.contextHeader}>ABOUT</p>
           </div>
           <p className={styles.text}>Architecture is a system of complex relationships.
              Embodied within architecture are ideas concerning built, nature

@@ -15,9 +15,10 @@ Social Headers
   font-weight: normal;
   line-height: 0.65;
   cursor: default;
-  transform: translate(-100%, 0);
-  animation: slideLeft .6s linear forwards;
-  animation-delay: .8s;
+
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 1.39s;
 }
 
 @define-mixin contextHeader {
@@ -30,23 +31,35 @@ Social Headers
   font-weight: normal;
   line-height: 1;
   cursor: default;
-  transform: translateY(100%);
-  animation: slideUp .4s linear forwards;
-  animation-delay: 1.4s;
+  transform: translate(2%, -23px);
+  animation: slideIn .62s ease-out forwards;
+  opacity: 0;
+  animation-delay: .76s;
 }
 
+
+/*
+2,598544
+1,612
+1
+0,625
+0,390625
+0,244140625
+0,152587890625
+0,095367431640625
+*/
 
 
 /*--------------------------------------------
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes slideLeft {
-  from { transform: translate(-100%, 0); }
-  to { transform: translate(0%, 0); }
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
 }
 
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0%); }
+@keyframes slideIn {
+  from { transform: translate(2%, -23px); opacity: 0; }
+  to { transform: translate(0%, -23px); opacity: 1; }
 }
