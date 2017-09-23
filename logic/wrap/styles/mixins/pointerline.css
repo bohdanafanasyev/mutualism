@@ -4,8 +4,12 @@ Pointer Line
 
 @define-mixin pointerLine {
   display: inline-block;
-  width: 79px;
+  width: 49px;
   height: 2px;
   background-color: white;
-  margin-right: 25px;
+  opacity: 0;
+  transform: scaleX(1) translateX(-35px);
+  transform-origin: left;
+  transition: all .625s ease-out;
+
 }

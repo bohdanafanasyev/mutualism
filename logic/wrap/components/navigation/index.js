@@ -22,21 +22,10 @@ export default class Navigation extends React.Component {
     this.state = { showSocial: false,
                    hideSocial: false,
                    hideShare: false,
-                   shareOverflow: false,
-                   initialLoad: true,
                    descriptionRoute: () => this.props.outerProps.location.pathname.length < 9 ? true : false
                  };
   }
 
-
-
-  //----------------------------------------------
-  // Safari Preload Wrap Overflow Fix
-  //----------------------------------------------
-
-  componentDidMount() {
-    setTimeout(() => this.setState({ initialLoad: false }), 600);
-  }
 
 
   //----------------------------------------------
@@ -63,7 +52,7 @@ export default class Navigation extends React.Component {
         this.setState({ hideShare: true, shareOverlow: false })
         setTimeout(() => {
           this.setState({ shareOverlow: true, showSocial: true })
-        }, 600);
+        }, 800);
       },
 
       // Automated On
@@ -114,21 +103,19 @@ export default class Navigation extends React.Component {
 
     return (
 
-      <div className={classNames(styles.container, this.state.descriptionRoute() ? null : styles.containerNoShare)}
-           style={{pointerEvents: this.state.initialLoad ? 'none' : 'auto'}}
-           onMouseEnter={() => this.setState({ wrapOverflow: true })}>
+      <div className={classNames(styles.container, this.state.descriptionRoute() ? null : styles.containerNoShare)}>
 
-        <div className={styles.wrap} style={{overflow: !this.state.initialLoad ? 'visible' : 'hidden'}}>
+        <div className={styles.wrap}>
           <Link to='/about' onMouseEnter={() => autoRedirect.goAbout()} onMouseLeave={() => this.clearTimer(autoRedirect.timerAbout)} className={classNames(styles.button, about ? styles.active : "")} >ABOUT</Link>
           <Link to='/contact' onMouseEnter={() => autoRedirect.goContact()} onMouseLeave={() => this.clearTimer(autoRedirect.timerContact)} className={classNames(styles.button, contact ? styles.active : "")} >CONTACT</Link>
 
             <div className={styles.share} style={{display: this.state.descriptionRoute() ? 'block' : 'none'}}>
-                <div onMouseEnter={() => this.clearTimer(socialIcons.Timer)} onMouseLeave={() => socialIcons.Off()} style={{overflow: this.state.shareOverflow ? 'visible' : 'hidden' }}>
+                <div onMouseEnter={() => this.clearTimer(socialIcons.Timer)} onMouseLeave={() => socialIcons.Off()} >
                   <SocialIcons parentState={this.state} />
                   <a onClick={() => socialIcons.On()}
                     onMouseEnter={() => socialIcons.selfOn()}
                     onMouseLeave={() => this.clearTimer(socialIcons.Timer)}
-                    className={classNames(styles.buttonShare, this.state.hideShare ? styles.slideOut : null)}>SHARE
+                    className={classNames(styles.buttonShare, this.state.hideShare ? styles.slideOutShare : styles.slideInShare)}>SHARE
                   </a>
                 </div>
             </div>

@@ -12,7 +12,7 @@ General
   z-index: 3;
 
   &:hover .back {
-    color: rgba(255, 255, 255, .60); }
+    color: rgba(255, 255, 255, .8); }
 }
 
 
@@ -21,24 +21,22 @@ General
 Back
 ----------------------*/
 
-.backWrap {
-  overflow: hidden;
-  height: 40px;
-}
-
 .back {
   @mixin fontSharper;
   font-family: Tw Cen Regular;
   font-size: 46px;
   font-weight: inherit;
+  line-height: 26px;
   color: rgba(255, 255, 255, .2);
   margin: 0;
   letter-spacing: 1px;
-  transition: color 0.4s ease-in-out;
+  transition: color 1s ease-out;
   cursor: pointer;
   transform: translateY(30px);
-  animation: slideUp .6s linear forwards;
-  animation-delay: .6s;
+  animation: slideBack .625s ease-out forwards;
+  animation-delay: .375s;
+  opacity: 0;
+
 }
 
 
@@ -46,11 +44,6 @@ Back
 /*----------------------
 To Main
 ----------------------*/
-
-.toMainWrap {
-  overflow: hidden;
-  height: 13px;
-}
 
 .toMain {
   @mixin fontSharper;
@@ -60,9 +53,10 @@ To Main
   letter-spacing: 2px;
   margin: 0 0 0 0;
   cursor: pointer;
-  transform: translateY(-30px);
-  animation: slideDown .4s linear forwards;
-  animation-delay: .8s;
+  transform: translateY(3px);
+  animation: slideToMain 1.39s ease-out forwards;
+  animation-delay: 1s;
+  opacity: 0;
 }
 
 
@@ -71,12 +65,12 @@ To Main
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes slideUp {
-  from { transform: translateY(30px); }
-  to { transform: translateY(0px); }
+@keyframes slideBack {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
 }
 
-@keyframes slideDown {
-  from { transform: translateY(-30px); }
-  to { transform: translateY(-1px); }
+@keyframes slideToMain {
+  from { transform: translateX(-6px); opacity: 0; }
+  to { transform: translateX(0px); opacity: 1; }
 }

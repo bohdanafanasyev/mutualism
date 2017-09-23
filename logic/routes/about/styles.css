@@ -8,8 +8,6 @@ General
 .container {
   width: 100vw;
   height: 100vh;
-  background-repeat: no-repeat;
-  background-position: center bottom;
   position: absolute;
 
   .wrap {
@@ -21,21 +19,20 @@ General
     transform: translate(-50%, -50%); }
 }
 
+
+
+/*----------------------
+Background
+----------------------*/
+
 .background {
+  width: 100%;
+  position: absolute;
   background-repeat: no-repeat;
   background-position: center bottom;
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  animation: test 1s cubic-bezier(.05,.32,.53,.99) forwards;
-  /*animation-delay: 4s;*/
+  animation: backgroundLead .625s ease-out forwards;
 }
 
-
-@keyframes test {
-  0% { height: 0; margin-top: 100vh; }
-  100% { height: 100vh; margin-top: 0; }
-}
 
 
 /*----------------------
@@ -69,12 +66,8 @@ text
   margin: 28px 0 0 0;
   cursor: default;
   opacity: 0;
-  animation: fadeIn 1.83s ease-out forwards;
+  animation: slideText 1s ease-out forwards;
   animation-delay: 1.39s;
-
-  &:last-child {
-    /*animation-delay: 1s;*/
-  }
 }
 
 
@@ -83,12 +76,12 @@ text
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(5%); }
-  100% { opacity: 1; transform: translateY(0%); }
+@keyframes slideText {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(5%); }
-  100% { opacity: 1; transform: translateY(0%); }
+@keyframes backgroundLead {
+  0% { height: 62vh; margin-top: 38vh; }
+  100% { height: 100vh; margin-top: 0; }
 }

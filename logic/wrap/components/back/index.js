@@ -50,8 +50,8 @@ class Back extends React.Component {
     return (
 
       <div className={styles.container} onClick={() => this.props.history.push(this.state.previousRoute)} style={{display: display ? 'block' : 'none'}}>
-        <div className={styles.backWrap}><p className={styles.back}>Back</p></div>
-        <div className={styles.toMainWrap}><p className={styles.toMain}>TO MAIN</p></div>
+        <p className={styles.back}>Back</p>
+        <p className={styles.toMain}>TO MAIN</p>
       </div>
 
     )

@@ -11,7 +11,8 @@ import styles from './styles/styles.css';
 const background = { backgroundImage: `url(${require(`./assets/contact.png`)})` };
 
 const Contact = () => (
-  <div className={styles.container} style={background}>
+  <div className={styles.container}>
+    <div className={styles.background} style={background} />
     <div className={styles.wrap}>
       <div className={styles.emailForm}>
         <div className={styles.headersWrap}>
@@ -21,7 +22,7 @@ const Contact = () => (
         <input type='text' className={classNames(styles.input, styles.inputMargin)} placeholder="Please provide your email" />
         <input type='email' className={styles.input} placeholder="How can we reference to you" />
         <textarea type='text' className={classNames(styles.input, styles.inputTall)} placeholder="Your message"></textarea>
-        <div className={styles.sendButton}>
+        <div className={styles.sendWrap}>
           <a className={styles.button}>SEND</a>
           <span className={styles.pointerLine}></span>
         </div>

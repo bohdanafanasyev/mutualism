@@ -1,4 +1,4 @@
-@import './mixins/fontsharper.css';
+@import '../../styles/mixins/fontsharper.css';
 
 /*--------------------------------------------
 Logotype
@@ -9,8 +9,7 @@ Logotype
   bottom: 49px;
   left: 74px;
   z-index: 2;
-  /*opacity: 0;*/
-  /*animation: fadeIn 1s linear forwards;*/
+  transform-origin: left center;
 }
 
 
@@ -19,27 +18,24 @@ Logotype
 Logo
 ---------------------*/
 
+.logoWrap {
+  display: inline-block;
+  float: left;
+  animation: scaleLogo .625s ease-out forwards;
+}
+
 .logo {
   width: 42px;
   height: 47px;
   display: inline-block;
-  float: left;
-  background-image: url('../assets/logo/logo-new.png');
+  background-image: url('./assets/logo-new.png');
   animation: infiniteLoop 38s linear infinite;
 }
-
 
 
 /*---------------------
 Type
 ---------------------*/
-
-.typeWrap {
-  height: 13px;
-  float: left;
-  margin: 16px 0 0 25px;
-  overflow: hidden;
-}
 
 .type {
 	@mixin fontSharper;
@@ -50,9 +46,11 @@ Type
 	letter-spacing: .4px;
   margin: 2px 0 0 0;
   cursor: default;
-  transform: translateY(140%);
-  animation: slideIn .6s linear forwards;
-  /*animation-delay: .6s;*/
+  opacity: 0;
+  animation: slideType 1.39s ease-out forwards;
+  animation-delay: 1s;
+  float: left;
+  margin: 16px 0 0 25px;
 }
 
 
@@ -62,16 +60,16 @@ Animation Keyframes
 --------------------------------------------*/
 
 @keyframes infiniteLoop {
-  from { transform: rotateZ(0) }
+  from { transform: rotateZ(130deg) }
   to { transform: rotateZ(360deg) }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
+@keyframes scaleLogo {
+  from { transform: scale(.2) rotateZ(90deg); opacity: 0;}
+  to { transform: scale(1) rotateZ(130deg); opacity: 1;}
 }
 
-@keyframes slideIn {
-  from { transform: translateY(140%)}
-  to { transform: translateY(0);}
+@keyframes slideType {
+  from { transform: translateX(8px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }

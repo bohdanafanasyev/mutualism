@@ -66,7 +66,7 @@ Icons
   margin: 0 30px 0 0;
   background-color: rgba(255, 255, 255, .6);
   opacity: 0;
-  transition: background-color .6s ease-out;
+  transition: background-color 1s ease-out;
   animation: fadeIcon 1.14s ease-out forwards;
   animation-delay: 1.25s;
 

@@ -10,7 +10,7 @@ Images
   left: 0;
   z-index: 0;
 
-  .imageUpper, .imageMain {
+  .upper, .main {
     width: 100%;
     height: 100%;
     top: 0;
@@ -24,17 +24,26 @@ Images
 Main
 --------------------*/
 
-.imageMain {
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transform: scale(1) translate(0);
-  animation: fadeIn 38s linear forwards;
+.mainWrap {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: backgroundLead .625s ease-out forwards;
+}
+
+.main {
+  background-repeat: no-repeat;
+  background-position: center bottom;;
+  animation: fadeIn 38s ease-out forwards;
+  animation-delay: .65s;
 }
 
 
+
 /*-------------------
-Upper
+Upper Side
 --------------------*/
 
 .upperWrap {
@@ -44,14 +53,16 @@ Upper
   overflow: hidden;
   opacity: 0;
   transform: translateX(-100%);
-  animation: slideIn .6s linear forwards;
+  animation: slideWrap .625s ease-out forwards;
   animation-delay: .6s;
 }
 
-.imageUpper {
-  background-position: 33% 100%;
+.upper {
+  background-position: 33% 120%;
+  /*background-position: bottom center;*/
   transform: scale(1) translateX(100%);
-  animation: scaleIn 38s ease-in forwards;
+  animation: slideUpper 38s ease-out forwards;
+  transform-origin: 60% 40%;
   animation-delay: 1.3s;
 }
 
@@ -61,19 +72,21 @@ Upper
 Filter
 --------------------*/
 
-.filterNormal, .filterHard {
+/*.filterNormal, .filterHard {
   width: 100%;
   height: 100%;
   position: absolute;
+  background-image: url('../../assets/filter.jpg');
+
 }
 
 .filterNormal {
-  background: linear-gradient(to right, rgba(0,0,0,0) -160%, rgba(0,0,0, .2) 256%);
+  animation: filterAppear 1s ease-out forwards;
 }
 
 .filterHard {
-  background: linear-gradient(to right, rgba(0,0,0,0) -160%, rgba(0,0,0, .6) 256%);
-}
+  animation: filterAppearHard 1s ease-out forwards;
+}*/
 
 
 
@@ -84,21 +97,33 @@ Animation Keyframes
 @keyframes fadeIn {
   0% { opacity: 1 }
   1% { opacity: 1 }
-  1.64% { opacity: 1; transform: scale(1) translate(0); }
-  100% { opacity: 1; transform: scale(1.01) translate(1%); }
+  1.64% { opacity: 1; transform: scale(1) translateX(0); }
+  100% { opacity: 1; transform: scale(1.05) translateX(30px); }
 }
 
-
-@keyframes slideIn {
+@keyframes slideWrap {
   0% { transform: translateX(-100%); opacity: 0}
   60%  { opacity: .4 }
   100%  { transform: translateX(0); opacity: 1 }
 }
 
+@keyframes slideUpper {
+  0% { transform: scale(1) translateX(5px); opacity: 0; }
+  3.65% { transform: translateX(0px) scale(1.01); opacity: 0; opacity: 1; }
+  100% { transform: scale(1.1) translate(-3%); opacity: 1}
+}
 
+@keyframes backgroundLead {
+  0% { height: 62vh; margin-top: 38vh; }
+  100% { height: 100vh; margin-top: 0; }
+}
 
-@keyframes scaleIn {
-  0% { transform: scale(1) translateX(100%) }
-  1.64% { transform: translateX(0) }
-  100% { transform: scale(1.2) translate(-3%) }
+@keyframes filterAppear {
+  0% { opacity: 0;}
+  100% { opacity: .2}
+}
+
+@keyframes filterAppearHard {
+  0% { opacity: 0;}
+  100% { opacity: .28}
 }

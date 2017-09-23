@@ -1,4 +1,3 @@
-@import './logotype.css';
 @import 'normalize.css';
 @import 'animations.css';
 @import 'fonts.css';
@@ -13,7 +12,12 @@ html, body {
 	position: absolute;
 	top: 0;
 	left: 0;
-  background-color: black;
+}
+
+body {
+	background-image: url('../../routes/slides/assets/jpg/benefitright.jpg');
+	background-size: cover;
+	background-position: center;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, div, span {

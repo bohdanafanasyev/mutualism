@@ -13,27 +13,8 @@ Page Enterings
 
 .enterActive {
 	z-index: 2 !important;
-	/*transform-origin: bottom;*/
 }
 
-.exit {
-	/*z-index: 3;*/
-	/*animation: leave .8s ease-in forwards;*/
-
-
-}
-
-.exitActive {
-	/*z-index: 3;*/
-
-}
-
-
-
-/*@keyframes enterIn {
-  from { transform: translateY(100%) scaleY(.4); }
-  to { transform: translateY(0%) scaleY(1); }
-}*/
 
 @keyframes enterIn {
   from { transform: translateY(100%); }

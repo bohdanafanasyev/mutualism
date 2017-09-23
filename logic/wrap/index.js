@@ -8,6 +8,7 @@ import styles from './styles/styles.css';
 // Components
 import Navigation from './components/navigation';
 import Numbers from './components/numbers';
+import Logotype from './components/logotype';
 import Back from './components/back';
 
 
@@ -80,13 +81,8 @@ class Wrap extends React.Component {
           </CSSTransition>
         </TransitionGroup>
 
-        <div className={styles.logotype}>
-          <span className={styles.logo}></span>
-          <div className={styles.typeWrap}>
-            <p className={styles.type}>mutualism inc.</p>
-          </div>
-        </div>
 
+        <Logotype />
         <Numbers location={this.props.location} slideNumber={slideNumber} />
         <Back location={this.props.location} />
       </div>

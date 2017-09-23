@@ -18,8 +18,7 @@ General
     position: absolute;
     top: 50%;
     margin: 0 79px;
-    transform: translateY(-50%);
-    overflow: hidden; }
+    transform: translateY(-50%); }
 
   &NoShare {
     width: 200px;
@@ -58,8 +57,7 @@ Buttons
   cursor: pointer;
   position: relative;
   padding-bottom: 4px;
-  animation: slideIn .6s linear forwards;
-  transform: translate(0, 100%);
+  animation: slideButton .777s ease-out forwards;
 
   &:after {
     content: '';
@@ -79,11 +77,10 @@ Buttons
 
 /*--- Acitve ---*/
 
-.active {
-
-  &:after {
-    width: 98% }
+.active:after {
+    width: 98%
 }
+
 
 
 
@@ -91,14 +88,13 @@ Buttons
 Animation Classes
 --------------------------------------------*/
 
-.slideIn {
-  animation: slideIn .6s linear forwards;
+.slideInShare {
+  animation: slideInShare .777s ease-out forwards;
   float: right;
-
 }
 
-.slideOut {
-  animation: slideOut .6s linear forwards;
+.slideOutShare {
+  animation: slideOutShare .777s ease-out forwards;
   float: right;
 
   &:after {
@@ -114,17 +110,17 @@ Animation Classes
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes enablePointer {
-  from { height: 0; }
-  to { height: 14px; }
+@keyframes slideButton{
+  from { transform: translateY(-8px); opacity: 0; pointer-events: none; }
+  to { transform: translateY(0); opacity: 1; pointer-events: auto; }
 }
 
-@keyframes slideIn {
-  from { transform: translate(0, 100%); }
-  to { transform: translate(0, 0); }
+@keyframes slideInShare {
+  from { transform: translateX(8px); opacity: 0 }
+  to { transform: translateX(0); opacity: 1 }
 }
 
-@keyframes slideOut {
-  from { transform: translate(0, 0); opacity: 1; }
-  to { transform: translate(0, -200%); opacity: 0; }
+@keyframes slideOutShare {
+  from { transform: translateX(0); opacity: 1 }
+  to { transform: translateX(-8px); opacity: 0 }
 }

@@ -10,8 +10,6 @@ General
 .container {
   width: 100vw;
   height: 100vh;
-  background-repeat: no-repeat;
-  background-position: center bottom;
   position: absolute;
 
   .wrap {
@@ -22,6 +20,20 @@ General
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex; }
+}
+
+
+
+/*----------------------
+Background
+----------------------*/
+
+.background {
+  width: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  animation: backgroundLead .625s ease-out forwards;
 }
 
 
@@ -46,7 +58,7 @@ Headers
 
 
 /*--------------------------------------
-Inputs
+Email Form
 --------------------------------------*/
 
 .emailForm {
@@ -56,6 +68,12 @@ Inputs
   top: 0;
   left: 0;
 }
+
+
+
+/*-------------------
+Inputs
+-------------------*/
 
 .input {
   @mixin fontSharper;
@@ -86,13 +104,14 @@ Inputs
 }
 
 
+
 /*-------------------
 Send Button
 -------------------*/
 
-.sendButton {
+.sendWrap {
   text-align: right;
-  margin-top: 33px;
+  margin-top: 27px;
 }
 
 .button {
@@ -100,18 +119,17 @@ Send Button
   font-family: Tw Cen Regular;
   font-size: 24px;
   margin-right: -1px;
+  padding: 5px 5px 0 5px;
   cursor: pointer;
   display: inline-block;
+  float: right;
   opacity: 0;
-  transform: translateX(-6px);
   animation: slideButton 1.25s ease-out forwards;
   animation-delay: 1.4s;
 
   &:hover + .pointerLine {
-    animation: growLine .6s ease-out forwards;
-  }
-
-  float: right;
+    opacity: 1;
+    transform: scaleX(1) translateX(-25px); }
 }
 
 
@@ -122,11 +140,7 @@ Pointer Line
 
 .pointerLine {
   @mixin pointerLine;
-  transform: scaleX(0);
-  margin-bottom: -1px;
-  transform-origin: left;
-  animation: growLine .6s ease-out forwards;
-
+  margin-bottom: -6px;
 }
 
 
@@ -134,7 +148,6 @@ Pointer Line
 /*--------------------------------------------
 Animation Keyframes
 --------------------------------------------*/
-
 
 @keyframes slideButton {
   from { transform: translateX(-6px); opacity: 0; }
@@ -149,4 +162,9 @@ Animation Keyframes
 @keyframes slideInput {
   from { opacity: 0; transform: translateY(4px);}
   to { opacity: 1; transform: translateY(0)}
+}
+
+@keyframes backgroundLead {
+  0% { height: 62vh; margin-top: 38vh; }
+  100% { height: 100vh; margin-top: 0; }
 }
