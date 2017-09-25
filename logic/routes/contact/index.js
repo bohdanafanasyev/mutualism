@@ -12,7 +12,9 @@ const background = { backgroundImage: `url(${require(`./assets/contact.png`)})` 
 
 const Contact = () => (
   <div className={styles.container}>
-    <div className={styles.background} style={background} />
+    <div className={styles.backgroundWrap}>
+      <div className={styles.background} style={background} />
+    </div>
     <div className={styles.wrap}>
       <div className={styles.emailForm}>
         <div className={styles.headersWrap}>

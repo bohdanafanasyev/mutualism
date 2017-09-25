@@ -22,18 +22,35 @@ export default class Navigation extends React.Component {
     this.state = { showSocial: false,
                    hideSocial: false,
                    hideShare: false,
+                   shareThrottle: false,
                    descriptionRoute: () => this.props.outerProps.location.pathname.length < 9 ? true : false
                  };
+
+    this.socialIconsOn = this.socialIconsOn.bind(this)
   }
 
-
+  test() {
+    this.setState({ tester: this.state.tester + 1 })
+    console.log(this.state.tester)
+  }
 
   //----------------------------------------------
   // Helper for socialIcons & autoRedirect
   //----------------------------------------------
 
-  clearTimer(timer) { if (typeof timer !== undefined) clearTimeout(timer) }
+  clearTimer(timer) { if (typeof timer !== undefined) clearTimeout(timer); console.log('clear') }
 
+
+  //----------------------------------------------
+  // Helpers for socialIcons
+  //----------------------------------------------
+
+  socialIconsOn() {
+    this.setState({ hideShare: true })
+    setTimeout(() => {
+      this.setState({ showSocial: true })
+    }, 800);
+  }
 
 
   //----------------------
@@ -49,26 +66,31 @@ export default class Navigation extends React.Component {
     const socialIcons = {
       // Turn ON
       On: () => {
-        this.setState({ hideShare: true, shareOverlow: false })
+        this.setState({ hideShare: true })
         setTimeout(() => {
-          this.setState({ shareOverlow: true, showSocial: true })
+          this.setState({ showSocial: true })
         }, 800);
       },
 
       // Automated On
-      selfOn: () => socialIcons.Timer = setTimeout(() => socialIcons.On(), 1000),
+      selfOn: () => socialIcons.timerOn = setTimeout(() => socialIcons.On(), 1000),
 
       // Turn OFF
       Off: () => {
-        socialIcons.Timer = setTimeout(() => {
+        console.log('off')
+        socialIcons.timerOff = setTimeout(() => {
           this.setState({ hideSocial: true })
-          setTimeout(() => { this.setState({ showSocial: false, hideSocial: false})
-                              setTimeout(() => this.setState({ shareOverlow: false, hideShare: false }), 600)
+          setTimeout(() => { this.setState({ showSocial: false, hideSocial: false, shareThrottle: true })
+                              setTimeout(() => {
+                                this.setState({ hideShare: false })
+                                setTimeout(() => this.setState({ shareThrottle: false }), 625)
+                              }, 600)
                            }, 600)
         }, 2000)},
 
       // Timer
-      Timer: {}
+      timerOn: {},
+      timerOff: {}
     }
 
 
@@ -103,22 +125,21 @@ export default class Navigation extends React.Component {
 
     return (
 
-      <div className={classNames(styles.container, this.state.descriptionRoute() ? null : styles.containerNoShare)}>
+      <div className={classNames(styles.container, this.state.descriptionRoute() ? null : styles.containerNoShare)} >
 
         <div className={styles.wrap}>
           <Link to='/about' onMouseEnter={() => autoRedirect.goAbout()} onMouseLeave={() => this.clearTimer(autoRedirect.timerAbout)} className={classNames(styles.button, about ? styles.active : "")} >ABOUT</Link>
           <Link to='/contact' onMouseEnter={() => autoRedirect.goContact()} onMouseLeave={() => this.clearTimer(autoRedirect.timerContact)} className={classNames(styles.button, contact ? styles.active : "")} >CONTACT</Link>
 
-            <div className={styles.share} style={{display: this.state.descriptionRoute() ? 'block' : 'none'}}>
-                <div onMouseEnter={() => this.clearTimer(socialIcons.Timer)} onMouseLeave={() => socialIcons.Off()} >
-                  <SocialIcons parentState={this.state} />
-                  <a onClick={() => socialIcons.On()}
-                    onMouseEnter={() => socialIcons.selfOn()}
-                    onMouseLeave={() => this.clearTimer(socialIcons.Timer)}
-                    className={classNames(styles.buttonShare, this.state.hideShare ? styles.slideOutShare : styles.slideInShare)}>SHARE
-                  </a>
-                </div>
-            </div>
+          <div className={styles.share} style={{display: this.state.descriptionRoute() ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
+            onMouseEnter={() => { this.clearTimer(socialIcons.timerOff); this.clearTimer(socialIcons.timerOn)}} onMouseLeave={() => socialIcons.Off()}>
+            <SocialIcons parentState={this.state} test={this.test}/>
+            <a onClick={() => this.socialIconsOn()}
+              onMouseEnter={() => socialIcons.selfOn()}
+              onMouseLeave={() => this.clearTimer(socialIcons.timerOn)}
+              className={classNames(styles.buttonShare, this.state.hideShare ? styles.slideOutShare : styles.slideInShare)}>SHARE
+            </a>
+          </div>
 
         </div>
       </div>

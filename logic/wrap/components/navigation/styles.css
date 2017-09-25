@@ -36,6 +36,7 @@ Share Block
 ----------------------*/
 
 .share {
+  height: 24px;
   cursor: pointer;
   position: absolute;
   right: 0;
