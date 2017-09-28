@@ -16,6 +16,7 @@ Navigation
 }
 
 
+
 /*--------------------------------------------
 Navigation Page Number
 --------------------------------------------*/
@@ -26,11 +27,6 @@ Navigation Page Number
   bottom: 0;
   right: 7px;
   cursor: pointer;
-
-  &Wrap {
-    width: 68px;
-    height: 42px;
-    overflow: hidden; }
 
   &:hover .allPages {
     color: rgba(255, 255, 255, .9); }
@@ -49,8 +45,16 @@ Current Page
   display: inline-block;
   float: left;
   line-height: 42px;
-  transform: translateY(100%);
-  animation: slideIn .6s ease-in forwards;
+  width: 41px;
+  transform: translate(0px, 0px);
+}
+
+.currentSlide {
+  animation: slideCurrent .625s ease-out forwards;
+}
+
+.currentFade {
+  animation: fadeCurrent .625s ease-out forwards;
 }
 
 
@@ -61,16 +65,16 @@ All Pages
 .allPages, .allPagesActive {
   @mixin fontSharper;
   font-family: Tw Cen Semibold;
-  font-size: 24px;
+  font-size: 22px;
   display: inline-block;
   opacity: 0;
-  transform: translate(100%, -3px);
-  animation: slideSide .4s ease-in forwards;
-  animation-delay: .6s;
+  transform: translate(0 -3px);
+  animation: slideAll 1.39s ease-out forwards;
+  animation-delay: .625s;
 }
 
 .allPages {
-  transition: color .4s ease-in-out;
+  transition: color .625s ease;
   color: rgba(255, 255, 255, .4);
 }
 
@@ -79,16 +83,22 @@ All Pages
 }
 
 
+
 /*--------------------------------------------
 Animations
 --------------------------------------------*/
 
-@keyframes slideIn {
-  from { transform: translateY(100%) }
-  to { transform: translateY(0) }
+@keyframes slideCurrent {
+  from { transform: translate(0, 16px); opacity: 0; }
+  to { transform: translate(0, 0px); opacity: 1; }
 }
 
-@keyframes slideSide {
-  from { transform: translate(100%, -3px); opacity: 1; }
-  to { transform: translate(7px, -3px); opacity: 1;}
+@keyframes fadeCurrent {
+  from { opacity: 0; transform: translate(0, 7px) }
+  to { opacity: 1; transform: translate(0, 0px) }
+}
+
+@keyframes slideAll {
+  from { transform: translate(9px, -3px); opacity: 0; }
+  to { transform: translate(2px, -3px); opacity: 1; }
 }

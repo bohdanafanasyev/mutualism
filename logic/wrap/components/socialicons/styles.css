@@ -14,6 +14,15 @@ Main
   }
 }
 
+.dummy {
+  animation: test 0.1s;
+}
+
+@keyframes test {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
 
 
 /*-------------------
@@ -83,5 +92,5 @@ Icons
 
 .facebook {
    mask-image: url('../../assets/icons/facebook.svg');
-   animation-delay: .18s
+   animation-delay: .18s;
 }

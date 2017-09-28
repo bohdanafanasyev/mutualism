@@ -38,7 +38,6 @@ class Wrap extends React.Component {
   //----------------------------------------------
 
   componentWillMount() {
-
     // Update Redux Route History with first record
     if (this.props.state.history.length == 0) this.props.dispatch(historyUpdate(location.pathname));
 
@@ -83,7 +82,7 @@ class Wrap extends React.Component {
 
 
         <Logotype />
-        <Numbers location={this.props.location} slideNumber={slideNumber} />
+        <Numbers slideNumber={slideNumber} history={this.props.history}/>
         <Back location={this.props.location} />
       </div>
     )

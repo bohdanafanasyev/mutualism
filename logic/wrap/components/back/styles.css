@@ -32,11 +32,10 @@ Back
   letter-spacing: 1px;
   transition: color 1s ease-out;
   cursor: pointer;
+  opacity: 0;
   transform: translateY(30px);
   animation: slideBack .625s ease-out forwards;
   animation-delay: .375s;
-  opacity: 0;
-
 }
 
 
@@ -53,10 +52,10 @@ To Main
   letter-spacing: 2px;
   margin: 0 0 0 0;
   cursor: pointer;
+  opacity: 0;
   transform: translateY(3px);
   animation: slideToMain 1.39s ease-out forwards;
   animation-delay: 1s;
-  opacity: 0;
 }
 
 

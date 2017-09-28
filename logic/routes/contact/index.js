@@ -8,7 +8,7 @@ import styles from './styles/styles.css';
 //----------------------------------------------
 
 // Background Image
-const background = { backgroundImage: `url(${require(`./assets/contact.png`)})` };
+const background = { backgroundImage: `url(${require(`./assets/contact2.jpg`)})` };
 
 const Contact = () => (
   <div className={styles.container}>

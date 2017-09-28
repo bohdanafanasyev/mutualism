@@ -69,12 +69,8 @@ class Slides extends React.Component {
       <div className={styles.container} ref="container" onWheel={(e) => (this.state.loaded && !this.state.breaker) ? this.scrollRedirect(e) : null }>
         <div className={styles.wrap}>
           <div className={styles.headersWrap}>
-            <div className={styles.mainHeaderWrap}>
               <h1 className={styles.mainHeader}>{slide.header}</h1>
-            </div>
-            <div className={styles.subHeaderWrap}>
               <h2 className={styles.subHeader}>{slide.subHeader}</h2>
-            </div>
           </div>
           <p className={styles.description}>{slide.description}</p>
           <LearnMore parentProps={this.props} />

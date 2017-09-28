@@ -47,12 +47,8 @@ class LearnMore extends React.Component {
 
       <div className={styles.learnMoreWrap} ref="learnMoreWrap" >
         <div className={styles.learnMore}>
-          <div className={styles.learnWrap}>
             <p href='#' className={styles.learn}>Learn</p><br />
-          </div>
-          <div className={styles.moreWrap}>
             <p className={styles.more}>MORE</p>
-          </div>
         </div>
         <span className={styles.pointerLine}></span>
       </div>
