@@ -26,10 +26,23 @@ class Wrap extends React.Component {
   constructor(props) {
     super(props);
 
-    // Update Redux Route History
+    // Update Redux Route History & Manage Componets (Back, Numbers)
     this.props.history.listen((location, action) => {
       this.props.dispatch(historyUpdate(location.pathname));
+      // this.manageBack();
+      // this.manageNumbers();
     });
+
+    // Component State
+    this.state = { Numbers: true, Back: true }
+
+    // Helpers Bindings
+    this.manageBack = this.manageBack.bind(this);
+    this.manageNumbers = this.manageNumbers.bind(this);
+  }
+
+  componentDidUpdate() {
+    console.log(this.state)
   }
 
 
@@ -41,12 +54,26 @@ class Wrap extends React.Component {
     // Update Redux Route History with first record
     if (this.props.state.history.length == 0) this.props.dispatch(historyUpdate(location.pathname));
 
-    // // Redirect to intro
+    // Manage Back and Numbers Component
+    // this.manageBack();
+    // this.manageNumbers();
+
+    // Redirect to intro
     let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
         pathName = this.props.location.pathname;
     if (pathName == '/' || !registredRoutes.includes(pathName)) this.props.history.push('/intro');
-    // console.log(this.props)
   }
+
+
+
+  //----------------------------------------------
+  // Managing Components
+  //----------------------------------------------
+
+  manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ Back: true }) : this.setState({ Back: false }); }
+  manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ Numbers: true }) : this.setState({ Numbers: false }); }
+
+
 
 
   //----------------------
@@ -56,11 +83,14 @@ class Wrap extends React.Component {
   render () {
     // Virables
     let path = this.props.location.pathname.slice(1),
-        slideNumber = 0;
+        slideNumber = undefined;
 
     // Change Numbers prop if corresponding to Slides component
     if (typeof this.props.state.slides[path] == "object") slideNumber = this.props.state.slides[path].slideNumber
 
+    // {["/intro", "/benefit", "/people", "/start"].map(path =>
+    //     <Route key={path} path={path} component={Routes.Slides} />
+    // )}
 
     return (
 
@@ -68,22 +98,21 @@ class Wrap extends React.Component {
         <Navigation outerProps={this.props.location, this.props.history} />
 
         <TransitionGroup>
-          <CSSTransition key={this.props.location.key} classNames={styles} timeout={1000}>
-            <Switch location={this.props.location} >
+          <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
+            <Switch location={this.props.location}>
               <Route path='/about' component={Routes.About} />
               <Route path='/contact' component={Routes.Contact} />
-              <Route path='/intro' component={Routes.Slides} />
-              <Route path='/benefit' component={Routes.Slides} />
-              <Route path='/people' component={Routes.Slides} />
-              <Route path='/start' component={Routes.Slides} />
+              {["/intro", "/benefit", "/people", "/start"].map(path =>
+                  <Route key={path} path={path} component={Routes.Slides} />
+              )}
+
             </Switch>
           </CSSTransition>
         </TransitionGroup>
 
-
         <Logotype />
-        <Numbers slideNumber={slideNumber} history={this.props.history}/>
-        <Back location={this.props.location} />
+        <div style={{display: this.state.Numbers ? 'block' : 'none'}}><Numbers slideNumber={slideNumber} location={this.props.location}/></div>
+        <div style={{display: this.state.Back ? 'block' : 'none'}}><Back location={this.props.location} /></div>
       </div>
     )
   }

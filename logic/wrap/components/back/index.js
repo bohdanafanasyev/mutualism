@@ -14,8 +14,7 @@ class Back extends React.Component {
     super(props);
 
     // Component State
-    let pathname = this.props.location.pathname
-    this.state = { previousRoute: '/intro', display: (pathname == '/about' || pathname == '/contact') ? true : false }
+    this.state = { previousRoute: '/intro' }
   }
 
 
@@ -45,7 +44,6 @@ class Back extends React.Component {
 
     let pathname = this.props.location.pathname,
         display = (pathname == '/about' || pathname == '/contact') ? true : false
-
 
     return (
 

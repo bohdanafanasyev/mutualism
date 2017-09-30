@@ -18,10 +18,10 @@ class Slides extends React.Component {
     super(props);
 
     // State
-    this.state = { breaker: false, loaded: false };
+    this.state = { breaker: false, loaded: false, animationTimer: {} };
 
     // Change after animation end
-    setTimeout(() => this.setState({ loaded: true }), 2000);
+
 
     // Helpers' binding
     this.scrollRedirect = this.scrollRedirect.bind(this);
@@ -29,11 +29,24 @@ class Slides extends React.Component {
 
 
   //----------------------------------------------
+  // On Mount Component Freeze
+  //----------------------------------------------
+
+  componentWillMount() {
+    this.setState({ animationTimer: setTimeout(() => this.setState({ loaded: true }), 2000) })
+  }
+
+  componentWillUnmount() {
+    if (typeof this.state.animationTimer !== undefined) clearTimeout(this.state.animationTimer)
+  }
+
+
+
+  //----------------------------------------------
   // Wheel Scroll Helper
   //----------------------------------------------
 
   scrollRedirect(e) {
-
     let path = this.props.location.pathname;
     let goTo = (route) => { this.setState({ breaker: true }); this.props.history.push(route); }
 

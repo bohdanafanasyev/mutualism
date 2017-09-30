@@ -11,7 +11,7 @@ Navigation
   position: absolute;
   padding-right: 25px;
   right: 50px;
-  bottom: 48px;
+  bottom: 67px;
   z-index: 2;
 }
 
@@ -46,16 +46,11 @@ Current Page
   float: left;
   line-height: 42px;
   width: 41px;
-  transform: translate(0px, 0px);
-}
-
-.currentSlide {
-  animation: slideCurrent .625s ease-out forwards;
-}
-
-.currentFade {
+  position: absolute;
+  transform: translateX(-43px);
   animation: fadeCurrent .625s ease-out forwards;
 }
+
 
 
 /*----------------------
@@ -88,17 +83,42 @@ All Pages
 Animations
 --------------------------------------------*/
 
-@keyframes slideCurrent {
-  from { transform: translate(0, 16px); opacity: 0; }
-  to { transform: translate(0, 0px); opacity: 1; }
-}
-
-@keyframes fadeCurrent {
-  from { opacity: 0; transform: translate(0, 7px) }
-  to { opacity: 1; transform: translate(0, 0px) }
-}
-
 @keyframes slideAll {
   from { transform: translate(9px, -3px); opacity: 0; }
   to { transform: translate(2px, -3px); opacity: 1; }
+}
+
+@keyframes fadeCurrent {
+  from { opacity: 0; transform: translate(-43px, 7px) }
+  to { opacity: 1; transform: translate(-43px, 0px) }
+}
+
+
+
+/*--------------------
+Page Swaps Animation
+--------------------*/
+
+
+.enter {
+  animation: enter .62s ease-out forwards;
+  animation-delay: .38s;
+  opacity: 0;
+}
+
+
+.exit {
+  animation: leave .38s ease-out forwards;
+  position: absolute;
+}
+
+
+@keyframes enter {
+  0% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes leave {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-12px); opacity: 0; }
 }

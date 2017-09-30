@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import styles from './styles/styles.css';
+import Number from './components/number';
 
 
 
@@ -14,25 +16,46 @@ export default class Numbers extends React.Component {
   constructor(props) {
     super(props)
 
-    const slidesRoutes = ["/intro", "/benefits", "/people", "/start"]
 
     // Component State
-    this.state = { navigationLinks: false, linksVisibility: false, currentFade: false, currentSlide: true,
-                   slideRoute: () => slidesRoutes.includes(this.props.history.location) }
+    this.state = { navigationLinks: false, linksAnimation: false, timerHide: {}, timerReveal: {} }
+
+
+    // Helpers Binding
+    this.linksReveal = this.linksReveal.bind(this);
+    this.linksHide = this.linksHide.bind(this);
+  }
+
+
+
+
+  //----------------------------------------------
+  // Clear helpers on unmout
+  //----------------------------------------------
+
+  componentWillUnmount() {
+    this.clearTimer(this.state.timerReveal);
+    this.clearTimer(this.state.timerHide);
   }
 
 
   //----------------------------------------------
-  // Manage Curret Page Animation Cycles
+  // Links Helpers
   //----------------------------------------------
 
-  componentDidMount() {
-    setTimeout(() => this.setState({ currentSlide: false }), 650)
+  linksReveal() {
+      this.setState({
+        timerReveal: setTimeout(() => this.setState({ navigationLinks: true, linksAnimation: true }), 625)
+      })
+  }
 
-    this.props.history.listen(location => {
-      this.setState({ currentFade: true });
-      setTimeout(() => this.setState({ currentFade: false }), 650)
-    })
+  linksHide() {
+      this.setState({
+        timerHide: setTimeout(() => {
+          this.setState({ linksAnimation: false })
+          setTimeout(() => this.setState({ navigationLinks: false }), 625);
+        }, 2000)
+      })
   }
 
 
@@ -43,52 +66,36 @@ export default class Numbers extends React.Component {
   clearTimer(timer) { if (typeof timer !== undefined) clearTimeout(timer) }
 
 
+
   //----------------------
   // Render
   //----------------------
 
   render () {
 
-
-    //----------------------
-    // Links Animation
-    //----------------------
-
-    const visible = {
-      // Turn OFF
-      Off: () => {
-        visible.Timer = setTimeout(() => {
-          this.setState({ linksVisibility: false })
-          setTimeout(() => this.setState({ navigationLinks: false }), 625);
-        }, 2000)
-      },
-
-      // Timer
-      Timer: {}
-    }
-
-
-    //----------------------
-    // Helpers
-    //----------------------
-
-    const linksReveal = () => setTimeout(() => this.setState({ navigationLinks: true, linksVisibility: true }), 625)
-
-
     return (
 
-      <div className={styles.navigation} onMouseEnter={() => this.clearTimer(visible.Timer)} onMouseLeave={() => visible.Off()} style={{display: this.props.slideNumber > 0 ? 'block' : 'none'}}>
+      <div className={styles.navigation} onMouseEnter={() => this.clearTimer(this.state.timerHide)} onMouseLeave={() => this.linksHide()} style={{display: this.props.slideNumber > 0 ? 'block' : 'none'}}>
 
         <div className={this.state.navigationLinks ? styles.navigationLinks : styles.navigationLinksHidden}>
-            <Link className={classNames(styles.navigationLink, this.state.linksVisibility ? styles.slideIn : styles.slideOut)} to='/intro'>Introduction<span className={styles.number}>01</span></Link>
-            <Link className={classNames(styles.navigationLink, this.state.linksVisibility ? styles.slideIn : styles.slideOut)} to='/benefit'>Benefit<span className={styles.number}>02</span></Link>
-            <Link className={classNames(styles.navigationLink, this.state.linksVisibility ? styles.slideIn : styles.slideOut)} to='/people'>People<span className={styles.number}>03</span></Link>
-            <Link className={classNames(styles.navigationLink, this.state.linksVisibility ? styles.slideIn : styles.slideOut)} to='/start'>Start<span className={styles.number}>04</span></Link>
+          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/intro'>Introduction<span className={styles.number}>01</span></Link>
+          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/benefit'>Benefit<span className={styles.number}>02</span></Link>
+          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/people'>People<span className={styles.number}>03</span></Link>
+          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/start'>Start<span className={styles.number}>04</span></Link>
         </div>
 
-        <div className={styles.navigationPageNumber} onMouseEnter={() => linksReveal()}>
-            <span ref="currentPage" className={classNames(styles.currentPage, this.state.currentFade ? styles.currentFade : null, this.state.currentSlide ? styles.currentSlide : null)}>{this.props.slideNumber}</span>
-            <span className={this.state.navigationLinks ? styles.allPagesActive : styles.allPages}>04</span>
+        <div className={styles.navigationPageNumber} onMouseEnter={() => this.linksReveal()} onMouseLeave={() => this.clearTimer(this.state.timerReveal)}>
+          <TransitionGroup>
+            <CSSTransition  classNames={styles} timeout={1000} key={this.props.location.key}>
+              <Switch location={this.props.location}>
+                <Route path='/intro'><Number slideNumber={this.props.slideNumber}/></Route>
+                <Route path='/benefit'><Number slideNumber={this.props.slideNumber}/></Route>
+                <Route path='/people'><Number slideNumber={this.props.slideNumber}/></Route>
+                <Route path='/start'><Number slideNumber={this.props.slideNumber}/></Route>
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+          <span className={this.state.navigationLinks ? styles.allPagesActive : styles.allPages}>04</span>
         </div>
       </div>
 
