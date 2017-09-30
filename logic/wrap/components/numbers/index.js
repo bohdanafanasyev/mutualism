@@ -87,7 +87,7 @@ export default class Numbers extends React.Component {
         <div className={styles.navigationPageNumber} onMouseEnter={() => this.linksReveal()} onMouseLeave={() => this.clearTimer(this.state.timerReveal)}>
           <TransitionGroup>
             <CSSTransition  classNames={styles} timeout={1000} key={this.props.location.key}>
-              <Switch location={this.props.location}>
+              <Switch key={this.props.location.key}>
                 <Route path='/intro'><Number slideNumber={this.props.slideNumber}/></Route>
                 <Route path='/benefit'><Number slideNumber={this.props.slideNumber}/></Route>
                 <Route path='/people'><Number slideNumber={this.props.slideNumber}/></Route>

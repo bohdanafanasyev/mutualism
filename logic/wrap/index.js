@@ -29,12 +29,12 @@ class Wrap extends React.Component {
     // Update Redux Route History & Manage Componets (Back, Numbers)
     this.props.history.listen((location, action) => {
       this.props.dispatch(historyUpdate(location.pathname));
-      // this.manageBack();
-      // this.manageNumbers();
+      this.manageBack();
+      this.manageNumbers();
     });
 
     // Component State
-    this.state = { Numbers: true, Back: true }
+    this.state = { numbers: true, back: true }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
@@ -55,8 +55,8 @@ class Wrap extends React.Component {
     if (this.props.state.history.length == 0) this.props.dispatch(historyUpdate(location.pathname));
 
     // Manage Back and Numbers Component
-    // this.manageBack();
-    // this.manageNumbers();
+    this.manageBack();
+    this.manageNumbers();
 
     // Redirect to intro
     let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
@@ -70,8 +70,8 @@ class Wrap extends React.Component {
   // Managing Components
   //----------------------------------------------
 
-  manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ Back: true }) : this.setState({ Back: false }); }
-  manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ Numbers: true }) : this.setState({ Numbers: false }); }
+  manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ back: true }) : this.setState({ back: false }); }
+  manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ numbers: true }) : this.setState({ numbers: false }); }
 
 
 
@@ -88,9 +88,8 @@ class Wrap extends React.Component {
     // Change Numbers prop if corresponding to Slides component
     if (typeof this.props.state.slides[path] == "object") slideNumber = this.props.state.slides[path].slideNumber
 
-    // {["/intro", "/benefit", "/people", "/start"].map(path =>
-    //     <Route key={path} path={path} component={Routes.Slides} />
-    // )}
+
+    // <Numbers slideNumber={slideNumber} location={this.props.location} visibility={this.state.numbers} />
 
     return (
 
@@ -111,8 +110,8 @@ class Wrap extends React.Component {
         </TransitionGroup>
 
         <Logotype />
-        <Numbers slideNumber={slideNumber} location={this.props.location}/>
-        <Back location={this.props.location} />
+
+        <Back location={this.props.location} visibility={this.state.back}/>
       </div>
     )
   }

@@ -14,7 +14,12 @@ class Back extends React.Component {
     super(props);
 
     // Component State
-    this.state = { previousRoute: '/intro' }
+    this.state = { previousRoute: '/intro', style : { opacity: 0 } }
+
+    // Helpers Bindings
+    this.mountStyle = this.mountStyle.bind(this)
+    this.unMountStyle = this.unMountStyle.bind(this)
+    this.transitionEnd = this.transitionEnd.bind(this)
   }
 
 
@@ -36,6 +41,48 @@ class Back extends React.Component {
   }
 
 
+  //----------------------------------------------
+  // On unMount Disappearance
+  //----------------------------------------------
+
+  componentWillReceiveProps(newProps) { //check for the mounted props
+    if(!newProps.mounted)
+      return this.unMountStyle() //call outro animation when mounted prop is false
+    this.setState({ //remount the node when the mounted prop is true
+      show: true
+    })
+    setTimeout(this.mountStyle, 10) //call the into animiation
+  }
+
+  unMountStyle() { //css for unmount animation
+    this.setState({
+      style: { opacity: 0 }
+    })
+  }
+
+  //----------------------------------------------
+  // On Mount Appearance
+  //----------------------------------------------
+
+  componentDidMount(){
+    setTimeout(this.mountStyle, 10) //call the into animiation
+  }
+
+  mountStyle() { // css for mount animation
+    this.setState({
+      style: { opacity: 1 }
+    })
+  }
+
+  transitionEnd(){
+    if(!this.props.mounted){ //remove the node on transition end when the mounted prop is false
+      this.setState({
+        show: false
+      })
+    }
+  }
+
+
   //----------------------
   // Render
   //----------------------
@@ -43,11 +90,11 @@ class Back extends React.Component {
   render() {
 
     let pathname = this.props.location.pathname,
-        display = (pathname == '/about' || pathname == '/contact') ? true : false
+        display = (pathname == '/about' || pathname == '/contact') ? true : false;
 
     return (
 
-      <div className={styles.container} onClick={() => this.props.history.push(this.state.previousRoute)} style={{display: display ? 'block' : 'none'}}>
+      <div className={styles.container} onClick={() => this.props.history.push(this.state.previousRoute)} style={this.state.style} onTransitionEnd={this.transitionEnd}>
         <p className={styles.back}>Back</p>
         <p className={styles.toMain}>TO MAIN</p>
       </div>
