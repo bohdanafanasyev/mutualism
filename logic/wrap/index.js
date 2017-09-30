@@ -111,8 +111,8 @@ class Wrap extends React.Component {
         </TransitionGroup>
 
         <Logotype />
-        <div style={{display: this.state.Numbers ? 'block' : 'none'}}><Numbers slideNumber={slideNumber} location={this.props.location}/></div>
-        <div style={{display: this.state.Back ? 'block' : 'none'}}><Back location={this.props.location} /></div>
+        <Numbers slideNumber={slideNumber} location={this.props.location}/>
+        <Back location={this.props.location} />
       </div>
     )
   }
