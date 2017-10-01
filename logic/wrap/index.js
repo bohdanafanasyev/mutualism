@@ -41,10 +41,6 @@ class Wrap extends React.Component {
     this.manageNumbers = this.manageNumbers.bind(this);
   }
 
-  componentDidUpdate() {
-    console.log(this.state)
-  }
-
 
   //----------------------------------------------
   // On Mount Helpers
@@ -75,7 +71,6 @@ class Wrap extends React.Component {
 
 
 
-
   //----------------------
   // Render
   //----------------------
@@ -88,8 +83,6 @@ class Wrap extends React.Component {
     // Change Numbers prop if corresponding to Slides component
     if (typeof this.props.state.slides[path] == "object") slideNumber = this.props.state.slides[path].slideNumber
 
-
-    // <Numbers slideNumber={slideNumber} location={this.props.location} visibility={this.state.numbers} />
 
     return (
 
@@ -110,8 +103,8 @@ class Wrap extends React.Component {
         </TransitionGroup>
 
         <Logotype />
-
         <Back location={this.props.location} visibility={this.state.back}/>
+        <Numbers slideNumber={slideNumber} location={this.props.location} visibility={this.state.numbers} />
       </div>
     )
   }

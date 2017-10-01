@@ -14,7 +14,7 @@ class Back extends React.Component {
     super(props);
 
     // Component State
-    this.state = { previousRoute: '/intro', style : { opacity: 0 } }
+    this.state = { previousRoute: '/intro', style : { opacity: 0 }, display: true }
 
     // Helpers Bindings
     this.mountStyle = this.mountStyle.bind(this)
@@ -42,14 +42,14 @@ class Back extends React.Component {
 
 
   //----------------------------------------------
-  // On unMount Disappearance
+  // On unMount fade out
   //----------------------------------------------
 
-  componentWillReceiveProps(newProps) { //check for the mounted props
-    if(!newProps.mounted)
-      return this.unMountStyle() //call outro animation when mounted prop is false
-    this.setState({ //remount the node when the mounted prop is true
-      show: true
+  componentWillReceiveProps(newProps) { //check for the visibility props
+    if (!newProps.visibility)
+      return this.unMountStyle() //call outro animation when visibility prop is false
+    this.setState({ //remount the node when the visibility prop is true
+      display: true
     })
     setTimeout(this.mountStyle, 10) //call the into animiation
   }
@@ -60,8 +60,9 @@ class Back extends React.Component {
     })
   }
 
+
   //----------------------------------------------
-  // On Mount Appearance
+  // On Mount fade in
   //----------------------------------------------
 
   componentDidMount(){
@@ -75,9 +76,9 @@ class Back extends React.Component {
   }
 
   transitionEnd(){
-    if(!this.props.mounted){ //remove the node on transition end when the mounted prop is false
+    if (!this.props.visibility) { //remove the node on transition end when the visibility prop is false
       this.setState({
-        show: false
+        display: false
       })
     }
   }
@@ -94,6 +95,7 @@ class Back extends React.Component {
 
     return (
 
+      this.state.display &&
       <div className={styles.container} onClick={() => this.props.history.push(this.state.previousRoute)} style={this.state.style} onTransitionEnd={this.transitionEnd}>
         <p className={styles.back}>Back</p>
         <p className={styles.toMain}>TO MAIN</p>

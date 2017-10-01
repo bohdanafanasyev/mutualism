@@ -13,6 +13,7 @@ Navigation
   right: 50px;
   bottom: 67px;
   z-index: 2;
+  transition: opacity .6s ease-out;
 }
 
 
