@@ -14,7 +14,8 @@ class Back extends React.Component {
     super(props);
 
     // Component State
-    this.state = { previousRoute: '/intro', style : { opacity: 0 }, display: true }
+    this.state = { previousRoute: '/intro',
+                   display: this.props.display, style : { opacity: 0 } }
 
     // Helpers Bindings
     this.mountStyle = this.mountStyle.bind(this)
@@ -28,9 +29,6 @@ class Back extends React.Component {
   //----------------------------------------------
 
   componentWillMount() {
-    // Check if it's "social" page
-    let pathname = this.props.location.pathname
-    this.setState({ display: (pathname == '/about' || pathname == '/contact') ? true : false })
 
     // Filtering Store History for the last route
     function historyFilter(value) {
@@ -45,16 +43,16 @@ class Back extends React.Component {
   // On unMount fade out
   //----------------------------------------------
 
-  componentWillReceiveProps(newProps) { //check for the visibility props
-    if (!newProps.visibility)
-      return this.unMountStyle() //call outro animation when visibility prop is false
-    this.setState({ //remount the node when the visibility prop is true
+  componentWillReceiveProps(newProps) {
+    if (!newProps.display)
+      return this.unMountStyle() 
+    this.setState({
       display: true
     })
-    setTimeout(this.mountStyle, 10) //call the into animiation
+    setTimeout(this.mountStyle, 10)
   }
 
-  unMountStyle() { //css for unmount animation
+  unMountStyle() {
     this.setState({
       style: { opacity: 0 }
     })
@@ -66,17 +64,17 @@ class Back extends React.Component {
   //----------------------------------------------
 
   componentDidMount(){
-    setTimeout(this.mountStyle, 10) //call the into animiation
+    setTimeout(this.mountStyle, 10)
   }
 
-  mountStyle() { // css for mount animation
+  mountStyle() {
     this.setState({
       style: { opacity: 1 }
     })
   }
 
   transitionEnd(){
-    if (!this.props.visibility) { //remove the node on transition end when the visibility prop is false
+    if (!this.props.display) {
       this.setState({
         display: false
       })

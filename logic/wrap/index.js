@@ -97,14 +97,13 @@ class Wrap extends React.Component {
               {["/intro", "/benefit", "/people", "/start"].map(path =>
                   <Route key={path} path={path} component={Routes.Slides} />
               )}
-
             </Switch>
           </CSSTransition>
         </TransitionGroup>
 
         <Logotype />
-        <Back location={this.props.location} visibility={this.state.back}/>
-        <Numbers slideNumber={slideNumber} location={this.props.location} visibility={this.state.numbers} />
+        <Back location={this.props.location} display={this.state.back}/>
+        <Numbers slideNumber={slideNumber} history={this.props.history} location={this.props.location} display={this.state.numbers} />
       </div>
     )
   }

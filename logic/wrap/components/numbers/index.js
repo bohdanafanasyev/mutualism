@@ -1,8 +1,8 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './styles/styles.css';
-import Number from './components/number';
+import Number from './number';
 
 
 
@@ -15,8 +15,16 @@ export default class Numbers extends React.Component {
   constructor(props) {
     super(props)
 
+    // Manage Number Component
+    this.props.history.listen((location, action) => {
+      this.manageNumber(location.pathname)
+    });
+
+
     // Component State
-    this.state = { navigationLinks: false, linksAnimation: false, timerHide: {}, timerReveal: {}, display: true, style: { opacity: 0 } }
+    this.state = { navigationLinks: false, linksAnimation: false, timerHide: {}, timerReveal: {},
+                   display: this.props.display, style: { opacity: 0 },
+                   one: false, two: false, three: false, four: false }
 
     // Helpers Binding
     this.mountStyle = this.mountStyle.bind(this)
@@ -24,9 +32,27 @@ export default class Numbers extends React.Component {
     this.transitionEnd = this.transitionEnd.bind(this)
     this.linksReveal = this.linksReveal.bind(this);
     this.linksHide = this.linksHide.bind(this);
-
-    this.manageNumbers = this.manageNumbers.bind(this)
+    this.manageNumber = this.manageNumber.bind(this)
   }
+
+
+
+  //----------------------------------------------
+  // Manage State on mount
+  //----------------------------------------------
+
+  componentWillMount() {
+    this.manageNumber(this.props.location.pathname);
+    console.log(this.props)
+  }
+
+  manageNumber(pathname) {
+    if (pathname == '/intro') this.setState({ one: true, two: false, three: false, four: false });
+    if (pathname == '/benefit') this.setState({ one: false, two: true, three: false, four: false });
+    if (pathname == '/people') this.setState({ one: false, two: false, three: true, four: false });
+    if (pathname == '/start') this.setState({ one: false, two: false, three: false, four: true });
+  }
+
 
 
   //----------------------------------------------
@@ -62,17 +88,16 @@ export default class Numbers extends React.Component {
   // On UnMount fade out
   //----------------------------------------------
 
-  componentWillReceiveProps(newProps) { //check for the visibility props
-    if(!newProps.visibility)
-      return this.unMountStyle() //call outro animation when visibility prop is false
-    this.setState({ //remount the node when the visibility prop is true
+  componentWillReceiveProps(newProps) {
+    if(!newProps.display)
+      return this.unMountStyle()
+    this.setState({
       display: true
     })
-    setTimeout(this.mountStyle, 10) //call the into animiation
-    console.log(newProps)
+    setTimeout(this.mountStyle, 10)
   }
 
-  unMountStyle() { //css for unmount animation
+  unMountStyle() {
     this.setState({
       style: { opacity: 0 }
     })
@@ -85,44 +110,30 @@ export default class Numbers extends React.Component {
   //----------------------------------------------
 
   componentDidMount(){
-    setTimeout(this.mountStyle, 10) //call the into animiation
+    setTimeout(this.mountStyle, 10)
   }
 
-  mountStyle() { // css for mount animation
+  mountStyle() {
     this.setState({
       style: { opacity: 1 }
     })
   }
 
   transitionEnd(){
-    if (!this.props.visibility) { //remove the node on transition end when the visibility prop is false
+    if (!this.props.display) {
       this.setState({
         display: false
       })
     }
   }
 
-  manageNumbers(a, b) {
-    return a == b
-  }
+
 
   //----------------------------------------------
   // Timeout Helper
   //----------------------------------------------
 
   clearTimer(timer) { if (typeof timer !== undefined) clearTimeout(timer) }
-
-
-  // <TransitionGroup>
-  //   <CSSTransition  classNames={styles} timeout={1000} key={this.props.location.key}>
-  //     <Switch key={this.props.location.key}>
-  //       <Route path='/intro'><Number slideNumber={this.props.slideNumber}/></Route>
-  //       <Route path='/benefit'><Number slideNumber={this.props.slideNumber}/></Route>
-  //       <Route path='/people'><Number slideNumber={this.props.slideNumber}/></Route>
-  //       <Route path='/start'><Number slideNumber={this.props.slideNumber}/></Route>
-  //     </Switch>
-  //   </CSSTransition>
-  // </TransitionGroup>
 
 
 
@@ -146,10 +157,10 @@ export default class Numbers extends React.Component {
 
         <div className={styles.navigationPageNumber} onMouseEnter={() => this.linksReveal()} onMouseLeave={() => this.clearTimer(this.state.timerReveal)}>
 
-          <Number slideNumber={this.props.slideNumber} />
-          <Number slideNumber={this.props.slideNumber} />
-          <Number slideNumber={this.props.slideNumber} />
-          <Number slideNumber={this.props.slideNumber} />
+          <Number slideNumber={"1"} display={this.state.one} />
+          <Number slideNumber={"2"} display={this.state.two} />
+          <Number slideNumber={"3"} display={this.state.three} />
+          <Number slideNumber={"4"} display={this.state.four} />
           <span className={this.state.navigationLinks ? styles.allPagesActive : styles.allPages}>04</span>
         </div>
       </div>
