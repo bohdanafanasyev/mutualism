@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import styles from './styles.css';
 
 
+
 //----------------------------------------------
 // Social Icons Component
 //----------------------------------------------
@@ -12,12 +13,12 @@ export default class SocialIcons extends React.Component {
   constructor(props) {
     super(props)
 
-    // State
+    // Component State
     this.state = { timerOff: {} }
 
+    // Helpers Bindings
     this.socialIconsAutoOff = this.socialIconsAutoOff.bind(this);
   }
-
 
 
   //----------------------------------------------

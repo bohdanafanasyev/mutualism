@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import styles from './styles/styles.css';
 
 
+
 //----------------------------------------------
 // Contact Component
 //----------------------------------------------
@@ -45,6 +46,7 @@ const Contact = () => (
     </div>
   </div>
 )
+
 
 
 export default Contact;

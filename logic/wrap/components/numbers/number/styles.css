@@ -16,11 +16,11 @@ Number
   line-height: 42px;
   width: 41px;
   position: absolute;
-  
+
   opacity: 0;
   transform: translateX(-43px);
-  animation: fadeCurrent .62s ease-out forwards;
-  animation-delay: .12s;
+  animation: fadeCurrent .625s ease-out forwards;
+  animation-delay: .625s;
 }
 
 
@@ -30,6 +30,6 @@ Animations
 --------------------------------------------*/
 
 @keyframes fadeCurrent {
-  from { opacity: 0; transform: translate(-43px, 10px) }
+  from { opacity: 0; transform: translate(-43px, 8px) }
   to { opacity: 1; transform: translate(-43px, 0px) }
 }

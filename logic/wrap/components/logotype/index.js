@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.css';
 
 
+
 //----------------------------------------------
 // Logotype Component
 //----------------------------------------------
@@ -11,6 +12,8 @@ export default class Logotype extends React.Component {
   constructor(props) {
     super(props);
   }
+
+
 
   //----------------------
   // Render

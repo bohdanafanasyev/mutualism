@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './styles.css';
 
-
 // Components
 import SocialIcons from '../socialicons';
 
@@ -28,6 +27,7 @@ export default class Navigation extends React.Component {
                    descriptionRoute: () => this.props.outerProps.location.pathname.length < 9 ? true : false
                  };
 
+    // Helpers Bindings
     this.socialIconsOn = this.socialIconsOn.bind(this);
     this.socialIconsAutoOn = this.socialIconsAutoOn.bind(this);
     this.socialIconsOff = this.socialIconsOff.bind(this);
@@ -40,7 +40,6 @@ export default class Navigation extends React.Component {
   //----------------------------------------------
 
   clearTimer(timer) { if (typeof timer !== undefined) clearTimeout(timer) }
-
 
 
   //----------------------------------------------

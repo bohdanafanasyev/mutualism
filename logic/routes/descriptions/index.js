@@ -6,15 +6,19 @@ import styles from './styles/styles.css';
 import Helpers from './Scripts/helpers';
 
 // Components
-import SocialIcons from '../../../wrap/components/socialicons/socialicons';
+import SocialIcons from '../../wrap/components/socialicons';
 
 
+//----------------------------------------------
+// Description's Wrap Component
+//----------------------------------------------
 
 export default class Wrap extends React.Component {
 
   constructor(props) {
     super(props);
 
+    // Component's State
     this.state = {
       backgroundHeaderPosition: 1,
       startRoute: false,
@@ -26,9 +30,9 @@ export default class Wrap extends React.Component {
       closeCross: false,
       closePosition: 79 }
 
+    // Helpers' binding
     this.closeVisibility = this.closeVisibility.bind(this);
     this.closePosition = this.closePosition.bind(this);
-
     this.nextSlide = this.nextSlide.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.updateData = this.updateData.bind(this);
@@ -80,7 +84,9 @@ export default class Wrap extends React.Component {
   //----------------------------------------------------------
 
   nextSlide() {
-    hashHistory.push(this.props.nextRoute); }
+    this.props.history.push(this.props.nextRoute);
+  }
+
 
 
   //----------------------------------------------------------
@@ -99,7 +105,6 @@ export default class Wrap extends React.Component {
     this.backgroundHeaderPosition(e);
   }
 
-
   updateData() {
     Helpers.closePosition.call(null, this);
     Helpers.scrollBarWidth.call(null, this);
@@ -111,6 +116,7 @@ export default class Wrap extends React.Component {
   //----------------------------------------------------------
 
   componentDidMount() {
+    console.log(this.props)
     // Reset scroll position on page refresh
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
 
@@ -121,8 +127,8 @@ export default class Wrap extends React.Component {
     window.addEventListener('resize', this.updateData);
 
     // Handle nextSlide button text content
-    const checkRoute = () => { return hashHistory.getCurrentLocation().pathname.slice(1, -12) == 'start' }
-
+    const checkRoute = () => { return this.props.location.pathname.slice(1, -12) == 'start' }
+    //
     if (checkRoute()) this.setState({ startRoute: true});
     else if (!checkRoute() & this.state.startRoute == true) this.setState({ startRoute: false });
   }
@@ -142,6 +148,7 @@ export default class Wrap extends React.Component {
   }
 
 
+
   //----------------------
   // Render
   //----------------------
@@ -157,38 +164,39 @@ export default class Wrap extends React.Component {
           }
 
 
-    return (
-      <div className={styles.container} onWheel={this.onWheel} ref='container' >
-        <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
+          return (
 
-        <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} onClick={()=> hashHistory.push(hashHistory.getCurrentLocation().pathname.slice(0, -12))} ref='close'>
-          <a className={this.state.closeCross ? styles.closeCross : styles.closeLine}>&nbsp;</a>
-        </div>
+            <div className={styles.container} onWheel={this.onWheel} ref='container' >
+              <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
-        <div className={styles.content} >
-          {this.props.children}
-        </div>
+              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} onClick={()=> hashHistory.push(hashHistory.getCurrentLocation().pathname.slice(0, -12))} ref='close'>
+                <a className={this.state.closeCross ? styles.closeCross : styles.closeLine}>&nbsp;</a>
+              </div>
 
-        <div className={styles.nextSlide} ref='nextSlide'>
-          <div className={styles.nextSlideContent} onClick={() => this.nextSlide()}>
-            <div className={styles.articleName}>{this.props.nextPart}
-            <p className={styles.nextPart}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p></div>
-          </div>
+              <div className={styles.content} >
 
-          <div className={styles.socialSocialIcons}>
-            <SocialIcons />
-          </div>
-        </div>
+              </div>
 
-        <div className={styles.nextSlideImage} onClick={() => this.nextSlide()} ref="nextSlideImage">
-          <img src={images.nextSlideImage} />
-        </div>
+              <div className={styles.nextSlide} ref='nextSlide'>
+                <div className={styles.nextSlideContent} onClick={() => this.nextSlide()}>
+                  <div className={styles.articleName}>{this.props.nextPart}
+                  <p className={styles.nextPart}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p></div>
+                </div>
 
-        <div className={styles.background}>
-          <div className={styles.backgroundImage} style={images.background} />
-          <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
-        </div>
-      </div>
-    )
+                <div className={styles.socialSocialIcons}>
+                  <SocialIcons />
+                </div>
+              </div>
+
+              <div className={styles.nextSlideImage} onClick={() => this.nextSlide()} ref="nextSlideImage">
+                <img src={images.nextSlideImage} />
+              </div>
+
+              <div className={styles.background}>
+                <div className={styles.backgroundImage} style={images.background} />
+                <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
+              </div>
+            </div>
+          )
   }
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styles from './styles.css';
 
 
+
 //----------------------------------------------
 // Back Component
 //----------------------------------------------
@@ -24,12 +25,12 @@ class Back extends React.Component {
   }
 
 
+
   //----------------------------------------------
   // On mount helpers
   //----------------------------------------------
 
   componentWillMount() {
-
     // Filtering Store History for the last route
     function historyFilter(value) {
       if (value != "/about" && value != "/contact") return value; }
@@ -44,18 +45,14 @@ class Back extends React.Component {
   //----------------------------------------------
 
   componentWillReceiveProps(newProps) {
-    if (!newProps.display)
-      return this.unMountStyle() 
-    this.setState({
-      display: true
-    })
+    if (!newProps.display) return this.unMountStyle()
+    
+    this.setState({ display: true })
     setTimeout(this.mountStyle, 10)
   }
 
   unMountStyle() {
-    this.setState({
-      style: { opacity: 0 }
-    })
+    this.setState({ style: { opacity: 0 } })
   }
 
 
@@ -68,18 +65,13 @@ class Back extends React.Component {
   }
 
   mountStyle() {
-    this.setState({
-      style: { opacity: 1 }
-    })
+    this.setState({ style: { opacity: 1 } })
   }
 
-  transitionEnd(){
-    if (!this.props.display) {
-      this.setState({
-        display: false
-      })
-    }
+  transitionEnd() {
+    if (!this.props.display) this.setState({ display: false })
   }
+
 
 
   //----------------------
@@ -87,10 +79,6 @@ class Back extends React.Component {
   //----------------------
 
   render() {
-
-    let pathname = this.props.location.pathname,
-        display = (pathname == '/about' || pathname == '/contact') ? true : false;
-
     return (
 
       this.state.display &&

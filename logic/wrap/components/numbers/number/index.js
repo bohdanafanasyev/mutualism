@@ -28,20 +28,15 @@ export default class Number extends React.Component {
   //----------------------------------------------
 
   componentWillReceiveProps(newProps) {
-    if(!newProps.display)
-      return this.unMountStyle()
-    this.setState({
-      display: true
-    })
+    if(!newProps.display) return this.unMountStyle()
+
+    this.setState({ display: true })
     setTimeout(this.mountStyle, 10)
   }
 
   unMountStyle() {
-    this.setState({
-      style: { opacity: 0, transform: "translateY(-7px)"  }
-    })
+    this.setState({ style: { opacity: 0, transform: "translateY(-5px)" } })
   }
-
 
 
   //----------------------------------------------
@@ -53,18 +48,14 @@ export default class Number extends React.Component {
   }
 
   mountStyle() {
-    this.setState({
-      style: { opacity: 1, transform: "translateY(0)" }
-    })
+    this.setState({ style: { opacity: 1, transform: "translateY(0)" } })
   }
 
-  transitionEnd(){
-    if (!this.props.display) {
-      this.setState({
-        display: false
-      })
-    }
+  transitionEnd() {
+    if (!this.props.display) this.setState({ display: false })
   }
+
+
 
   //----------------------
   // Render

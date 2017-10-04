@@ -46,7 +46,7 @@ All Pages
   display: inline-block;
   opacity: 0;
   transform: translate(0 -3px);
-  animation: slideAll 1.39s ease-out forwards;
+  animation: slideAll 1s ease-out forwards;
   animation-delay: .625s;
 }
 

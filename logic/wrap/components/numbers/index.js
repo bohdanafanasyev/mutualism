@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
-import styles from './styles/styles.css';
-import Number from './number';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import classNames from 'classnames'
+import styles from './styles/styles.css'
+import Number from './number'
 
 
 
@@ -18,20 +18,19 @@ export default class Numbers extends React.Component {
     // Manage Number Component
     this.props.history.listen((location, action) => {
       this.manageNumber(location.pathname)
-    });
-
+    })
 
     // Component State
     this.state = { navigationLinks: false, linksAnimation: false, timerHide: {}, timerReveal: {},
                    display: this.props.display, style: { opacity: 0 },
-                   one: false, two: false, three: false, four: false }
+                   intro: false, benefit: false, people: false, start: false }
 
     // Helpers Binding
     this.mountStyle = this.mountStyle.bind(this)
     this.unMountStyle = this.unMountStyle.bind(this)
     this.transitionEnd = this.transitionEnd.bind(this)
-    this.linksReveal = this.linksReveal.bind(this);
-    this.linksHide = this.linksHide.bind(this);
+    this.linksReveal = this.linksReveal.bind(this)
+    this.linksHide = this.linksHide.bind(this)
     this.manageNumber = this.manageNumber.bind(this)
   }
 
@@ -42,17 +41,15 @@ export default class Numbers extends React.Component {
   //----------------------------------------------
 
   componentWillMount() {
-    this.manageNumber(this.props.location.pathname);
-    console.log(this.props)
+    this.manageNumber(this.props.location.pathname)
   }
 
   manageNumber(pathname) {
-    if (pathname == '/intro') this.setState({ one: true, two: false, three: false, four: false });
-    if (pathname == '/benefit') this.setState({ one: false, two: true, three: false, four: false });
-    if (pathname == '/people') this.setState({ one: false, two: false, three: true, four: false });
-    if (pathname == '/start') this.setState({ one: false, two: false, three: false, four: true });
+    if (pathname == '/intro') this.setState({ intro: true, benefit: false, people: false, start: false })
+    if (pathname == '/benefit') this.setState({ intro: false, benefit: true, people: false, start: false })
+    if (pathname == '/people') this.setState({ intro: false, benefit: false, people: true, start: false })
+    if (pathname == '/start') this.setState({ intro: false, benefit: false, people: false, start: true })
   }
-
 
 
   //----------------------------------------------
@@ -60,8 +57,8 @@ export default class Numbers extends React.Component {
   //----------------------------------------------
 
   componentWillUnmount() {
-    this.clearTimer(this.state.timerReveal);
-    this.clearTimer(this.state.timerHide);
+    this.clearTimer(this.state.timerReveal)
+    this.clearTimer(this.state.timerHide)
   }
 
 
@@ -79,30 +76,26 @@ export default class Numbers extends React.Component {
       this.setState({
         timerHide: setTimeout(() => {
           this.setState({ linksAnimation: false })
-          setTimeout(() => this.setState({ navigationLinks: false }), 625);
+          setTimeout(() => this.setState({ navigationLinks: false }), 625)
         }, 2000)
       })
   }
+
 
   //----------------------------------------------
   // On UnMount fade out
   //----------------------------------------------
 
   componentWillReceiveProps(newProps) {
-    if(!newProps.display)
-      return this.unMountStyle()
-    this.setState({
-      display: true
-    })
+    if(!newProps.display) return this.unMountStyle()
+
+    this.setState({ display: true })
     setTimeout(this.mountStyle, 10)
   }
 
   unMountStyle() {
-    this.setState({
-      style: { opacity: 0 }
-    })
+    this.setState({ style: { opacity: 0 } })
   }
-
 
 
   //----------------------------------------------
@@ -114,26 +107,21 @@ export default class Numbers extends React.Component {
   }
 
   mountStyle() {
-    this.setState({
-      style: { opacity: 1 }
-    })
+    this.setState({ style: { opacity: 1 } })
   }
 
-  transitionEnd(){
-    if (!this.props.display) {
-      this.setState({
-        display: false
-      })
-    }
+  transitionEnd() {
+    if (!this.props.display) this.setState({ display: false })
   }
-
 
 
   //----------------------------------------------
   // Timeout Helper
   //----------------------------------------------
 
-  clearTimer(timer) { if (typeof timer !== undefined) clearTimeout(timer) }
+  clearTimer(timer) {
+    if (typeof timer !== undefined) clearTimeout(timer)
+  }
 
 
 
@@ -142,7 +130,6 @@ export default class Numbers extends React.Component {
   //----------------------
 
   render () {
-
     return (
 
       this.state.display &&
@@ -157,10 +144,10 @@ export default class Numbers extends React.Component {
 
         <div className={styles.navigationPageNumber} onMouseEnter={() => this.linksReveal()} onMouseLeave={() => this.clearTimer(this.state.timerReveal)}>
 
-          <Number slideNumber={"1"} display={this.state.one} />
-          <Number slideNumber={"2"} display={this.state.two} />
-          <Number slideNumber={"3"} display={this.state.three} />
-          <Number slideNumber={"4"} display={this.state.four} />
+          <Number slideNumber={"1"} display={this.state.intro} />
+          <Number slideNumber={"2"} display={this.state.benefit} />
+          <Number slideNumber={"3"} display={this.state.people} />
+          <Number slideNumber={"4"} display={this.state.start} />
           <span className={this.state.navigationLinks ? styles.allPagesActive : styles.allPages}>04</span>
         </div>
       </div>

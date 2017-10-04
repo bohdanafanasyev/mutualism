@@ -17,11 +17,8 @@ class Slides extends React.Component {
   constructor(props) {
     super(props);
 
-    // State
+    // Component's State
     this.state = { breaker: false, loaded: false, animationTimer: {} };
-
-    // Change after animation end
-
 
     // Helpers' binding
     this.scrollRedirect = this.scrollRedirect.bind(this);
@@ -86,7 +83,7 @@ class Slides extends React.Component {
               <h2 className={styles.subHeader}>{slide.subHeader}</h2>
           </div>
           <p className={styles.description}>{slide.description}</p>
-          <LearnMore parentProps={this.props} />
+          <LearnMore />
         </div>
         <Images image={image} />
       </div>

@@ -63,8 +63,8 @@ More
   transform: translateY(-24px);
 
   opacity: 0;
-  animation: slideMore 1.78s ease-out forwards;
-  animation-delay: 1.93s;
+  animation: fadeMore 2.625s ease-out forwards;
+  animation-delay: 1.55s;
 }
 
 
@@ -86,11 +86,11 @@ Animation Keyframes
 --------------------------------------------*/
 
 @keyframes slideLearn {
-  from { transform: translateY(8px); opacity: 0; }
+  from { transform: translateX(-8px); opacity: 0; }
   to { transform: translateY(0px); opacity: 1; }
 }
 
-@keyframes slideMore {
-  from { transform: translate(-7px, -24px); opacity: 0; }
+@keyframes fadeMore {
+  from { transform: translate(1px, -24px); opacity: 0; }
   to { transform: translate(-1px, -24px); opacity: 1; }
 }

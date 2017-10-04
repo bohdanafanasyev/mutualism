@@ -16,23 +16,23 @@ class LearnMore extends React.Component {
 
 
   //----------------------------------------------
-  // Subscribing to mousewheel events
+  // Subscribing to onClick navigation
   //----------------------------------------------
 
   componentDidMount() {
     this.refs.learnMoreWrap.addEventListener('click', () => {
-      this.props.history.push(this.props.parentProps.location.pathname.slice(1) + '/description');
+      this.props.history.push(this.props.history.location.pathname + '/description');
     })
   }
 
 
   //----------------------------------------------
-  // Un-Subscribing to mousewheel events
+  // Un-Subscribing to onClick navigation
   //----------------------------------------------
 
   componentWillUnmount() {
     this.refs.learnMoreWrap.removeEventListener('click', () => {
-      this.props.history.push(this.props.parentProps.location.pathname.slice(1) + '/description');
+      this.props.history.push(this.props.history.location.pathname + '/description');
     });
   }
 

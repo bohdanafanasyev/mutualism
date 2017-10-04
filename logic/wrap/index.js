@@ -11,7 +11,6 @@ import Numbers from './components/numbers';
 import Logotype from './components/logotype';
 import Back from './components/back';
 
-
 // Routes
 import Routes from '../routes';
 
@@ -42,6 +41,7 @@ class Wrap extends React.Component {
   }
 
 
+
   //----------------------------------------------
   // On Mount Helpers
   //----------------------------------------------
@@ -55,11 +55,10 @@ class Wrap extends React.Component {
     this.manageNumbers();
 
     // Redirect to intro
-    let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
+    let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/description', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
         pathName = this.props.location.pathname;
     if (pathName == '/' || !registredRoutes.includes(pathName)) this.props.history.push('/intro');
   }
-
 
 
   //----------------------------------------------
@@ -95,8 +94,9 @@ class Wrap extends React.Component {
               <Route path='/about' component={Routes.About} />
               <Route path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <Route key={path} path={path} component={Routes.Slides} />
+                  <Route exact key={path} path={path} component={Routes.Slides} />
               )}
+              <Route path="/description" component={Routes.Descriptions} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
