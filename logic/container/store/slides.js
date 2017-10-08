@@ -3,8 +3,8 @@ const intro = {
   subHeader: 'Selfsustainable architecture',
   description: 'Sustainable architecture seeks the ways to minimize the negative environmental impact of buildings by efficiency and moderation in the use of materials...',
   slideNumber: 1,
-  imageLeft: 'introleft',
-  imageRight: 'introright'
+  imageUpper: 'introUpper',
+  imageMain: 'introMain'
 }
 
 const benefit = {
@@ -12,8 +12,8 @@ const benefit = {
   subHeader: 'Self-suficient means freedom',
   description: 'Sustainable architecture seeks the ways to minimize the negative environmental impact of buildings by efficiency and moderation in the use of materials...',
   slideNumber: 2,
-  imageLeft: 'benefitleft',
-  imageRight: 'benefitright'
+  imageUpper: 'benefitUpper',
+  imageMain: 'benefitMain'
 
 }
 const people = {
@@ -21,8 +21,8 @@ const people = {
   subHeader: 'The ones who inspire',
   description: 'Sustainable architecture seeks the ways to minimize the negative environmental impact of buildings by efficiency and moderation in the use of materials...',
   slideNumber: 3,
-  imageLeft: 'peopleleft',
-  imageRight: 'peopleright'
+  imageUpper: 'peopleUpper',
+  imageMain: 'peopleMain'
 
 }
 const start = {
@@ -30,8 +30,8 @@ const start = {
   subHeader: 'The ones who inspire',
   description: 'Sustainable architecture seeks the ways to minimize the negative environmental impact of buildings by efficiency and moderation in the use of materials...',
   slideNumber: 4,
-  imageLeft: 'startleft',
-  imageRight: 'startright'
+  imageUpper: 'startUpper',
+  imageMain: 'startMain'
 }
 
 

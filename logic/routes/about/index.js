@@ -22,7 +22,7 @@ export default class About extends React.Component {
   render () {
 
     // Background Image
-    const background = { backgroundImage: `url(${require(`./assets/about4.jpg`)})` }
+    const background = { backgroundImage: `url(${require(`./assets/about.jpg`)})` }
 
     return (
 

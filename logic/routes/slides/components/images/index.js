@@ -23,11 +23,11 @@ export default class Images extends React.Component {
 
       <div className={styles.images}>
         <div className={styles.mainWrap}>
-          <div className={styles.main} style={this.props.image.right} />
+          <div className={styles.main} style={this.props.image.main} />
         </div>
         <div className={styles.filterNormal} />
         <div className={styles.upperWrap}>
-          <div className={styles.upper} style={this.props.image.left} />
+          <div className={styles.upper} style={this.props.image.upper} />
           <div className={styles.filterHard} />
         </div>
       </div>

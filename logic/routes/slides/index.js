@@ -69,8 +69,8 @@ class Slides extends React.Component {
     let path = this.props.location.pathname.slice(1),
           slide = this.props.slides[path],
           image = {
-            left: { backgroundImage: `url(${require(`./assets/jpg/${slide.imageLeft}.jpg`)})` },
-            right: { backgroundImage: `url(${require(`./assets/jpg/${slide.imageRight}.jpg`)})` }
+            upper: { backgroundImage: `url(${require(`./assets/${slide.imageUpper}.jpg`)})` },
+            main: { backgroundImage: `url(${require(`./assets/${slide.imageMain}.jpg`)})` }
           };
 
 

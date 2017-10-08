@@ -75,6 +75,7 @@ Animation Keyframes
 
   &:nth-child(1) {
     animation-delay: .18s;
+    animation-duration: .77s;
     opacity: 0; }
 }
 
@@ -88,6 +89,7 @@ Animation Keyframes
     animation-delay: .12s; }
 
   &:nth-child(4) {
+    animation-duration: .77s;
     animation-delay: .18s; }
 }
 
