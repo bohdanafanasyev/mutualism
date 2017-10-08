@@ -55,7 +55,7 @@ class Wrap extends React.Component {
     this.manageNumbers();
 
     // Redirect to intro
-    let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/description', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
+    let registredRoutes = ['/intro', '/benefits', '/people', '/start', '/intro/description', '/benefits/description', '/people/description', '/start/description', '/contact', '/about'],
         pathName = this.props.location.pathname;
     if (pathName == '/' || !registredRoutes.includes(pathName)) this.props.history.push('/intro');
   }
@@ -68,6 +68,12 @@ class Wrap extends React.Component {
   manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ back: true }) : this.setState({ back: false }); }
   manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ numbers: true }) : this.setState({ numbers: false }); }
 
+
+  // <Switch>
+  // {["/intro/description", "/benefit/description", "/people/description", "/start/description"].map(path =>
+  //     <Route exact key={path} path={path} component={Routes.Descriptions} />
+  // )}
+  // </Switch>
 
 
   //----------------------
@@ -96,10 +102,12 @@ class Wrap extends React.Component {
               {["/intro", "/benefit", "/people", "/start"].map(path =>
                   <Route exact key={path} path={path} component={Routes.Slides} />
               )}
-              <Route path="/description" component={Routes.Descriptions} />
+
             </Switch>
           </CSSTransition>
         </TransitionGroup>
+
+
 
         <Logotype />
         <Back location={this.props.location} display={this.state.back}/>

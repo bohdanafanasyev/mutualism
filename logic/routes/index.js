@@ -1,10 +1,13 @@
 import About from './about';
 import Contact from './contact';
 import Slides from './slides';
-import Descriptions from './descriptions';
+import IntroDescription from './descriptions/intro';
+import BenefitDescription from './descriptions/benefit';
+import PeopleDescription from './descriptions/people';
+import StartDescription from './descriptions/start';
 
 
-
-const Routes = {  About, Contact, Slides, Descriptions }
+// Declarations
+const Routes = { About, Contact, Slides, Descriptions }
 
 export default Routes;

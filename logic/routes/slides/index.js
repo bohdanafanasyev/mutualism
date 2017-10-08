@@ -85,6 +85,7 @@ class Slides extends React.Component {
           <p className={styles.description}>{slide.description}</p>
           <LearnMore />
         </div>
+        <div className={styles.filter} />
         <Images image={image} />
       </div>
 

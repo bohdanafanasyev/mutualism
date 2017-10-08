@@ -9,6 +9,7 @@ import Helpers from './Scripts/helpers';
 import SocialIcons from '../../wrap/components/socialicons';
 
 
+
 //----------------------------------------------
 // Description's Wrap Component
 //----------------------------------------------
@@ -147,7 +148,9 @@ export default class Wrap extends React.Component {
       this.setState({ scrollBarHighlighted: false, scrollBarTimer: false })}
   }
 
-
+  // <div className={styles.socialSocialIcons}>
+  //   <SocialIcons />
+  // </div>
 
   //----------------------
   // Render
@@ -174,7 +177,7 @@ export default class Wrap extends React.Component {
               </div>
 
               <div className={styles.content} >
-
+                { this.props.children }
               </div>
 
               <div className={styles.nextSlide} ref='nextSlide'>
@@ -184,7 +187,7 @@ export default class Wrap extends React.Component {
                 </div>
 
                 <div className={styles.socialSocialIcons}>
-                  <SocialIcons />
+
                 </div>
               </div>
 

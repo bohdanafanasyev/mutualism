@@ -76,8 +76,8 @@ export default class Numbers extends React.Component {
       this.setState({
         timerHide: setTimeout(() => {
           this.setState({ linksAnimation: false })
-          setTimeout(() => this.setState({ navigationLinks: false }), 625)
-        }, 2000)
+          setTimeout(() => this.setState({ navigationLinks: false }), 805)
+        }, 600)
       })
   }
 
@@ -148,7 +148,7 @@ export default class Numbers extends React.Component {
           <Number slideNumber={"2"} display={this.state.benefit} />
           <Number slideNumber={"3"} display={this.state.people} />
           <Number slideNumber={"4"} display={this.state.start} />
-          <span className={this.state.navigationLinks ? styles.allPagesActive : styles.allPages}>04</span>
+          <span className={this.state.linksAnimation ? styles.allPagesActive : styles.allPages}>04</span>
         </div>
       </div>
 

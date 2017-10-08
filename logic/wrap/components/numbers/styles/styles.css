@@ -48,10 +48,10 @@ All Pages
   transform: translate(0 -3px);
   animation: slideAll 1s ease-out forwards;
   animation-delay: .625s;
+  transition: color .805s ease;
 }
 
 .allPages {
-  transition: color .625s ease;
   color: rgba(255, 255, 255, .4);
 }
 

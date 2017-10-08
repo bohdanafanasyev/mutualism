@@ -26,7 +26,7 @@ export default class SocialIcons extends React.Component {
   //----------------------------------------------
 
   socialIconsAutoOff() {
-    this.setState({ timerOff: setTimeout(() => this.props.socialIconsOff(), 6000) })
+    this.setState({ timerOff: setTimeout(() => this.props.socialIconsOff(), 2000) })
   }
 
 
