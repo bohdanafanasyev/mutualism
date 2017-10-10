@@ -25,7 +25,8 @@ General
     z-index: 2;
 
     &:hover + .filter {
-      background-color: rgba(0, 0, 0, .27);
+      /*background-color: rgba(0, 0, 0, .2);*/
+      opacity: .2;
     }
 
     @mixin clearFix; }
@@ -44,10 +45,13 @@ Filter
   top: 0;
   left: 0;
   opacity: 0;
-  background-color: rgba(0, 0, 0, .1);
-  animation: fadeMain 1s ease-out forwards;
+  background-image: url('./assets/textfilter.png');
+  background-size: contain;
+  opacity: 0.05;
+  /*background-color: rgba(0, 0, 0, .05);*/
+  animation: fadeFilter 1s ease-out forwards;
   animation-delay: .625s;
-  transition: background-color 1s ease-out;
+  transition: opacity 1s ease-out;
   z-index: 1;
 }
 
@@ -130,6 +134,11 @@ Animation Keyframes
 @keyframes fadeMain {
   from { opacity: 0 }
   to { opacity: 1 }
+}
+
+@keyframes fadeFilter {
+  from { opacity: 0 }
+  to { opacity: 0.05 }
 }
 
 @keyframes slideSub {

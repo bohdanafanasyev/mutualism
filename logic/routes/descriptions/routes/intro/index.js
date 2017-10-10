@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Wrap from '../../wrap/wrap';
+import Wrap from '../..';
 import styles from './styles/styles.css';
 import classNames from 'classnames';
 
