@@ -24,11 +24,6 @@ General
     height: auto;
     z-index: 2;
 
-    &:hover + .filter {
-      /*background-color: rgba(0, 0, 0, .2);*/
-      opacity: .2;
-    }
-
     @mixin clearFix; }
 }
 
@@ -44,16 +39,14 @@ Filter
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
   background-image: url('./assets/textfilter.png');
   background-size: contain;
   opacity: 0.05;
-  /*background-color: rgba(0, 0, 0, .05);*/
-  animation: fadeFilter 1s ease-out forwards;
-  animation-delay: .625s;
-  transition: opacity 1s ease-out;
+  transition: opacity 4s ease-out;
   z-index: 1;
 }
+
+
 
 /*----------------------
 Headers

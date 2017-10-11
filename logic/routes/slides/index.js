@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import styles from './styles.css';
 
 // Components
@@ -18,7 +19,7 @@ class Slides extends React.Component {
     super(props);
 
     // Component's State
-    this.state = { breaker: false, loaded: false, animationTimer: {} };
+    this.state = { breaker: false, loaded: false, animationTimer: {}, textfilter: false };
 
     // Helpers' binding
     this.scrollRedirect = this.scrollRedirect.bind(this);
@@ -77,7 +78,8 @@ class Slides extends React.Component {
     return (
 
       <div className={styles.container} ref="container" onWheel={(e) => (this.state.loaded && !this.state.breaker) ? this.scrollRedirect(e) : null }>
-        <div className={styles.wrap}>
+        <div className={classNames(styles.filter)} style={{opacity: this.state.textfilter ? ".4" : null}} onMouseOver={() => this.setState({ textfilter: false })} />
+        <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
           <div className={styles.headersWrap}>
               <h1 className={styles.mainHeader}>{slide.header}</h1>
               <h2 className={styles.subHeader}>{slide.subHeader}</h2>
@@ -85,7 +87,7 @@ class Slides extends React.Component {
           <p className={styles.description}>{slide.description}</p>
           <LearnMore />
         </div>
-        <div className={styles.filter} />
+
         <Images image={image} />
       </div>
 
