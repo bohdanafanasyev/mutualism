@@ -91,8 +91,8 @@ class Wrap extends React.Component {
         <TransitionGroup>
           <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
             <Switch location={this.props.location}>
-              <Route path='/about' component={Routes.About} />
-              <Route path='/contact' component={Routes.Contact} />
+              <Route exact path='/about' component={Routes.About} />
+              <Route exact path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
                   <Route exact key={path} path={path} component={Routes.Slides} />
               )}
@@ -100,16 +100,18 @@ class Wrap extends React.Component {
           </CSSTransition>
         </TransitionGroup>
 
+
         <TransitionGroup>
           <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
             <Switch location={this.props.location}>
-              <Route path='/intro/description' component={Routes.IntroDescription} />
-              <Route path='/benefit/description' component={Routes.BenefitDescription} />
-              <Route path='/people/description' component={Routes.PeopleDescription} />
-              <Route path='/start/description' component={Routes.StartDescription} />
+              <Route exact path='/intro/description' component={Routes.IntroDescription} />
+              <Route exact path='/benefit/description' component={Routes.BenefitDescription} />
+              <Route exact path='/people/description' component={Routes.PeopleDescription} />
+              <Route exact path='/start/description' component={Routes.StartDescription} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
+
 
 
 
