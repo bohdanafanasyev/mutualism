@@ -190,7 +190,7 @@ class Wrap extends React.Component {
                 </div>
 
                 <div className={styles.socialSocialIcons}>
-                  <SocialIcons parentState={{ showSocial: true }} clearTimer={() => return} socialIconsOff={() => return} />
+                  <SocialIcons parentState={{ showSocial: true }}  />
 
                 </div>
               </div>
