@@ -126,7 +126,6 @@ export default class Navigation extends React.Component {
               className={classNames(styles.buttonShare, this.state.hideShare ? styles.slideOutShare : styles.slideInShare)}>SHARE
             </a>
           </div>
-
         </div>
       </div>
 

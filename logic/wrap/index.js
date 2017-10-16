@@ -38,6 +38,7 @@ class Wrap extends React.Component {
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
     this.manageNumbers = this.manageNumbers.bind(this);
+    this.hideNumbers = this.hideNumbers.bind(this);
   }
 
 
@@ -55,7 +56,7 @@ class Wrap extends React.Component {
     this.manageNumbers();
 
     // Redirect to intro
-    let registredRoutes = ['/intro', '/benefit', '/people', '/start', '/intro/description', '/benefit/description', '/people/description', '/start/description', '/contact', '/about'],
+    let registredRoutes = ['/intro', '/benefit', '/people', '/start', '/contact', '/about'],
         pathName = this.props.location.pathname;
     if (pathName == '/' || !registredRoutes.includes(pathName)) this.props.history.push('/intro');
   }
@@ -67,6 +68,7 @@ class Wrap extends React.Component {
 
   manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ back: true }) : this.setState({ back: false }); }
   manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ numbers: true }) : this.setState({ numbers: false }); }
+  hideNumbers() { this.setState({ numbers : false }) };
 
 
 
@@ -85,38 +87,23 @@ class Wrap extends React.Component {
 
     return (
 
-      <div onWheel={(e) => e.preventDefault()}>
+      <div>
         <Navigation outerProps={this.props.location, this.props.history} />
 
         <TransitionGroup>
           <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
             <Switch location={this.props.location}>
-              <Route exact path='/about' component={Routes.About} />
-              <Route exact path='/contact' component={Routes.Contact} />
+              <Route path='/about' component={Routes.About} />
+              <Route path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <Route exact key={path} path={path} component={Routes.Slides} />
+                  <Route key={path} path={path} component={Routes.Conent} numbers={this.hideNumbers}/>
               )}
             </Switch>
           </CSSTransition>
         </TransitionGroup>
 
-
-        <TransitionGroup>
-          <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
-            <Switch location={this.props.location}>
-              <Route exact path='/intro/description' component={Routes.IntroDescription} />
-              <Route exact path='/benefit/description' component={Routes.BenefitDescription} />
-              <Route exact path='/people/description' component={Routes.PeopleDescription} />
-              <Route exact path='/start/description' component={Routes.StartDescription} />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-
-
-
-
         <Logotype />
-        <Back location={this.props.location} display={this.state.back}/>
+        <Back location={this.props.location} display={this.state.back} />
         <Numbers slideNumber={slideNumber} history={this.props.history} location={this.props.location} display={this.state.numbers} />
       </div>
     )

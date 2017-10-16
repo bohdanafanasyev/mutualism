@@ -1,0 +1,96 @@
+@import '../../../../../wrap/styles/mixins/clearfix.css';
+@import '../../../../../wrap/styles/mixins/pointerline.css';
+
+/*--------------------------------------------
+Learn More
+--------------------------------------------*/
+
+.learnMoreWrap {
+  @mixin clearFix;
+  margin-top: 33px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.learnMore {
+  display: inline-block;
+  order: 2;
+
+  &:hover + .pointerLine {
+    opacity: 1;
+    transform: scaleX(1) translate(-25px, -11px); }
+
+  &:hover .learn {
+    color: rgba(255, 255, 255, .9); }
+}
+
+.learn, .more {
+  text-align: right;
+  margin: 0;
+  cursor: pointer; }
+
+
+
+/*----------------------
+Learn
+----------------------*/
+
+.learn {
+  @mixin fontSharper;
+  font-family: Soleil Book;
+  font-size: 24px;
+  color: rgba(255, 255, 255, .68);
+  transition: color .625s ease-out;
+
+  opacity: 0;
+  animation: slideLearn .625s ease-out forwards;
+  animation-delay: 1.55s;
+}
+
+
+
+/*----------------------
+More
+----------------------*/
+
+.more {
+  @mixin fontSharper;
+  font-family: Tw Cen Semibold;
+  font-size: 20px;
+  font-weight: normal;
+  transform: translateY(-24px);
+
+  opacity: 0;
+  animation: fadeMore 2.625s ease-out forwards;
+  animation-delay: 1.55s;
+}
+
+
+
+/*----------------------
+Pointer Line
+----------------------*/
+
+.pointerLine {
+  @mixin pointerLine;
+  transform: translate(-35px, -11px);
+  order: 1;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideLearn {
+  from { transform: translateX(-8px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes fadeMore {
+  from { transform: translate(1px, -24px); opacity: 0; }
+  to { transform: translate(-1px, -24px); opacity: 1; }
+}

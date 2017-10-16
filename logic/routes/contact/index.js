@@ -12,7 +12,7 @@ import styles from './styles/styles.css';
 const background = { backgroundImage: `url(${require(`./assets/contact.jpg`)})` };
 
 const Contact = () => (
-  <div className={styles.container}>
+  <div className={styles.container} onWheel={(e) => e.preventDefault()}>
     <div className={styles.backgroundWrap}>
       <div className={styles.background} style={background} />
     </div>

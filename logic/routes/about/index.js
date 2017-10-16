@@ -26,7 +26,7 @@ export default class About extends React.Component {
 
     return (
 
-      <div className={styles.container} >
+      <div className={styles.container} onWheel={(e) => e.preventDefault()}>
         <div className={styles.backgroundWrap}>
           <div className={styles.background} style={background} />
         </div>
