@@ -33,7 +33,7 @@ class Wrap extends React.Component {
     });
 
     // Component State
-    this.state = { numbers: true, back: true }
+    this.state = { numbers: true, back: true, slides: false, description: false }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
@@ -96,7 +96,9 @@ class Wrap extends React.Component {
               <Route path='/about' component={Routes.About} />
               <Route path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <Route key={path} path={path} component={Routes.Conent} numbers={this.hideNumbers}/>
+
+
+                  <Route key={path} path={path} component={Routes.Content} />
               )}
             </Switch>
           </CSSTransition>

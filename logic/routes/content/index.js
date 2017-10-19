@@ -77,6 +77,10 @@ class Content extends React.Component {
   onWheel(e) {
     e.preventDefault();
 
+    // Wheel Redirect for Slides
+    if (this.state.loaded && !this.state.breaker) {
+      this.scrollRedirect(e); }
+
     // Rewriting default behavior
     if (this.state.description) {
       window.scrollBy(e.deltaY, 0) }
@@ -101,6 +105,9 @@ class Content extends React.Component {
     return this.state.description
   }
 
+  componentDidMount() {
+    console.log(this.props.numbers)
+  }
 
   //----------------------
   // Render
@@ -119,19 +126,11 @@ class Content extends React.Component {
 
     return (
 
-
-
-        <div className={styles.container} ref="container" onWheel={(e) => {
-          this.onWheel(e);
-          (this.state.loaded && !this.state.breaker) ? this.scrollRedirect(e) : null }
-        }>
-
-
+        <div className={styles.container} ref="container" onWheel={(e) => this.onWheel(e)}>
           <Slides slide={slide} showDescription={this.showDescription} display={this.state.slide} />
           <IntroDescription display={this.passDisplay} />
           <Images image={image} />
         </div>
-
 
     )
   }
