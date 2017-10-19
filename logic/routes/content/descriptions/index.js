@@ -110,13 +110,12 @@ class Wrap extends React.Component {
   }
 
 
+
   //----------------------------------------------------------
   // Subscribe to wheel events
   //----------------------------------------------------------
 
   componentDidMount() {
-    console.log(this.props)
-
     // Reset scroll position on page refresh
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
 

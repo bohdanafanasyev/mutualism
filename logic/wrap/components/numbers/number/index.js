@@ -45,6 +45,8 @@ export default class Number extends React.Component {
 
   componentDidMount(){
     setTimeout(this.mountStyle, 10)
+
+
   }
 
   mountStyle() {

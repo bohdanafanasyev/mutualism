@@ -20,8 +20,7 @@ export default class Slides extends React.Component {
     this.state = { breaker: false,
                    loaded: false,
                    animationTimer: {},
-                   textfilter: false,
-                   display: this.props.display };
+                   textfilter: false };
   }
 
 
@@ -51,6 +50,7 @@ export default class Slides extends React.Component {
   render () {
     return (
 
+      this.props.display() &&
       <div className={styles.container}>
         <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
           <div className={styles.headersWrap}>
@@ -58,7 +58,7 @@ export default class Slides extends React.Component {
               <h2 className={styles.subHeader}>{this.props.slide.subHeader}</h2>
           </div>
           <p className={styles.description}>{this.props.slide.description}</p>
-          <LearnMore showDescription={this.props.showDescription} />
+          <LearnMore manageContent={this.props.manageContent} manageNumbersInDescriptions={this.props.manageNumbersInDescriptions() }/>
         </div>
         <div className={classNames(styles.filter)} style={{opacity: this.state.textfilter ? "1" : null}} onMouseOver={() => this.setState({ textfilter: false })} />
       </div>

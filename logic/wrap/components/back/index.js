@@ -46,7 +46,7 @@ class Back extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (!newProps.display) return this.unMountStyle()
-    
+
     this.setState({ display: true })
     setTimeout(this.mountStyle, 10)
   }

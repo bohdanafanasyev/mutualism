@@ -28,8 +28,9 @@ class Content extends React.Component {
 
     // Helpers' binding
     this.scrollRedirect = this.scrollRedirect.bind(this);
-    this.showDescription = this.showDescription.bind(this);
-    this.passDisplay = this.passDisplay.bind(this);
+    this.manageContent = this.manageContent.bind(this);
+    this.manageDescriptions = this.manageDescriptions.bind(this);
+    this.manageSlides = this.manageSlides.bind(this);
   }
 
 
@@ -56,9 +57,9 @@ class Content extends React.Component {
   // Description Visibility Helper
   //----------------------------------------------
 
-  showDescription() {
-    this.setState({ description: true })
-    console.log(this.state.description)
+  manageContent() {
+    this.setState({ description: true, slides: false })
+    // console.log(this.state.description)
   }
 
   nextDescription() {
@@ -101,13 +102,17 @@ class Content extends React.Component {
     }
   }
 
-  passDisplay() {
+  manageDescriptions() {
     return this.state.description
   }
 
-  componentDidMount() {
-    console.log(this.props.numbers)
+  manageSlides() {
+    return this.state.slides
   }
+
+
+
+
 
   //----------------------
   // Render
@@ -127,8 +132,8 @@ class Content extends React.Component {
     return (
 
         <div className={styles.container} ref="container" onWheel={(e) => this.onWheel(e)}>
-          <Slides slide={slide} showDescription={this.showDescription} display={this.state.slide} />
-          <IntroDescription display={this.passDisplay} />
+          <Slides slide={slide} manageContent={this.manageContent} display={this.manageSlides} manageNumbersInDescriptions={this.props.manageNumbersInDescriptions}/>
+          <IntroDescription display={this.manageDescriptions} />
           <Images image={image} />
         </div>
 

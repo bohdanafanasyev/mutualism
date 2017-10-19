@@ -45,7 +45,7 @@ export default class Numbers extends React.Component {
   }
 
   manageNumber(pathname) {
-    if (pathname == '/intro') this.setState({ intro: true, benefit: false, people: false, start: false })
+    if (pathname == '/intro' || pathname == "/") this.setState({ intro: true, benefit: false, people: false, start: false })
     if (pathname == '/benefit') this.setState({ intro: false, benefit: true, people: false, start: false })
     if (pathname == '/people') this.setState({ intro: false, benefit: false, people: true, start: false })
     if (pathname == '/start') this.setState({ intro: false, benefit: false, people: false, start: true })
@@ -60,6 +60,7 @@ export default class Numbers extends React.Component {
     this.clearTimer(this.state.timerReveal)
     this.clearTimer(this.state.timerHide)
   }
+
 
 
   //----------------------------------------------

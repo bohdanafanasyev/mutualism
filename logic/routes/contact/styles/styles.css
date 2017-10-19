@@ -28,10 +28,6 @@ General
 Background
 ----------------------*/
 
-/*----------------------
-Background
-----------------------*/
-
 .backgroundWrap {
   animation: backgroundLead .625s ease-out forwards;
 }
@@ -182,4 +178,16 @@ Animation Keyframes
 @keyframes backgroundScale {
   0% { transform: scale(1) }
   100% { transform: scale(1.06) }
+}
+
+
+
+/*--------------------------------------------
+Image Fixes
+--------------------------------------------*/
+
+@media (min-width: 1400px) {
+  .background {
+    background-size: cover;
+  }
 }

@@ -13,15 +13,17 @@ export default class IntroDescription extends Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      display: false
-    }
   }
 
-  componentDidMount() {
-    console.log()
+
+  //----------------------------------------------------------
+  // Manage Wrap Component on Mount
+  //----------------------------------------------------------
+
+  componentWillMount() {
+
   }
+
 
   //----------------------
   // Render

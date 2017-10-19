@@ -77,10 +77,13 @@ Filter
   position: absolute;
   background-image: url('../../assets/filter.jpg');
   opacity: 0;
+  top: 0;
+
 }
 
 .filterHard {
   background-image: url('../../assets/gradient.png');
+  background-size: cover;
 }
 
 .filterNormal {
@@ -139,4 +142,15 @@ Animation Keyframes
 @keyframes filterHardFade {
   0% { opacity: 0;}
   100% { opacity: .2}
+}
+
+
+/*--------------------------------------------
+Image Fixes
+--------------------------------------------*/
+
+@media (min-width: 1400px) {
+  .main, .upper {
+    background-size: cover;
+  }
 }
