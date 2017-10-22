@@ -20,8 +20,49 @@ export default class Slides extends React.Component {
     this.state = { breaker: false,
                    loaded: false,
                    animationTimer: {},
-                   textfilter: false };
-  }
+                   textfilter: false,
+                   display: this.props.display(),
+                   style : { opacity: 0 } }
+
+                   // Helpers Bindings
+                   this.mountStyle = this.mountStyle.bind(this)
+                   this.unMountStyle = this.unMountStyle.bind(this)
+                   this.transitionEnd = this.transitionEnd.bind(this)
+                 }
+
+
+
+   //----------------------------------------------
+   // On unMount fade out
+   //----------------------------------------------
+
+   componentWillReceiveProps(newProps) {
+     if (!newProps.display()) return this.unMountStyle()
+
+     this.setState({ display: true })
+     setTimeout(this.mountStyle, 10)
+   }
+
+   unMountStyle() {
+     this.setState({ style: { opacity: 0 } })
+   }
+
+
+   //----------------------------------------------
+   // On Mount fade in
+   //----------------------------------------------
+
+   componentDidMount(){
+     setTimeout(this.mountStyle, 10)
+   }
+
+   mountStyle() {
+     this.setState({ style: { opacity: 1 } })
+   }
+
+   transitionEnd() {
+     if (!this.props.display()) this.setState({ display: false })
+   }
 
 
 
@@ -32,8 +73,8 @@ export default class Slides extends React.Component {
   render () {
     return (
 
-      this.props.display() &&
-      <div className={styles.container}>
+      this.state.display &&
+      <div className={styles.container} style={this.state.style} onTransitionEnd={this.transitionEnd}>
         <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
           <div className={styles.headersWrap}>
               <h1 className={styles.mainHeader}>{this.props.slide.header}</h1>

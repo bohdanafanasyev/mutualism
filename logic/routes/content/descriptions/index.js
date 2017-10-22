@@ -165,7 +165,7 @@ class Wrap extends React.Component {
 
           return (
 
-            <div className={styles.container} onWheel={this.onWheel} ref='container' >
+            <div className={styles.container} onWheel={this.onWheel} ref='container'>
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
               <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} onClick={()=> this.props.manageContent(false, true)} ref='close'>

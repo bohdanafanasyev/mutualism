@@ -31,7 +31,7 @@ const PropsRoute = ({ component, ...rest }) => {
 
 
 //----------------------------------------------
-// Wrap Component
+// Application Wrap Component
 //----------------------------------------------
 
 class Wrap extends React.Component {
