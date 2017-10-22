@@ -6,8 +6,9 @@ import styles from './styles.css';
 
 // Components
 import Images from './components/images';
-import IntroDescription from './descriptions/routes/intro'
-import Slides from './slides'
+import IntroDescription from './descriptions/routes/intro';
+import BenefitDescription from './descriptions/routes/benefit';
+import Slides from './slides';
 
 
 
@@ -30,6 +31,7 @@ class Content extends React.Component {
     this.scrollRedirect = this.scrollRedirect.bind(this);
     this.manageDescriptions = this.manageDescriptions.bind(this);
     this.manageSlides = this.manageSlides.bind(this);
+    this.manageImages = this.manageImages.bind(this);
   }
 
 
@@ -81,26 +83,17 @@ class Content extends React.Component {
 
 
   //----------------------------------------------
-  // Next Description
-  //----------------------------------------------
-
-  // nextDescription() {
-  //   this.props.history.push({
-  //     pathname: '/start',
-  //     state: { description: true }
-  //   });
-  // }
-
-
-  //----------------------------------------------
   // Manage Content
   //----------------------------------------------
 
-  manageDescriptions() {
-    return this.props.content.descriptions }
+  manageDescriptions(route) {
+    return this.props.content.descriptions && this.props.location.pathname == route }
 
   manageSlides() {
     return this.props.content.slides }
+
+  manageImages() {
+    return this.props.content.descriptions }
 
 
 
@@ -118,13 +111,13 @@ class Content extends React.Component {
           main: { backgroundImage: `url(${require(`./assets/${slide.imageMain}.jpg`)})` }
         };
 
-
     return (
 
         <div className={styles.container} ref="container" onWheel={(e) => this.onWheel(e)}>
-          <Slides slide={slide} display={this.manageSlides}  manageContent={this.props.manageContent} />
+          <Slides slide={slide} display={this.manageSlides} manageContent={this.props.manageContent} />
           <IntroDescription display={this.manageDescriptions} manageContent={this.props.manageContent} />
-          <Images images={images} descriptions={this.manageDescriptions} />
+          <BenefitDescription display={this.manageDescriptions} manageContent={this.props.manageContent} />
+          <Images images={images} descriptions={this.manageImages} />
         </div>
 
     )

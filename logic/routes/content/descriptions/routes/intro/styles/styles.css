@@ -4,6 +4,10 @@
 Introduction
 ----------------------------------------*/
 
+.container {
+  transition: opacity .38s easy-out;
+}
+
 .introduction {
   padding-left: 128px;
 

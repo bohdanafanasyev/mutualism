@@ -27,14 +27,13 @@ export default class Images extends React.Component {
   render () {
     let descriptions = this.props.descriptions();
 
-
     return (
 
       <div className={styles.images}>
-        <div className={classNames(descriptions ? styles.mainWrapDescriptions : styles.mainWrapSlides )}>
+        <div className={classNames(descriptions ? styles.mainWrapDescriptions : styles.mainWrapSlides)}>
           <div className={styles.main} style={this.props.images.main} />
         </div>
-        <div className={styles.filterNormal} />
+        <div className={classNames(descriptions ? styles.filterNormalDescriptions : styles.filterNormalSlides)}  />
         <div className={styles.upperWrap} style={{display: descriptions ? 'none' : 'block'}}>
           <div className={styles.upper} style={this.props.images.upper} />
           <div className={styles.filterHard} />

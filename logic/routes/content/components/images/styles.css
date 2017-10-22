@@ -89,19 +89,25 @@ Upper Side
 Filter
 --------------------*/
 
-.filterNormal, .filterHard {
+.filterNormalSlides, .filterNormalDescriptions, .filterHard {
   width: 100%;
   height: 100%;
   position: absolute;
   background-image: url('../../assets/filter.jpg');
   opacity: 0;
   top: 0;
-
 }
 
-.filterNormal {
-  animation: filterFade 1s ease-out forwards;
+.filterNormalSlides, .filderNoramlDescriptions {
   animation-delay: .625s;
+}
+
+.filterNormalSlides {
+  animation: filterFadeSlides 1s ease-out forwards;
+}
+
+.filterNormalDescriptions {
+  animation: filterFadeDescriptions 1s ease-out forwards;
 }
 
 .filterHard {
@@ -125,17 +131,15 @@ Animation Keyframes
 }
 
 @keyframes fadeMain {
-  0% { opacity: 1 }
-  1% { opacity: 1 }
+  0% { opacity: 0 }
   1.64% { opacity: 1; transform: scale(1) translateX(0); }
-  100% { opacity: 1; transform: scale(1.04) translateX(20px); }
+  100% { transform: scale(1.04) translateX(20px); }
 }
 
 @keyframes blurMain {
-  0% { opacity: 1; filter: blur(0px) }
-  2% { opacity: 1; filter: blur(10px) }
-  2.64% { opacity: 1; transform: scale(1) translateX(0); }
-  100% { opacity: 1; transform: scale(1.04) translateX(20px); }
+  0% { filter: blur(0px); }
+  1.64% { filter: blur(10px); }
+  100% { transform: scale(1.1) translateX(20px); }
 }
 
 
@@ -156,9 +160,14 @@ Animation Keyframes
 
 /* Filters */
 
-@keyframes filterFade {
+@keyframes filterFadeSlides {
   0% { opacity: 0;}
   100% { opacity: .2}
+}
+
+@keyframes filterFadeDescriptions {
+  0% { opacity: .2;}
+  100% { opacity: .4}
 }
 
 @keyframes filterHardFade {
@@ -173,6 +182,5 @@ Image Fixes
 
 @media (min-width: 1400px) {
   .main, .upper {
-    background-size: cover;
-  }
+    background-size: cover; }
 }

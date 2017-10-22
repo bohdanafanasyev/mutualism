@@ -24,12 +24,12 @@ export default class BenefitDescription extends Component {
 
     // Variables
     const nextSlide = require('./assets/next.png');
-    }
 
 
     return (
 
-      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'}>
+      this.props.display('/benefit') &&
+      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people'} header={'Benefit'} manageContent={this.props.manageContent}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>

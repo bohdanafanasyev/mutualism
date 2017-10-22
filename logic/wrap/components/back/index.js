@@ -16,7 +16,8 @@ class Back extends React.Component {
 
     // Component State
     this.state = { previousRoute: '/intro',
-                   display: this.props.display, style : { opacity: 0 } }
+                   display: this.props.display,
+                   style : { opacity: 0 } }
 
     // Helpers Bindings
     this.mountStyle = this.mountStyle.bind(this)
@@ -65,12 +66,10 @@ class Back extends React.Component {
   }
 
   mountStyle() {
-    this.setState({ style: { opacity: 1 } })
-  }
+    this.setState({ style: { opacity: 1 } }) }
 
   transitionEnd() {
-    if (!this.props.display) this.setState({ display: false })
-  }
+    if (!this.props.display) this.setState({ display: false }) }
 
 
 
