@@ -23,15 +23,13 @@ export default class BenefitDescription extends Component {
   render() {
 
     // Variables
-    const images = {
-      background: require('./assets/background.png'),
-      nextSlide: require('./assets/next.png')
+    const nextSlide = require('./assets/next.png');
     }
 
 
     return (
 
-      <Wrap nextSlide={images.nextSlide} background={images.background} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'}>
+      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>

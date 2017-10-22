@@ -1,3 +1,5 @@
+@import '../../../../wrap/styles/mixins/fontsharper.css';
+
 /*----------------------------------------
 Next Slide
 ----------------------------------------*/
@@ -30,6 +32,7 @@ Next Part
     color: rgba(255, 255, 255, .60); }
 
   .articleName {
+    @mixin fontSharper;
     font-family: Tw Cen Regular;
     font-size: 46px;
     color: rgba(255, 255, 255, .4);
@@ -39,6 +42,7 @@ Next Part
     cursor: pointer; }
 
   .nextPart {
+    @mixin fontSharper;
     font-family: Tw Cen Semibold;
     font-size: 18px;
     letter-spacing: 2px;

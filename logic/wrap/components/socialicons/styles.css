@@ -14,11 +14,17 @@ Main
   }
 }
 
-.dummy {
-  animation: test 0.1s;
+
+
+/*-------------------
+Auto Off Initializer
+-------------------*/
+
+.autoOffLever {
+  animation: autoOffLever 0.1s;
 }
 
-@keyframes test {
+@keyframes autoOffLever {
   from { opacity: 0 }
   to { opacity: 1 }
 }

@@ -10,11 +10,13 @@ import IntroDescription from './descriptions/routes/intro'
 import Slides from './slides'
 
 
+
 //----------------------------------------------
 // Slide Component
 //----------------------------------------------
 
 class Content extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -22,13 +24,10 @@ class Content extends React.Component {
     this.state = { breaker: false,
                    loaded: false,
                    animationTimer: {},
-                   textfilter: false,
-                   description: false,
-                   slides: true };
+                   textfilter: false }
 
     // Helpers' binding
     this.scrollRedirect = this.scrollRedirect.bind(this);
-    this.manageContent = this.manageContent.bind(this);
     this.manageDescriptions = this.manageDescriptions.bind(this);
     this.manageSlides = this.manageSlides.bind(this);
   }
@@ -41,34 +40,12 @@ class Content extends React.Component {
 
   componentWillMount() {
     this.setState({ animationTimer: setTimeout(() => this.setState({ loaded: true }), 2000) })
-
-    if (typeof this.props.location.state == 'object') {
-      this.setState({ description: true })
-    }
+    if (typeof this.props.location.state == 'object') this.setState({ description: true })
   }
 
   componentWillUnmount() {
     if (typeof this.state.animationTimer !== undefined) clearTimeout(this.state.animationTimer)
   }
-
-
-
-  //----------------------------------------------
-  // Description Visibility Helper
-  //----------------------------------------------
-
-  manageContent() {
-    this.setState({ description: true, slides: false })
-    // console.log(this.state.description)
-  }
-
-  nextDescription() {
-    this.props.history.push({
-      pathname: '/start',
-      state: { description: true }
-    });
-  }
-
 
 
   //----------------------------------------------
@@ -83,7 +60,7 @@ class Content extends React.Component {
       this.scrollRedirect(e); }
 
     // Rewriting default behavior
-    if (this.state.description) {
+    if (this.props.content.descriptions) {
       window.scrollBy(e.deltaY, 0) }
   }
 
@@ -92,7 +69,7 @@ class Content extends React.Component {
         goTo = (route) => { this.setState({ breaker: true }); this.props.history.push(route); }
 
     // Route response
-    if (!this.state.breaker == !this.state.description) {
+    if (!this.state.breaker == !this.props.content.descriptions) {
       if (e.deltaY < 0 && path == '/intro') goTo('/benefit');
       if (e.deltaY > 0 && path == '/benefit') goTo('/intro');
       if (e.deltaY < 0 && path == '/benefit') goTo('/people');
@@ -102,15 +79,28 @@ class Content extends React.Component {
     }
   }
 
+
+  //----------------------------------------------
+  // Next Description
+  //----------------------------------------------
+
+  // nextDescription() {
+  //   this.props.history.push({
+  //     pathname: '/start',
+  //     state: { description: true }
+  //   });
+  // }
+
+
+  //----------------------------------------------
+  // Manage Content
+  //----------------------------------------------
+
   manageDescriptions() {
-    return this.state.description
-  }
+    return this.props.content.descriptions }
 
   manageSlides() {
-    return this.state.slides
-  }
-
-
+    return this.props.content.slides }
 
 
 
@@ -123,7 +113,7 @@ class Content extends React.Component {
     // Virables
     let path = this.props.location.pathname.slice(1),
         slide = this.props.slides[path],
-        image = {
+        images = {
           upper: { backgroundImage: `url(${require(`./assets/${slide.imageUpper}.jpg`)})` },
           main: { backgroundImage: `url(${require(`./assets/${slide.imageMain}.jpg`)})` }
         };
@@ -132,9 +122,9 @@ class Content extends React.Component {
     return (
 
         <div className={styles.container} ref="container" onWheel={(e) => this.onWheel(e)}>
-          <Slides slide={slide} manageContent={this.manageContent} display={this.manageSlides} manageNumbersInDescriptions={this.props.manageNumbersInDescriptions}/>
-          <IntroDescription display={this.manageDescriptions} />
-          <Images image={image} />
+          <Slides slide={slide} display={this.manageSlides}  manageContent={this.props.manageContent} />
+          <IntroDescription display={this.manageDescriptions} manageContent={this.props.manageContent} />
+          <Images images={images} descriptions={this.manageDescriptions} />
         </div>
 
     )

@@ -9,7 +9,7 @@ import SocialIcons from '../socialicons';
 
 
 //----------------------------------------------
-// Header Component
+// Navigation Component
 //----------------------------------------------
 
 export default class Navigation extends React.Component {
@@ -23,8 +23,7 @@ export default class Navigation extends React.Component {
                    hideShare: false,
                    shareThrottle: false,
                    timerOn: {},
-                   timerOff: {},
-                   descriptionRoute: () => this.props.outerProps.location.pathname.length < 9 ? true : false
+                   timerOff: {}
                  };
 
     // Helpers Bindings
@@ -73,7 +72,6 @@ export default class Navigation extends React.Component {
   }
 
 
-
   //----------------------
   // Render
   //----------------------
@@ -88,13 +86,13 @@ export default class Navigation extends React.Component {
       // Navigate to About Page
       goAbout: () => {
         autoRedirect.timerAbout = setTimeout(() => {
-          if (this.props.outerProps.location.pathname != '/about') this.props.outerProps.push('/about')
+          if (this.props.history.location.pathname != '/about') this.props.history.push('/about')
         }, 1000)},
 
       // Navigate to Contact Page
       goContact: () => {
         autoRedirect.timerContact = setTimeout(() => {
-          if (this.props.outerProps.location.pathname != '/contact') this.props.outerProps.push('/contact')
+          if (this.props.history.location.pathname != '/contact') this.props.history.push('/contact')
         }, 1000)},
 
       // Timers
@@ -104,20 +102,20 @@ export default class Navigation extends React.Component {
 
 
     // Variables
-    let about = this.props.outerProps.location.pathname == '/about' ? true : false,
-        contact = this.props.outerProps.location.pathname == '/contact' ? true : false;
+    let about = this.props.history.location.pathname == '/about' ? true : false,
+        contact = this.props.history.location.pathname == '/contact' ? true : false;
 
 
 
     return (
 
-      <div className={classNames(styles.container, this.state.descriptionRoute() ? null : styles.containerNoShare)} >
+      <div className={classNames(styles.container, !this.props.showShare ? null : styles.containerNoShare)} >
 
         <div className={styles.wrap}>
           <Link to='/about' onMouseEnter={() => autoRedirect.goAbout()} onMouseLeave={() => this.clearTimer(autoRedirect.timerAbout)} className={classNames(styles.button, about ? styles.active : "")} >ABOUT</Link>
           <Link to='/contact' onMouseEnter={() => autoRedirect.goContact()} onMouseLeave={() => this.clearTimer(autoRedirect.timerContact)} className={classNames(styles.button, contact ? styles.active : "")} >CONTACT</Link>
 
-          <div className={styles.share} style={{display: this.state.descriptionRoute() ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
+          <div className={styles.share} style={{display: !this.props.showShare ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
             onMouseEnter={() => this.clearTimer(this.state.timerOn)}>
             <SocialIcons parentState={this.state} clearTimer={this.clearTimer} socialIconsOff={this.socialIconsOff}  />
             <a onClick={() => this.socialIconsOn()}

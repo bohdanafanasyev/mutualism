@@ -47,12 +47,13 @@ class Wrap extends React.Component {
     });
 
     // Component State
-    this.state = { numbers: true, back: true, description: false }
+    // this.state = { numbers: true, back: true, descriptions: false, slides: true }
+    this.state = { numbers: true, back: true, descriptions: true, slides: false }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
     this.manageNumbers = this.manageNumbers.bind(this);
-    this.manageNumbersInDescriptions = this.manageNumbersInDescriptions.bind(this);
+    this.manageContent = this.manageContent.bind(this);
   }
 
 
@@ -81,11 +82,12 @@ class Wrap extends React.Component {
   //----------------------------------------------
 
   manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ back: true }) : this.setState({ back: false }); }
-  manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ numbers: true }) : this.setState({ numbers: false }); }
-  manageNumbersInDescriptions() {
-    // this.setState({ descriptions : true })
-    console.log('1')
-  };
+  manageNumbers() { (['/intro', '/benefit', '/people', '/start'].includes(location.pathname) && !this.state.descriptions) ?
+                    this.setState({ numbers: true }) : this.setState({ numbers: false }); }
+
+  manageContent(descriptions, slides) {
+    this.setState({ descriptions: descriptions, slides: slides })
+    setTimeout(() => this.manageNumbers(), 50) }
 
 
 
@@ -96,7 +98,11 @@ class Wrap extends React.Component {
   render () {
     // Virables
     let path = this.props.location.pathname.slice(1),
-        slideNumber = undefined;
+        slideNumber = undefined,
+        content = {
+          descriptions: this.state.descriptions,
+          slides: this.state.slides
+        };
 
     // Change Numbers prop if corresponding to Slides component
     if (typeof this.props.state.slides[path] == "object") slideNumber = this.props.state.slides[path].slideNumber
@@ -105,7 +111,7 @@ class Wrap extends React.Component {
     return (
 
       <div>
-        <Navigation outerProps={this.props.location, this.props.history} />
+        <Navigation history={this.props.history} showShare={this.state.descriptions} />
 
         <TransitionGroup>
           <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
@@ -113,7 +119,7 @@ class Wrap extends React.Component {
               <Route path='/about' component={Routes.About} />
               <Route path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <PropsRoute key={path} path={path} component={Routes.Content} manageNumbersInDescriptions={this.manageNumbersInDescriptions} />
+                  <PropsRoute key={path} path={path} component={Routes.Content} manageContent={this.manageContent} content={content} />
               )}
             </Switch>
           </CSSTransition>

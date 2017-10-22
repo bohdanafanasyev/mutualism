@@ -144,6 +144,7 @@ class Wrap extends React.Component {
     if (this.state.scrollBarTimer != false) {
       clearTimeout(this.state.scrollBarTimer)
       this.setState({ scrollBarHighlighted: false, scrollBarTimer: false })}
+      console.log(this.props)
   }
 
   // <div className={styles.socialSocialIcons}>
@@ -159,10 +160,7 @@ class Wrap extends React.Component {
     const closePosition = { right: this.state.closePosition },
           backgroundHeaderPosition = { marginLeft: this.state.backgroundHeaderPosition + '%'},
           scrollBarWidth = { width: this.state.scrollBarPercents + '%'},
-          images = {
-            nextSlideImage: this.props.nextSlide,
-            background: { backgroundImage: `url(${this.props.background})` }
-          }
+          nextSlideImage = this.props.nextSlide;
 
 
           return (
@@ -170,7 +168,7 @@ class Wrap extends React.Component {
             <div className={styles.container} onWheel={this.onWheel} ref='container' >
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
-              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} onClick={()=> this.props.history.push(this.props.location.pathname.slice(0, -12))} ref='close'>
+              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} onClick={()=> this.props.manageContent(false, true)} ref='close'>
                 <a className={this.state.closeCross ? styles.closeCross : styles.closeLine}>&nbsp;</a>
               </div>
 
@@ -184,18 +182,16 @@ class Wrap extends React.Component {
                   <p className={styles.nextPart}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p></div>
                 </div>
 
-                <div className={styles.socialSocialIcons}>
-                  <SocialIcons parentState={{ showSocial: true }}  />
-
+                <div className={styles.socialShare}>
+                  <SocialIcons parentState={{ showSocial: true }} />
                 </div>
               </div>
 
               <div className={styles.nextSlideImage} onClick={() => this.nextSlide()} ref="nextSlideImage">
-                <img src={images.nextSlideImage} />
+                <img src={nextSlideImage} />
               </div>
 
               <div className={styles.background}>
-                <div className={styles.backgroundImage} style={images.background} />
                 <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
               </div>
             </div>

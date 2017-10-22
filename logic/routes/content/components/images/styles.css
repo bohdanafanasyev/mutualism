@@ -24,21 +24,39 @@ Images
 Main
 --------------------*/
 
-.mainWrap {
+.mainWrapSlides, .mainWrapDescriptions {
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   position: absolute;
-  animation: slideMain .625s ease-out forwards;
+
+  .main {
+    background-repeat: no-repeat;
+    background-position: center bottom;;
+    animation-delay: .625s; }
 }
 
-.main {
-  background-repeat: no-repeat;
-  background-position: center bottom;;
-  animation: fadeMain 38s ease-out forwards;
-  animation-delay: .625s;
+
+.mainWrapSlides {
+  animation: slideMain .625s ease-out forwards;
+
+  .main {
+    animation: fadeMain 38s ease-out forwards; }
 }
+
+.mainWrapDescriptions {
+  animation: slideMain .625s ease-out forwards;
+
+  .main {
+    animation: blurMain 38s ease-out forwards; }
+
+  & + .filterNormal {
+    /*opacity: 1;*/
+  }
+}
+
+
 
 
 
@@ -81,17 +99,14 @@ Filter
 
 }
 
-.filterHard {
-  background-image: url('../../assets/gradient.png');
-  background-size: cover;
-}
-
 .filterNormal {
   animation: filterFade 1s ease-out forwards;
   animation-delay: .625s;
 }
 
 .filterHard {
+  background-image: url('../../assets/gradient.png');
+  background-size: cover;
   animation: filterHardFade 1.39s ease-out forwards;
   animation-delay: .625s;
 }
@@ -113,6 +128,13 @@ Animation Keyframes
   0% { opacity: 1 }
   1% { opacity: 1 }
   1.64% { opacity: 1; transform: scale(1) translateX(0); }
+  100% { opacity: 1; transform: scale(1.04) translateX(20px); }
+}
+
+@keyframes blurMain {
+  0% { opacity: 1; filter: blur(0px) }
+  2% { opacity: 1; filter: blur(10px) }
+  2.64% { opacity: 1; transform: scale(1) translateX(0); }
   100% { opacity: 1; transform: scale(1.04) translateX(20px); }
 }
 

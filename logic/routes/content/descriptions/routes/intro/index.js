@@ -16,15 +16,6 @@ export default class IntroDescription extends Component {
   }
 
 
-  //----------------------------------------------------------
-  // Manage Wrap Component on Mount
-  //----------------------------------------------------------
-
-  componentWillMount() {
-
-  }
-
-
   //----------------------
   // Render
   //----------------------
@@ -37,7 +28,6 @@ export default class IntroDescription extends Component {
       centralPark: require('./assets/central-park.png'),
       clinicSquare: require('./assets/clinic-square.png'),
       clinicRect: require('./assets/clinic-rect.png'),
-      background: require('./assets/background.png'),
       nextSlide: require('./assets/next.png')
     }
 
@@ -45,7 +35,7 @@ export default class IntroDescription extends Component {
     return (
 
       this.props.display() &&
-      <Wrap nextSlide={images.nextSlide} background={images.background} nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'}>
+      <Wrap nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'} manageContent={this.props.manageContent}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>

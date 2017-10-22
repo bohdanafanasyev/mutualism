@@ -25,24 +25,6 @@ export default class Slides extends React.Component {
 
 
 
-  //----------------------------------------------
-  // On Mount Component Freeze
-  //----------------------------------------------
-
-  componentWillMount() {
-    // this.setState({ animationTimer: setTimeout(() => this.setState({ loaded: true }), 2000) })
-    //
-    // if (typeof this.props.location.state == 'object') {
-    //   this.setState({ description: true })
-    // }
-  }
-
-  componentWillUnmount() {
-    // if (typeof this.state.animationTimer !== undefined) clearTimeout(this.state.animationTimer)
-  }
-
-
-
   //----------------------
   // Render
   //----------------------
@@ -58,7 +40,7 @@ export default class Slides extends React.Component {
               <h2 className={styles.subHeader}>{this.props.slide.subHeader}</h2>
           </div>
           <p className={styles.description}>{this.props.slide.description}</p>
-          <LearnMore manageContent={this.props.manageContent} manageNumbersInDescriptions={this.props.manageNumbersInDescriptions() }/>
+          <LearnMore manageContent={this.props.manageContent} />
         </div>
         <div className={classNames(styles.filter)} style={{opacity: this.state.textfilter ? "1" : null}} onMouseOver={() => this.setState({ textfilter: false })} />
       </div>
