@@ -47,8 +47,8 @@ class Wrap extends React.Component {
     });
 
     // Component State
-    // this.state = { numbers: true, back: true, descriptions: false, slides: true }
-    this.state = { numbers: true, back: true, descriptions: true, slides: false }
+    this.state = { numbers: true, back: true, descriptions: false, slides: true }
+    // this.state = { numbers: true, back: true, descriptions: true, slides: false }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
