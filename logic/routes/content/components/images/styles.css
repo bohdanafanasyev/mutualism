@@ -71,7 +71,7 @@ Upper Side
   overflow: hidden;
   opacity: 0;
   transform: translateX(-100%);
-  animation: slideWrap .625s ease-out forwards;
+  animation: slideWrap 1s ease-out forwards;
   animation-delay: .625s;
 }
 
@@ -93,21 +93,22 @@ Filter
   width: 100%;
   height: 100%;
   position: absolute;
-  background-image: url('../../assets/filter.jpg');
   opacity: 0;
   top: 0;
 }
 
 .filterNormalSlides, .filderNoramlDescriptions {
-  animation-delay: .625s;
+  background-image: url('../../assets/filter.jpg');
 }
 
 .filterNormalSlides {
-  animation: filterFadeSlides 1s ease-out forwards;
+  animation: filterFadeSlides .625s ease-out forwards;
+  animation-delay: 1.25s;
 }
 
 .filterNormalDescriptions {
-  animation: filterFadeDescriptions 1s ease-out forwards;
+  animation: filterFadeDescriptions .625s ease-out forwards;
+  animation-delay: 1.25s;
 }
 
 .filterHard {
@@ -138,7 +139,7 @@ Animation Keyframes
 
 @keyframes blurMain {
   0% { filter: blur(0px); }
-  1.64% { filter: blur(10px); }
+  1.64% { filter: blur(10px); transform: scale(1);}
   100% { transform: scale(1.1) translateX(20px); }
 }
 
@@ -162,17 +163,17 @@ Animation Keyframes
 
 @keyframes filterFadeSlides {
   0% { opacity: 0;}
-  100% { opacity: .2}
+  100% { opacity: .1}
 }
 
 @keyframes filterFadeDescriptions {
   0% { opacity: .2;}
-  100% { opacity: .4}
+  100% { opacity: .3}
 }
 
 @keyframes filterHardFade {
   0% { opacity: 0;}
-  100% { opacity: .2}
+  100% { opacity: .1}
 }
 
 

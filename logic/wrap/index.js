@@ -116,10 +116,17 @@ class Wrap extends React.Component {
         <TransitionGroup>
           <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
             <Switch location={this.props.location}>
-              <Route path='/about' component={Routes.About} />
-              <Route path='/contact' component={Routes.Contact} />
+              <Route exact path='/about' component={Routes.About} />
+              <Route exact path='/contact' component={Routes.Contact} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+
+        <TransitionGroup>
+          <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
+            <Switch location={this.props.location}>
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <PropsRoute key={path} path={path} component={Routes.Content} manageContent={this.manageContent} content={content} />
+                  <PropsRoute exact key={path} path={path} component={Routes.Content} manageContent={this.manageContent} content={content} />
               )}
             </Switch>
           </CSSTransition>
