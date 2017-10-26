@@ -13,44 +13,7 @@ export default class IntroDescription extends Component {
 
   constructor(props) {
     super(props)
-
-    this.state = { display: this.props.display('/intro'),
-                   style : { opacity: 0 } }
-
-    // Helpers Bindings
-    this.mountStyle = this.mountStyle.bind(this)
-    this.unMountStyle = this.unMountStyle.bind(this)
-    this.transitionEnd = this.transitionEnd.bind(this)
   }
-
-
-  //----------------------------------------------
-  // On unMount fade out
-  //----------------------------------------------
-
-  componentWillReceiveProps(newProps) {
-    if (!newProps.display('/intro')) return this.unMountStyle()
-
-    this.setState({ display: true })
-    setTimeout(this.mountStyle, 10)
-  }
-
-  unMountStyle() {
-    this.setState({ style: { opacity: 0 } })  }
-
-
-  //----------------------------------------------
-  // On Mount fade in
-  //----------------------------------------------
-
-  componentDidMount(){
-    setTimeout(this.mountStyle, 10) }
-
-  mountStyle() {
-    this.setState({ style: { opacity: 1 } }) }
-
-  transitionEnd() {
-    if (!this.props.display('/intro')) this.setState({ display: false }) }
 
 
 
@@ -66,15 +29,15 @@ export default class IntroDescription extends Component {
       centralPark: require('./assets/central-park.png'),
       clinicSquare: require('./assets/clinic-square.png'),
       clinicRect: require('./assets/clinic-rect.png'),
-      nextSlide: require('./assets/next.png')
+      nextSlide: require('./assets/next.png'),
+      background: require('./assets/intro.jpg'),
     }
 
 
     return (
 
-      this.state.display &&
-      <div style={this.state.style} onTransitionEnd={this.transitionEnd} className={styles.container} >
-        <Wrap nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit'} header={'Intro'} manageContent={this.props.manageContent}>
+      <div className={styles.container}>
+        <Wrap background={images.background} nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit'} header={'Intro'}>
 
           <div className={styles.introduction}>
             <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>

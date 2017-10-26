@@ -7,12 +7,12 @@ General
 ----------------------------------------*/
 
 .container {
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   position: absolute;
   top: 0;
-  z-index: 2;
+  left: 0;
   cursor: default;
-  overflow: hidden;
   display: flex;
   align-items: center;
 }
@@ -35,29 +35,25 @@ Content
 Background
 --------------------------------------*/
 
-.background {
-  width: 100%;
-  height: 100%;
+.backgroundWrap {
   position: absolute;
+  width: 100vw;
   top: 0;
   left: 0;
   z-index: -1;
+  animation: backgroundLead .625s ease-out forwards;
 }
-
-
-/*-------------------
-Image
--------------------*/
 
 .backgroundImage {
-  width: inherit;
-  height: inherit;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
-  left: 0;
-  top: 0;
   background: no-repeat center;
   background-size: cover;
+  animation: backgroundScale 38s ease-out forwards;
+  animation-delay: 1s;
 }
+
 
 
 /*-------------------
@@ -74,4 +70,20 @@ Header
   left: 0.6%;
   margin-top: 0;
   transform: translateY(-50%);
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes backgroundLead {
+  0% { height: 62vh; margin-top: 38vh; }
+  100% { height: 100vh; margin-top: 0; }
+}
+
+@keyframes backgroundScale {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
 }

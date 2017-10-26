@@ -97,6 +97,10 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   onWheel(e) {
+    // Rewriting default behavior
+    e.preventDefault();
+    window.scrollBy(e.deltaY, 0);
+
     // Depending methods
     this.scrollBarWidth();
     this.scrollBarHighlight();
@@ -116,6 +120,8 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   componentDidMount() {
+    console.log(this.props.header.toLowerCase())
+
     // Reset scroll position on page refresh
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
 
@@ -144,12 +150,9 @@ class Wrap extends React.Component {
     if (this.state.scrollBarTimer != false) {
       clearTimeout(this.state.scrollBarTimer)
       this.setState({ scrollBarHighlighted: false, scrollBarTimer: false })}
-      console.log(this.props)
   }
 
-  // <div className={styles.socialSocialIcons}>
-  //   <SocialIcons />
-  // </div>
+
 
   //----------------------
   // Render
@@ -160,7 +163,9 @@ class Wrap extends React.Component {
     const closePosition = { right: this.state.closePosition },
           backgroundHeaderPosition = { marginLeft: this.state.backgroundHeaderPosition + '%'},
           scrollBarWidth = { width: this.state.scrollBarPercents + '%'},
-          nextSlideImage = this.props.nextSlide;
+          backgroundURL = require(`./assets/${this.props.header.toLowerCase()}.jpg`),
+          nextSlideImage = this.props.nextSlide
+
 
 
           return (
@@ -168,7 +173,7 @@ class Wrap extends React.Component {
             <div className={styles.container} onWheel={this.onWheel} ref='container'>
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
-              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} onClick={()=> this.props.manageContent(false, true)} ref='close'>
+              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} ref='close' onClick={() => this.props.history.push(this.props.history.location.pathname.slice(0, -12))}>
                 <a className={this.state.closeCross ? styles.closeCross : styles.closeLine}>&nbsp;</a>
               </div>
 
@@ -191,7 +196,9 @@ class Wrap extends React.Component {
                 <img src={nextSlideImage} />
               </div>
 
-              <div className={styles.background}>
+              <div className={styles.backgroundWrap}>
+
+                <img src={backgroundURL} className={styles.backgroundImage}/>
                 <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
               </div>
             </div>

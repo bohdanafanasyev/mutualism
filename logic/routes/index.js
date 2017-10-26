@@ -5,5 +5,5 @@ import IntroDescription from './descriptions/routes/intro';
 
 
 // Declarations
-const Routes = { About, Contact, Slides }
+const Routes = { About, Contact, Slides, IntroDescription }
 export default Routes;

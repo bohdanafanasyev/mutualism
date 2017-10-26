@@ -31,10 +31,10 @@ Background
 
 .background {
   width: 100%;
+  height: 100%;
   position: absolute;
   background-repeat: no-repeat;
   background-position: center bottom;
-  height: 100%;
   animation: backgroundScale 38s ease-out forwards;
   animation-delay: 1s;
 }

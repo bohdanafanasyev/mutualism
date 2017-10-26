@@ -56,7 +56,7 @@ class Wrap extends React.Component {
     this.manageNumbers();
 
     // Redirect to intro
-    let registredRoutes = ['/intro', '/benefit', '/people', '/start', '/contact', '/about'],
+    let registredRoutes = ['/intro', '/benefit', '/people', '/start', '/intro/description', '/benefit/description', '/people/description', '/start/description', '/contact', '/about'],
         pathName = this.props.location.pathname;
     if (pathName == '/' || !registredRoutes.includes(pathName)) this.props.history.push('/intro');
   }
@@ -66,9 +66,8 @@ class Wrap extends React.Component {
   // Managing Components
   //----------------------------------------------
 
-  manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ back: true }) : this.setState({ back: false }); }
-  manageNumbers() { (['/intro', '/benefit', '/people', '/start'].includes(location.pathname) && !this.state.descriptions) ?
-                    this.setState({ numbers: true }) : this.setState({ numbers: false }); }
+  manageBack() { ['/about', '/contact'].includes(location.pathname) ? this.setState({ back: true }) : this.setState({ back: false }) }
+  manageNumbers() { ['/intro', '/benefit', '/people', '/start'].includes(location.pathname) ? this.setState({ numbers: true }) : this.setState({ numbers: false }) }
 
 
 
@@ -85,7 +84,7 @@ class Wrap extends React.Component {
     // Change Numbers prop if corresponding to Slides component
     if (typeof this.props.state.slides[path] == "object") slideNumber = this.props.state.slides[path].slideNumber
 
-    const style = this.state.descriptions ? styles.enterFade : styles.enterSlide
+    const style = styles.enterSlide
 
     return (
 
@@ -98,8 +97,9 @@ class Wrap extends React.Component {
               <Route path='/about' component={Routes.About} />
               <Route path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <Route key={path} path={path} component={Routes.Slides} />
+                  <Route exact key={path} path={path} component={Routes.Slides} />
               )}
+              <Route path='/intro/description' component={Routes.IntroDescription} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

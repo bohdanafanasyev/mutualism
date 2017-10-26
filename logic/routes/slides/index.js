@@ -52,9 +52,6 @@ class Slides extends React.Component {
     // Wheel Redirect for Slides
     if (this.state.loaded && !this.state.breaker) {
       this.scrollRedirect(e); }
-
-    // Rewriting default behavior
-    window.scrollBy(e.deltaY, 0)
   }
 
   scrollRedirect(e) {
@@ -98,7 +95,7 @@ class Slides extends React.Component {
                 <h2 className={styles.subHeader}>{slide.subHeader}</h2>
             </div>
             <p className={styles.description}>{slide.description}</p>
-            <LearnMore manageContent={this.props.manageContent} />
+            <LearnMore manageContent={this.props.history} />
 
           </div>
 

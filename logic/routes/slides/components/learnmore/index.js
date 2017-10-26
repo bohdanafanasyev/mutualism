@@ -15,15 +15,17 @@ class LearnMore extends React.Component {
   }
 
 
+
   //----------------------
   // Render
   //----------------------
 
   render () {
+
     return (
 
       <div className={styles.learnMoreWrap}>
-        <div className={styles.learnMore}>
+        <div className={styles.learnMore} onClick={() => this.props.history.push(this.props.history.location.pathname + '/description') }>
           <p href='#' className={styles.learn}>Learn</p><br />
           <p className={styles.more}>MORE</p>
         </div>
