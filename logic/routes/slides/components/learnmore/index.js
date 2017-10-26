@@ -22,7 +22,7 @@ class LearnMore extends React.Component {
   render () {
     return (
 
-      <div className={styles.learnMoreWrap} onClick={() => this.props.showDescription()}>
+      <div className={styles.learnMoreWrap}>
         <div className={styles.learnMore}>
           <p href='#' className={styles.learn}>Learn</p><br />
           <p className={styles.more}>MORE</p>

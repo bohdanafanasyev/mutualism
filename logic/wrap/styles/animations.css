@@ -2,8 +2,13 @@
 Page Swaps
 ----------------------------------------*/
 
-.enter {
+.enterSlide {
   animation: enterIn .8s cubic-bezier(.05,.32,.53,.99) forwards;
+	z-index: 2 !important;
+}
+
+.enterFade {
+  animation: enterFade .8s cubic-bezier(.05,.32,.53,.99) forwards;
 	z-index: 2 !important;
 }
 
@@ -16,4 +21,9 @@ Animation Keyframes
 @keyframes enterIn {
   from { transform: translateY(100%); }
   to { transform: translateY(0%); }
+}
+
+@keyframes enterFade {
+  from { opacity: 0 }
+  to { opacity: 1}
 }

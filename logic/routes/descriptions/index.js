@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import Helpers from './Scripts/helpers';
 
 // Components
-import SocialIcons from '../../../wrap/components/socialicons';
+import SocialIcons from '../../wrap/components/socialicons';
 
 
 

@@ -1,6 +1,6 @@
-@import '../../../wrap/styles/mixins/fontsharper.css';
-@import '../../../wrap/styles/mixins/clearfix.css';
-@import '../../../wrap/styles/mixins/pointerline.css';
+@import '../../wrap/styles/mixins/fontsharper.css';
+@import '../../wrap/styles/mixins/clearfix.css';
+@import '../../wrap/styles/mixins/pointerline.css';
 
 /*--------------------------------------------
 General
@@ -13,7 +13,6 @@ General
   top: 0;
   left: 0;
   z-index: 1;
-  transition: opacity .38s ease-out;
 }
 
 .wrap {
@@ -26,7 +25,8 @@ General
   height: auto;
   z-index: 2;
 
-  @mixin clearFix; }
+  @mixin clearFix;
+}
 
 
 
@@ -42,7 +42,6 @@ Filter
   left: 0;
   background-image: url('./assets/textfilter.png');
   background-size: 200%;
-  opacity: 0.05;
   transition: opacity 4s ease-out;
   z-index: 1;
 }

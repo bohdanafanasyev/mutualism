@@ -14,20 +14,6 @@ import Back from './components/back';
 // Routes
 import Routes from '../routes';
 
-// Extention of Route logic to allow props
-const renderMergedProps = (component, ...rest) => {
-  const finalProps = Object.assign({}, ...rest);
-  return React.createElement(component, finalProps)
-}
-
-const PropsRoute = ({ component, ...rest }) => {
-  return (
-    <Route {...rest} render={routeProps => {
-      return renderMergedProps(component, routeProps, rest);
-    }} />
-  )
-}
-
 
 
 //----------------------------------------------
@@ -47,13 +33,12 @@ class Wrap extends React.Component {
     });
 
     // Component State
-    this.state = { numbers: true, back: true, descriptions: false, slides: true }
+    this.state = { numbers: true, back: true }
     // this.state = { numbers: true, back: true, descriptions: true, slides: false }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
     this.manageNumbers = this.manageNumbers.bind(this);
-    this.manageContent = this.manageContent.bind(this);
   }
 
 
@@ -85,10 +70,6 @@ class Wrap extends React.Component {
   manageNumbers() { (['/intro', '/benefit', '/people', '/start'].includes(location.pathname) && !this.state.descriptions) ?
                     this.setState({ numbers: true }) : this.setState({ numbers: false }); }
 
-  manageContent(descriptions, slides) {
-    this.setState({ descriptions: descriptions, slides: slides })
-    setTimeout(() => this.manageNumbers(), 50) }
-
 
 
   //----------------------
@@ -98,15 +79,13 @@ class Wrap extends React.Component {
   render () {
     // Virables
     let path = this.props.location.pathname.slice(1),
-        slideNumber = undefined,
-        content = {
-          descriptions: this.state.descriptions,
-          slides: this.state.slides
-        };
+        slideNumber = undefined;
+
 
     // Change Numbers prop if corresponding to Slides component
     if (typeof this.props.state.slides[path] == "object") slideNumber = this.props.state.slides[path].slideNumber
 
+    const style = this.state.descriptions ? styles.enterFade : styles.enterSlide
 
     return (
 
@@ -114,19 +93,12 @@ class Wrap extends React.Component {
         <Navigation history={this.props.history} showShare={this.state.descriptions} />
 
         <TransitionGroup>
-          <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
+          <CSSTransition classNames={{enter: style}} timeout={1000} key={this.props.location.key}>
             <Switch location={this.props.location}>
-              <Route exact path='/about' component={Routes.About} />
-              <Route exact path='/contact' component={Routes.Contact} />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-
-        <TransitionGroup>
-          <CSSTransition classNames={styles} timeout={1000} key={this.props.location.key}>
-            <Switch location={this.props.location}>
+              <Route path='/about' component={Routes.About} />
+              <Route path='/contact' component={Routes.Contact} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <PropsRoute exact key={path} path={path} component={Routes.Content} manageContent={this.manageContent} content={content} />
+                  <Route key={path} path={path} component={Routes.Slides} />
               )}
             </Switch>
           </CSSTransition>

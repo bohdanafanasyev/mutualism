@@ -6,9 +6,7 @@ import styles from './styles.css';
 
 // Components
 import Images from './components/images';
-import IntroDescription from './descriptions/routes/intro';
-import BenefitDescription from './descriptions/routes/benefit';
-import Slides from './slides';
+import LearnMore from './components/learnmore'
 
 
 
@@ -16,7 +14,7 @@ import Slides from './slides';
 // Slide Component
 //----------------------------------------------
 
-class Content extends React.Component {
+class Slides extends React.Component {
 
   constructor(props) {
     super(props);
@@ -27,11 +25,6 @@ class Content extends React.Component {
                    animationTimer: {},
                    textfilter: false }
 
-    // Helpers' binding
-    this.scrollRedirect = this.scrollRedirect.bind(this);
-    this.manageDescriptions = this.manageDescriptions.bind(this);
-    this.manageSlides = this.manageSlides.bind(this);
-    this.manageImages = this.manageImages.bind(this);
   }
 
 
@@ -42,7 +35,6 @@ class Content extends React.Component {
 
   componentWillMount() {
     this.setState({ animationTimer: setTimeout(() => this.setState({ loaded: true }), 2000) })
-    if (typeof this.props.location.state == 'object') this.setState({ description: true })
   }
 
   componentWillUnmount() {
@@ -62,8 +54,7 @@ class Content extends React.Component {
       this.scrollRedirect(e); }
 
     // Rewriting default behavior
-    if (this.props.content.descriptions) {
-      window.scrollBy(e.deltaY, 0) }
+    window.scrollBy(e.deltaY, 0)
   }
 
   scrollRedirect(e) {
@@ -71,7 +62,7 @@ class Content extends React.Component {
         goTo = (route) => { this.setState({ breaker: true }); this.props.history.push(route); }
 
     // Route response
-    if (!this.state.breaker == !this.props.content.descriptions) {
+    if (!this.state.breaker) {
       if (e.deltaY < 0 && path == '/intro') goTo('/benefit');
       if (e.deltaY > 0 && path == '/benefit') goTo('/intro');
       if (e.deltaY < 0 && path == '/benefit') goTo('/people');
@@ -80,20 +71,6 @@ class Content extends React.Component {
       if (e.deltaY > 0 && path == '/start') goTo('/people');
     }
   }
-
-
-  //----------------------------------------------
-  // Manage Content
-  //----------------------------------------------
-
-  manageDescriptions(route) {
-    return this.props.content.descriptions && this.props.location.pathname == route }
-
-  manageSlides() {
-    return this.props.content.slides }
-
-  manageImages() {
-    return this.props.content.descriptions }
 
 
 
@@ -114,10 +91,19 @@ class Content extends React.Component {
     return (
 
         <div className={styles.container} ref="container" onWheel={(e) => this.onWheel(e)}>
-          <Slides slide={slide} display={this.manageSlides} manageContent={this.props.manageContent} />
-          <IntroDescription display={this.manageDescriptions} manageContent={this.props.manageContent} />
-          <BenefitDescription display={this.manageDescriptions} manageContent={this.props.manageContent} />
-          <Images images={images} descriptions={this.manageImages} />
+          <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
+
+            <div className={styles.headersWrap}>
+                <h1 className={styles.mainHeader}>{slide.header}</h1>
+                <h2 className={styles.subHeader}>{slide.subHeader}</h2>
+            </div>
+            <p className={styles.description}>{slide.description}</p>
+            <LearnMore manageContent={this.props.manageContent} />
+
+          </div>
+
+          <div className={classNames(styles.filter)} style={{opacity: this.state.textfilter ? "1" : "0.4"}} onMouseOver={() => this.setState({ textfilter: false })} />
+          <Images images={images}  />
         </div>
 
     )
@@ -134,4 +120,4 @@ const mapStateToProps = (state) => ({
   slides: state.slides
 });
 
-export default connect(mapStateToProps)(Content);
+export default connect(mapStateToProps)(Slides);
