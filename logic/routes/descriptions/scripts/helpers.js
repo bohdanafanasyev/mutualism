@@ -30,6 +30,7 @@ let Helpers = {
     let percents = (window.scrollX || window.pageXOffset) / ((that.refs.container.clientWidth - window.innerWidth) / 100);
 
     that.setState({ scrollBarPercents: percents });
+
   },
 
 
@@ -39,6 +40,8 @@ let Helpers = {
   //----------------------------------------------------------------------
 
   backgroundHeaderPosition(e, that) {
+    // console.log(window.scrollX || window.pageXOffset)
+    // console.log(that.state.backgroundHeaderPosition)
     let breakingPoint = (window.scrollX || window.pageXOffset) + window.innerWidth < that.refs.container.clientWidth
 
     if (e.deltaY > 1 & that.state.backgroundHeaderPosition < 50 & breakingPoint) that.setState({ backgroundHeaderPosition: that.state.backgroundHeaderPosition + 0.04 });

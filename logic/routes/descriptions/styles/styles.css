@@ -8,7 +8,6 @@ General
 
 .container {
   height: 100vh;
-  width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
@@ -67,7 +66,7 @@ Header
   letter-spacing: 25px;
   position: absolute;
   top: 50%;
-  left: 0.6%;
+  left: 0.8%;
   margin-top: 0;
   transform: translateY(-50%);
 }

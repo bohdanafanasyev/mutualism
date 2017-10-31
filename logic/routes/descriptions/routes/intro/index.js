@@ -30,14 +30,13 @@ export default class IntroDescription extends Component {
       clinicSquare: require('./assets/clinic-square.png'),
       clinicRect: require('./assets/clinic-rect.png'),
       nextSlide: require('./assets/next.png'),
-      background: require('./assets/intro.jpg'),
     }
 
 
     return (
 
       <div className={styles.container}>
-        <Wrap background={images.background} nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit'} header={'Intro'}>
+        <Wrap nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit'} header={'Intro'}>
 
           <div className={styles.introduction}>
             <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>

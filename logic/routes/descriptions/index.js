@@ -120,7 +120,8 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   componentDidMount() {
-    console.log(this.props.header.toLowerCase())
+    // console.log(this.props.header.toLowerCase())
+    console.log(this.state.backgroundHeaderPosition)
 
     // Reset scroll position on page refresh
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
@@ -163,7 +164,7 @@ class Wrap extends React.Component {
     const closePosition = { right: this.state.closePosition },
           backgroundHeaderPosition = { marginLeft: this.state.backgroundHeaderPosition + '%'},
           scrollBarWidth = { width: this.state.scrollBarPercents + '%'},
-          backgroundURL = require(`./assets/${this.props.header.toLowerCase()}.jpg`),
+          backgroundImage = require(`./assets/${this.props.header.toLowerCase()}.jpg`),
           nextSlideImage = this.props.nextSlide
 
 
@@ -198,7 +199,7 @@ class Wrap extends React.Component {
 
               <div className={styles.backgroundWrap}>
 
-                <img src={backgroundURL} className={styles.backgroundImage}/>
+                <img src={backgroundImage} className={styles.backgroundImage}/>
                 <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
               </div>
             </div>
