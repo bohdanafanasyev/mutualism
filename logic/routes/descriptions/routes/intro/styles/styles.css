@@ -5,7 +5,9 @@ Introduction
 ----------------------------------------*/
 
 .container {
-  transition: opacity .38s easy-out;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
 }
 
 .introduction {

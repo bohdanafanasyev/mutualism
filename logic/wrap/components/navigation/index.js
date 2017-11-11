@@ -22,6 +22,7 @@ export default class Navigation extends React.Component {
                    hideSocial: false,
                    hideShare: false,
                    shareThrottle: false,
+                   descriptionRoute: () => this.props.history.location.pathname.length > 8 ? true : false,
                    timerOn: {},
                    timerOff: {}
                  };
@@ -109,13 +110,13 @@ export default class Navigation extends React.Component {
 
     return (
 
-      <div className={classNames(styles.container, !this.props.showShare ? null : styles.containerNoShare)} >
+      <div className={classNames(styles.container, (!this.props.showShare && !this.state.descriptionRoute()) ? null : styles.containerNoShare)} >
 
         <div className={styles.wrap}>
           <Link to='/about' onMouseEnter={() => autoRedirect.goAbout()} onMouseLeave={() => this.clearTimer(autoRedirect.timerAbout)} className={classNames(styles.button, about ? styles.active : "")} >ABOUT</Link>
           <Link to='/contact' onMouseEnter={() => autoRedirect.goContact()} onMouseLeave={() => this.clearTimer(autoRedirect.timerContact)} className={classNames(styles.button, contact ? styles.active : "")} >CONTACT</Link>
 
-          <div className={styles.share} style={{display: !this.props.showShare ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
+          <div className={styles.share} style={{display: (!this.props.showShare && !this.state.descriptionRoute()) ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
             onMouseEnter={() => this.clearTimer(this.state.timerOn)}>
             <SocialIcons parentState={this.state} clearTimer={this.clearTimer} socialIconsOff={this.socialIconsOff}  />
             <a onClick={() => this.socialIconsOn()}

@@ -10,6 +10,7 @@ Next Slide
   margin-left: 128px;
   display: flex;
   flex-direction: column;
+  transition: 1s;
 
   .nextSlideContent {
     margin: auto 0 -61px 0; }

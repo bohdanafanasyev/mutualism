@@ -12,7 +12,7 @@ Navigation
   padding-right: 25px;
   right: 50px;
   bottom: 67px;
-  z-index: 2;
+  z-index: 4;
   transition: all .38s ease-out;
 }
 

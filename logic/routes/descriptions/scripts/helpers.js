@@ -4,20 +4,32 @@ let Helpers = {
   //----------------------------------------------------------------------
   // Close button position depeneding on amount of page scrolled
   //----------------------------------------------------------------------
+
   closePosition: (that) => {
     let scrolled = (window.scrollX || window.pageXOffset) + window.innerWidth + that.refs.nextSlideImage.clientWidth,
         breakingPoint = that.refs.nextSlide.clientWidth + that.refs.nextSlide.offsetLeft + that.refs.nextSlideImage.clientWidth,
         closeRight = parseInt(that.refs.close.style.right),
         dynamicPosition = scrolled - breakingPoint + 79;
 
+    Helpers.nextSlideAnimate(that, scrolled, breakingPoint)
 
-      // Scrolling Forward
-      if (scrolled < breakingPoint) that.setState({ closePosition: 79 })
-      if (scrolled > breakingPoint) that.setState({ closePosition: dynamicPosition })
+    // Scrolling Forward
+    if (scrolled < breakingPoint) return that.setState({ closePosition: 79 })
+    if (scrolled > breakingPoint) return that.setState({ closePosition: dynamicPosition })
 
-      // Scrolling Backwards
-      if (scrolled < breakingPoint) that.setState({ closePosition: 79 })
-      if (scrolled > breakingPoint) that.setState({ closePosition: dynamicPosition})
+    // Scrolling Backwards
+    if (scrolled < breakingPoint) return that.setState({ closePosition: 79 })
+    if (scrolled > breakingPoint) return that.setState({ closePosition: dynamicPosition})
+
+  },
+
+
+  //---------------------
+  // Animate Next Slide
+  //---------------------
+
+  nextSlideAnimate: (that, scrolled, breakingPoint) => {
+    if (breakingPoint - 50 < scrolled) that.setState({ animateTrigger: true })
   },
 
 

@@ -9,7 +9,7 @@ General
   height: 118px;
   position: fixed;
   left: 0;
-  z-index: 3;
+  z-index: 4;
   user-select: none;
 
   .wrap {
@@ -58,7 +58,9 @@ Buttons
   cursor: pointer;
   position: relative;
   padding-bottom: 4px;
+  opacity: 0;
   animation: slideButton .777s ease-out forwards;
+  animation-delay: .175s;
 
   &:after {
     content: '';

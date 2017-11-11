@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
+import classNames from 'classnames';
 
 
 
@@ -26,8 +27,8 @@ export default class About extends React.Component {
 
     return (
 
-      <div className={styles.container} onWheel={(e) => e.preventDefault()}>
-        <div className={styles.backgroundWrap}>
+      <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.slideContainer)} onWheel={(e) => e.preventDefault()}>
+        <div className={classNames(this.props.fadeEnter ? styles.fadeBackground : styles.slideBackground)}>
           <div className={styles.background} style={background} />
         </div>
         <div className={styles.wrap} >

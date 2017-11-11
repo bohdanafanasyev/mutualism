@@ -7,14 +7,14 @@ General
 ----------------------------------------*/
 
 .container {
-  height: 100%;
+  height: 100vh;
   position: absolute;
   top: 0;
-  z-index: 2;
+  left: 0;
   cursor: default;
-  overflow: hidden;
   display: flex;
   align-items: center;
+  animation: slideContainer 1s ease-out forwards;
 }
 
 
@@ -27,6 +27,7 @@ Content
   height: 60%;
   display: flex;
   align-items: center;
+  opacity: 0;
 }
 
 
@@ -35,29 +36,24 @@ Content
 Background
 --------------------------------------*/
 
-.background {
-  width: 100%;
-  height: 100%;
+.backgroundWrap {
   position: absolute;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
   z-index: -1;
 }
 
-
-/*-------------------
-Image
--------------------*/
-
 .backgroundImage {
-  width: inherit;
-  height: inherit;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
-  left: 0;
-  top: 0;
-  background: no-repeat center;
-  background-size: cover;
+  background: no-repeat center bottom;
+  animation: scaleBackground 38s ease-out forwards;
+  animation-delay: 1s;
 }
+
 
 
 /*-------------------
@@ -71,7 +67,68 @@ Header
   letter-spacing: 25px;
   position: absolute;
   top: 50%;
-  left: 0.6%;
+  left: 2.8%;
   margin-top: 0;
   transform: translateY(-50%);
+  opacity: 0;
+  animation: slideBackgroundHeader .625s ease-out forwards;
+  animation-delay: .625s;
+}
+
+
+
+/*--------------------------------------------
+Animating on Load
+--------------------------------------------*/
+
+.fadeContainer {
+  animation: fadeContainer .8s ease-out forwards;
+}
+
+.sideContainer {
+  animation: sideContainer .8s ease-out forwards;
+}
+
+.fadeBackground {
+  animation: fadeBackground .625s ease-out forwards;
+}
+
+.sideBackground {
+  animation: sideBackground .625s ease-out forwards;
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes sideContainer {
+  from { margin-left: 100vw; }
+  to { margin-left: 0 }
+}
+
+@keyframes fadeContainer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sideBackground {
+  0% { width: 62vw; margin-right: -38vh; }
+  100% { width: 100vw; margin-right: 0; }
+}
+
+@keyframes slideBackgroundHeader {
+  from { transform: translate(40px, -50%); opacity: 0 }
+  to { transform: translate(0px, -50%); opacity: 1 }
+}
+
+@keyframes fadeBackground {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleBackground {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
 }

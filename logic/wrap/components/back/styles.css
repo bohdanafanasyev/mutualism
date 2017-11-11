@@ -9,7 +9,7 @@ General
   text-align: right;
   bottom: 47px;
   right: 79px;
-  z-index: 3;
+  z-index: 4;
   transition: opacity .38s ease-out;
 
   &:hover .back {
