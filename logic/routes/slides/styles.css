@@ -119,10 +119,33 @@ Description
 }
 
 
+/*--------------------------------------------
+Animating on Load
+--------------------------------------------*/
+
+.fadeContainer {
+  animation: fadeContainer .8s ease-out forwards;
+}
+
+.slideContainer {
+  animation: slideContainer .8s ease-out forwards;
+}
+
+
 
 /*--------------------------------------------
 Animation Keyframes
 --------------------------------------------*/
+
+@keyframes slideContainer {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0%); }
+}
+
+@keyframes fadeContainer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 @keyframes fadeMain {
   from { opacity: 0 }

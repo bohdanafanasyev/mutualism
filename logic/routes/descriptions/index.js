@@ -23,6 +23,8 @@ class Wrap extends React.Component {
 
     // Component's State
     this.state = {
+      animateTrigger: false,
+
       backgroundHeaderPosition: 1,
       startRoute: false,
 
@@ -40,7 +42,9 @@ class Wrap extends React.Component {
     this.onWheel = this.onWheel.bind(this);
     this.updateData = this.updateData.bind(this);
     this.scrollBarWidth = this.scrollBarWidth.bind(this);
+    this.scrollBarWidth = this.scrollBarWidth.bind(this);
   }
+
 
 
   //----------------------------------------------------------
@@ -120,9 +124,6 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   componentDidMount() {
-    // console.log(this.props.header.toLowerCase())
-    console.log(this.state.backgroundHeaderPosition)
-
     // Reset scroll position on page refresh
     window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
 
@@ -171,7 +172,7 @@ class Wrap extends React.Component {
 
           return (
 
-            <div className={styles.container} onWheel={this.onWheel} ref='container'>
+            <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.sideContainer)} onWheel={this.onWheel} ref='container'>
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
               <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} ref='close' onClick={() => this.props.history.push(this.props.history.location.pathname.slice(0, -12))}>
@@ -184,23 +185,24 @@ class Wrap extends React.Component {
 
               <div className={styles.nextSlide} ref='nextSlide'>
                 <div className={styles.nextSlideContent} onClick={() => this.nextSlide()}>
-                  <div className={styles.articleName}>{this.props.nextPart}
-                  <p className={styles.nextPart}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p></div>
+                  <p className={classNames(styles.articleName, this.state.animateTrigger ? styles.animateArticleName : 'null')}>{this.props.nextPart}</p>
+                  <p className={classNames(styles.nextPart, this.state.animateTrigger ? styles.animateNextPart : 'null')}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p>
                 </div>
 
-                <div className={styles.socialShare}>
-                  <SocialIcons parentState={{ showSocial: true }} />
+                <div className={styles.socialShare} style={{ opacity: this.state.animateTrigger ? '1' : '0' }}>
+                  <SocialIcons parentState={{ showSocial: true }}  />
                 </div>
               </div>
 
-              <div className={styles.nextSlideImage} onClick={() => this.nextSlide()} ref="nextSlideImage">
+              <div className={classNames(styles.nextSlideImage, this.state.animateTrigger ? styles.animateNextPartImage : 'null')} onClick={() => this.nextSlide()} ref="nextSlideImage">
                 <img src={nextSlideImage} />
               </div>
 
               <div className={styles.backgroundWrap}>
-
                 <img src={backgroundImage} className={styles.backgroundImage}/>
+                <div className={styles.backgroundFilter} />
                 <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
+
               </div>
             </div>
           )

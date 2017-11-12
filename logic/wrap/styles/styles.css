@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import 'animations.css';
 @import 'fonts.css';
 
 /*--------------------------------------------
@@ -79,4 +78,16 @@ Scroll bar
 		width: auto;  /* removes scrollbar space */
 		background: auto;  /* makes scrollbar invisible */
 	}
+}
+
+
+
+/*----------------------------------------
+Page Swaps
+----------------------------------------*/
+
+/* cubic-bezier(.05,.32,.53,.99) */
+
+.enter {
+	z-index: 3 !important;
 }

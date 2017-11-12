@@ -16,6 +16,7 @@ export default class BenefitDescription extends Component {
   }
 
 
+
   //----------------------
   // Render
   //----------------------
@@ -28,8 +29,7 @@ export default class BenefitDescription extends Component {
 
     return (
 
-      this.props.display('/benefit') &&
-      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people'} header={'Benefit'} manageContent={this.props.manageContent}>
+      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'} fadeEnter={this.props.fadeEnter} sideEnter={this.props.sideEnter}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>
@@ -71,9 +71,6 @@ export default class BenefitDescription extends Component {
             A 2000 study published by William J. Fisk, a staff scientist at the Lawrence Berkeley National Laboratory, in the "Annual Review of Environment and Resources" said there is significant evidence that design elements of buildings and indoor environments affect the occurrence of communicable respiratory illness, allergy and asthma symptoms
           </p>
         </div>
-
-
-
 
       </Wrap>
     )

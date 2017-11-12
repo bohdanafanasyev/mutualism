@@ -37,7 +37,7 @@ class Back extends React.Component {
       if (value != "/about" && value != "/contact") return value; }
 
     let history = this.props.historyRecords.filter(historyFilter);
-    history.length < 1 ? this.setState({ previousRoute: '/intro' }) : this.setState({ previousRoute: history[history.length - 1] })
+    history.length < 1 ? null : this.setState({ previousRoute: history[history.length - 1] })
   }
 
 

@@ -36,7 +36,7 @@ export default class IntroDescription extends Component {
     return (
 
       <div className={styles.container}>
-        <Wrap nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit'} header={'Intro'}>
+        <Wrap nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'} fadeEnter={this.props.fadeEnter} sideEnter={this.props.sideEnter}>
 
           <div className={styles.introduction}>
             <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>

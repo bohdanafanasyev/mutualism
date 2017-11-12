@@ -87,7 +87,7 @@ class Slides extends React.Component {
 
     return (
 
-        <div className={styles.container} ref="container" onWheel={(e) => this.onWheel(e)}>
+        <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.slideContainer)} ref="container" onWheel={(e) => this.onWheel(e)}>
           <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
 
             <div className={styles.headersWrap}>
@@ -96,11 +96,10 @@ class Slides extends React.Component {
             </div>
             <p className={styles.description}>{slide.description}</p>
             <LearnMore manageContent={this.props.history} />
-
           </div>
 
-          <div className={classNames(styles.filter)} style={{opacity: this.state.textfilter ? "1" : "0.4"}} onMouseOver={() => this.setState({ textfilter: false })} />
-          <Images images={images}  />
+          <div className={styles.filter} style={{opacity: this.state.textfilter ? "1" : "0.4"}} onMouseOver={() => this.setState({ textfilter: false })} />
+          <Images images={images}  fadeEnter={this.props.fadeEnter} bottomEnter={this.props.bottomEnter} />
         </div>
 
     )

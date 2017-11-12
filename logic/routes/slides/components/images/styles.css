@@ -30,13 +30,12 @@ Main
   top: 0;
   left: 0;
   position: absolute;
-  animation: slideMain .625s ease-out forwards;
 
   .main {
     background-repeat: no-repeat;
     background-position: center bottom;;
     animation-delay: .625s;
-    animation: fadeMain 38s ease-out forwards; }
+    animation: scaleMain 38s ease-out forwards; }
 }
 
 
@@ -53,7 +52,7 @@ Upper Side
   opacity: 0;
   transform: translateX(-100%);
   animation: slideWrap 1s ease-out forwards;
-  animation-delay: .625s;
+  animation-delay: .38s;
 }
 
 .upper {
@@ -61,7 +60,7 @@ Upper Side
   transform: scale(1) translateX(100%);
   animation: slideUpper 38s ease-out forwards;
   transform-origin: 60% 40%;
-  animation-delay: 1.625s;
+  animation-delay: 1.38s;
 }
 
 
@@ -112,6 +111,20 @@ Filter
 
 
 /*--------------------------------------------
+Animating on Load
+--------------------------------------------*/
+
+.fadeMain {
+  animation: fadeMain .625s ease-out forwards;
+}
+
+.slideMain {
+  animation: slideMain .625s ease-out forwards;
+}
+
+
+
+/*--------------------------------------------
 Animation Keyframes
 --------------------------------------------*/
 
@@ -123,6 +136,11 @@ Animation Keyframes
 }
 
 @keyframes fadeMain {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleMain {
   0% { opacity: 0 }
   1.64% { opacity: 1; transform: scale(1) translateX(0); }
   100% { transform: scale(1.04) translateX(20px); }
