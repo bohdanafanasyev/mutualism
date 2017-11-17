@@ -78,8 +78,9 @@ Image
   img {
     height: 100%;
     width: auto;
-    transform: translateX(100%);
-    opacity: 0;
+    /*transform: translateX(100%);*/
+    /*margin-left: 100%;*/
+    /*opacity: 0;*/
     transform-origin: right;
     cursor: pointer; }
 }
@@ -100,7 +101,7 @@ Animations
 }
 
 .animateNextPartImage img {
-  animation: scaleImage 1s ease-out forwards;
+  /*animation: scaleImage 1s ease-out forwards;*/
 }
 
 
@@ -119,6 +120,6 @@ Animation Keyframes
 }
 
 @keyframes scaleImage {
-  from { transform: translateX(100%);; opacity: 0; }
+  from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1 }
 }
