@@ -29,9 +29,8 @@ export default class IntroDescription extends Component {
       centralPark: require('./assets/central-park.png'),
       clinicSquare: require('./assets/clinic-square.png'),
       clinicRect: require('./assets/clinic-rect.png'),
-      nextSlide: require('./assets/next.png'),
+      nextSlide: require('../../../slides/assets/benefitMain.jpg')
     }
-
 
     return (
 

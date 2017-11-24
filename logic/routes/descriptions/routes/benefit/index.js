@@ -24,7 +24,7 @@ export default class BenefitDescription extends Component {
   render() {
 
     // Variables
-    const nextSlide = require('./assets/next.png');
+    const nextSlide = require('../../../slides/assets/peopleMain.jpg')
 
 
     return (

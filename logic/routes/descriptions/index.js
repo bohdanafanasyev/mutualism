@@ -56,7 +56,7 @@ class Wrap extends React.Component {
     else if (!this.state.closeCross) this.setState({ closeCross: true }); }
 
   closePosition() {
-    Helpers.closePosition.call(null, this); }
+    Helpers.closePosition.call(false, this); }
 
 
   //----------------------------------------------------------
@@ -75,7 +75,7 @@ class Wrap extends React.Component {
   }
 
   scrollBarWidth() {
-    Helpers.scrollBarWidth.call(null, this); }
+    Helpers.scrollBarWidth.call(false, this); }
 
 
   //----------------------------------------------------------
@@ -83,7 +83,7 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   backgroundHeaderPosition(e) {
-    Helpers.backgroundHeaderPosition.call(null, e, this); }
+    Helpers.backgroundHeaderPosition.call(false, e, this); }
 
 
   //----------------------------------------------------------
@@ -113,8 +113,8 @@ class Wrap extends React.Component {
   }
 
   updateData() {
-    Helpers.closePosition.call(null, this);
-    Helpers.scrollBarWidth.call(null, this);
+    Helpers.closePosition.call(false, this);
+    Helpers.scrollBarWidth.call(false, this);
   }
 
 
@@ -185,8 +185,8 @@ class Wrap extends React.Component {
 
               <div className={styles.nextSlide} ref='nextSlide'>
                 <div className={styles.nextSlideContent} onClick={() => this.nextSlide()}>
-                  <p className={classNames(styles.articleName, this.state.animateTrigger ? styles.animateArticleName : 'null')}>{this.props.nextPart}</p>
-                  <p className={classNames(styles.nextPart, this.state.animateTrigger ? styles.animateNextPart : 'null')}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p>
+                  <p className={classNames(styles.articleName, this.state.animateTrigger ? styles.animateArticleName : false)}>{this.props.nextPart}</p>
+                  <p className={classNames(styles.nextPart, this.state.animateTrigger ? styles.animateNextPart : false)}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p>
                 </div>
 
                 <div className={styles.socialShare} style={{ opacity: this.state.animateTrigger ? '1' : '0' }}>
@@ -194,9 +194,11 @@ class Wrap extends React.Component {
                 </div>
               </div>
 
-              <div className={classNames(styles.nextSlideImage, this.state.animateTrigger ? styles.animateNextPartImage : 'null')} onClick={() => this.nextSlide()} ref="nextSlideImage">
+              <div className={classNames(styles.nextSlideImage, this.state.animateTrigger ? styles.nextSlideImageAnimate : false)} onClick={() => this.nextSlide()} ref="nextSlideImage">
                 <img src={nextSlideImage} />
               </div>
+
+              <div className={classNames(styles.imageShadow, this.state.animateTrigger ? styles.imageShadowAnimate : false)} />
 
               <div className={styles.backgroundWrap}>
                 <img src={backgroundImage} className={styles.backgroundImage}/>
