@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "development": "webpack-dev-server",
+    "dev": "webpack-dev-server",
     "clean": "rimraf build"
   },
   "author": "",

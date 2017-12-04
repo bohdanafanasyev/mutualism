@@ -1,0 +1,128 @@
+/*--------------------------------------
+Background
+--------------------------------------*/
+
+.backgroundWrap {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+
+
+/*-------------------
+Header
+-------------------*/
+
+.backgroundHeader {
+  font-family: Soleil ExtraBlack;
+  font-size: 380px;
+  color: rgba(255, 255, 255, 0.05);
+  letter-spacing: 25px;
+  position: absolute;
+  top: 50%;
+  left: 2.8%;
+  margin-top: 0;
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: slideBackgroundHeader .625s ease-out forwards;
+  animation-delay: .625s;
+}
+
+
+
+
+/*------------------
+Image
+------------------*/
+
+.backgroundImage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: no-repeat center bottom;
+  animation: scaleBackground 38s ease-out forwards;
+  animation-delay: 1s;
+}
+
+
+
+/*------------------
+Filters
+------------------*/
+
+.backgroundFilter, .backgroundFilterEnhancer, .backgroundFilterHard {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  opacity: 0;
+  background-color: black;
+  transition: 1s ease-out;
+}
+
+.backgroundFilter {
+  animation: fadeBackgroundFilter 4s ease-out forwards;
+  animation-delay: 1s;
+
+  &Enhancer {
+    animation: enhanceBackgroundFilter 1s ease-out forwards; }
+
+  &HardAnimate {
+    opacity: .6; }
+}
+
+
+
+/*--------------------------------------------
+Animating on Load
+--------------------------------------------*/
+
+.fadeBackground {
+  animation: fadeBackground .375s ease-out forwards; }
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideBackgroundHeader {
+  from { transform: translate(40px, -50%); opacity: 0 }
+  to { transform: translate(0px, -50%); opacity: 1 }
+}
+
+@keyframes fadeBackground {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleBackground {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.06); }
+}
+
+
+/*Filters*/
+
+@keyframes fadeBackgroundFilter {
+  0% { opacity: 0 }
+  100% { opacity: .2 }
+}
+
+@keyframes enhanceBackgroundFilter {
+  0% { opacity: 0 }
+  100% { opacity: .2 }
+}
+
+@keyframes hardEnhanceBackgroundFilter {
+  0% { opacity: .4 }
+  100% { opacity: .8 }
+}
+
+@keyframes hardDesenhanceBackgroundFilter {
+  0% { opacity: .8 }
+  100% { opacity: .4 }
+}

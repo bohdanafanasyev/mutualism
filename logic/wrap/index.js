@@ -68,6 +68,8 @@ class Wrap extends React.Component {
     // Manage Back and Numbers Component
     this.manageBack();
     this.manageNumbers();
+    this.manageAnimations();
+
 
     // Redirect to intro
     let registredRoutes = ['/intro', '/benefit', '/people', '/start', '/intro/description', '/benefit/description', '/people/description', '/start/description', '/contact', '/about'],
@@ -97,7 +99,13 @@ class Wrap extends React.Component {
         slidesRoutes = ['/intro', '/benefit', '/start', '/people'],
         socialRoutes = ['/about', '/contact'];
 
-    // 0.0 Description over own Slide and vica versa (Fade in)
+
+    // 0.0 Initial Load
+    if (this.props.state.history.length == 0) {
+      return this.setState({ fadeEnter: true, bottomEnter: false, sideEnter: false })
+    }
+
+    // 0.1 Description over own Slide and vica versa (Fade in)
     if ((currentRoute.slice(0, -12) == lastRoute) ||
         (currentRoute == lastRoute.slice(0, -12))) {
           return this.setState({ fadeEnter: true, bottomEnter: false, sideEnter: false })

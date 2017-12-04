@@ -1,0 +1,116 @@
+@import '../../../wrap/styles/mixins/fontsharper.css';
+
+/*----------------------------------------
+Next Slide Image
+----------------------------------------*/
+
+.nextSlideImageContainer {
+  height: 100%;
+  width: 14vw;
+  display: inline-block;
+}
+
+.nextSlideImageWrap {
+  height: 100%;
+  width: 100vw;
+  display: inline-block;
+  z-index: 2;
+  transition: 1s ease-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+
+  &Clip {
+    animation: slideImage 1.24s ease-out forwards; }
+
+  &Unclip {
+    animation:unclipImage .8s ease-out forwards;
+    position: fixed; }
+}
+
+.nextSlideImage {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  background-size: cover;
+  background-position: 38%;
+  transition: 1.625s ease-out;
+
+  &Move {
+    background-position: 62%; }
+
+  &Blur {
+    animation: blurImage .375s ease-out forwards;
+    animation-delay: .55s;
+    background-size: cover;
+  }
+}
+
+
+
+/*--------------------
+Image Filter
+--------------------*/
+
+.imageFilter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14vw;
+  height: 100%;
+  background-image: url('../assets/gradient.png');
+  background-size: cover;
+  opacity: 0;
+  transition: 1s ease-out;
+  cursor: pointer;
+
+  &Hard {
+    opacity: .2; }
+}
+
+
+
+
+/*--------------------
+Image Shadow
+--------------------*/
+
+.imageShadow {
+  height: 102vh;
+  width: 30px;
+  position: absolute;
+  opacity: 0;
+  background: url('../assets/shadow.png');
+  background-size: contain;
+
+  &Animate {
+    animation: slideImageShadow 1.24s ease-out forwards;
+    animation-delay: .125s; }
+}
+
+
+
+/*--------------------------------------------
+Animation Keyframes
+--------------------------------------------*/
+
+@keyframes slideImageShadow {
+  from { right: 0; transform: rotate(0); opacity: 0; }
+  to { right: calc(14vw - 46px); transform: rotate(3deg); opacity: .4 }
+}
+
+@keyframes slideImage {
+  from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) }
+  to { clip-path: polygon(88.5% 0, 100% 0, 100% 100%, 87.5% 100%) }
+}
+
+@keyframes unclipImage {
+  from { clip-path: polygon(32% 0, 100% 0, 100% 100%, 12% 100%); width: 14vw; }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); width: 100vw;   }
+}
+
+@keyframes blurImage {
+  from { filter: blur(0) }
+  to { filter: blur(4px) }
+}

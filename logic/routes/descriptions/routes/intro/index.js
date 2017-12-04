@@ -29,13 +29,13 @@ export default class IntroDescription extends Component {
       centralPark: require('./assets/central-park.png'),
       clinicSquare: require('./assets/clinic-square.png'),
       clinicRect: require('./assets/clinic-rect.png'),
-      nextSlide: require('../../../slides/assets/benefitMain.jpg')
     }
+
 
     return (
 
       <div className={styles.container}>
-        <Wrap nextSlide={images.nextSlide} nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'} fadeEnter={this.props.fadeEnter} sideEnter={this.props.sideEnter}>
+        <Wrap nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'} fadeEnter={this.props.fadeEnter} sideEnter={this.props.sideEnter}>
 
           <div className={styles.introduction}>
             <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>

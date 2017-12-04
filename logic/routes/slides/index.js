@@ -85,6 +85,9 @@ class Slides extends React.Component {
           main: { backgroundImage: `url(${require(`./assets/${slide.imageMain}.jpg`)})` }
         };
 
+
+
+
     return (
 
         <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.slideContainer)} ref="container" onWheel={(e) => this.onWheel(e)}>
@@ -99,7 +102,7 @@ class Slides extends React.Component {
           </div>
 
           <div className={styles.filter} style={{opacity: this.state.textfilter ? "1" : "0.4"}} onMouseOver={() => this.setState({ textfilter: false })} />
-          <Images images={images}  fadeEnter={this.props.fadeEnter} bottomEnter={this.props.bottomEnter} />
+          <Images images={images} fadeEnter={this.props.fadeEnter} bottomEnter={this.props.bottomEnter} />
         </div>
 
     )

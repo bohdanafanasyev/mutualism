@@ -11,6 +11,8 @@ Next Slide
   display: flex;
   flex-direction: column;
   transition: 1s;
+  position: relative;
+  z-index: 1;
 
   .nextSlideContent {
     margin: auto 0 -61px 0; }
@@ -30,6 +32,9 @@ Next Part
 .nextSlideContent {
   text-align: right;
   margin: 0 79px 0 148px;
+  position: relative;
+  z-index: 4;
+
 
   &:hover .articleName {
     color: rgba(255, 255, 255, .60); }
@@ -59,51 +64,9 @@ Next Part
     margin: -13px 0 0 0;
     opacity: 0;
     transform: translateY(3px);
-  }
-}
-
-
-
-/*--------------------
-Image
---------------------*/
-
-.nextSlideImage {
-  height: 100%;
-  width: 14vw;
-  display: inline-block;
-  z-index: 3;
-  transition: 1s ease-out;
-  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
-
-  &Animate {
-    animation: slideImage 1.625s ease-out forwards;
-    animation-delay: .325s; }
-
-
-  img {
-    position: absolute;
-    right: 0;
-    height: 100vh;
-    width: auto;
-    transform-origin: right;
     cursor: pointer;
-    filter: saturate(150%);
   }
 }
-
-.imageShadow {
-  height: 102vh;
-  width: 30px;
-  position: absolute;
-  opacity: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0, 0, 0,.24) 100%);
-
-  &Animate {
-    animation: slideImageShadow 1.625s ease-out forwards;
-    animation-delay: .325s; }
-}
-
 
 
 
@@ -134,19 +97,4 @@ Animation Keyframes
 @keyframes slideNext {
   from { transform: translateX(-6px); opacity: 0; }
   to { transform: translateX(0px); opacity: 1; }
-}
-
-@keyframes scaleImage {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1 }
-}
-
-@keyframes slideImageShadow {
-  from { right: 0; transform: rotate(0); opacity: 0; }
-  to { right: calc(14vw - 44px); transform: rotate(2.5deg); opacity: 1 }
-}
-
-@keyframes slideImage {
-  from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) }
-  to { clip-path: polygon(32% 0, 100% 0, 100% 100%, 9% 100%) }
 }

@@ -157,7 +157,7 @@ Animation Keyframes
 
 @keyframes slideUpper {
   0% { transform: scale(1) translateX(5px); opacity: 0; }
-  4.65% { transform: translateX(0px) scale(1.01); opacity: 1; }
+  6.65% { transform: translateX(0px) scale(1.01); opacity: 1; }
   100% { transform: scale(1.06) translate(-2%); opacity: 1}
 }
 

@@ -6,7 +6,7 @@ Close
     position: fixed;
     top: 50px;
     padding: 10px 0;
-    z-index: 1;
+    z-index: 5;
     width: 20px;
     transform: scaleX(0);
     transform-origin: right;
