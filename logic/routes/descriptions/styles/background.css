@@ -30,6 +30,7 @@ Header
   opacity: 0;
   animation: slideBackgroundHeader .625s ease-out forwards;
   animation-delay: .625s;
+  z-index: 7;
 }
 
 
@@ -44,6 +45,7 @@ Image
   height: 100vh;
   position: fixed;
   background: no-repeat center bottom;
+  background-size: cover;
   animation: scaleBackground 38s ease-out forwards;
   animation-delay: 1s;
 }
@@ -54,7 +56,7 @@ Image
 Filters
 ------------------*/
 
-.backgroundFilter, .backgroundFilterEnhancer, .backgroundFilterHard {
+.backgroundFilter, .backgroundFilterNormal, .backgroundFilterHard {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -67,11 +69,11 @@ Filters
   animation: fadeBackgroundFilter 4s ease-out forwards;
   animation-delay: 1s;
 
-  &Enhancer {
-    animation: enhanceBackgroundFilter 1s ease-out forwards; }
+  &NormalAnimate {
+    opacity: .375 }
 
   &HardAnimate {
-    opacity: .6; }
+    opacity: .625 }
 }
 
 
@@ -81,7 +83,7 @@ Animating on Load
 --------------------------------------------*/
 
 .fadeBackground {
-  animation: fadeBackground .375s ease-out forwards; }
+  animation: fadeBackground 1s ease-in forwards; }
 
 
 
@@ -102,27 +104,4 @@ Animation Keyframes
 @keyframes scaleBackground {
   0% { transform: scale(1); }
   100% { transform: scale(1.06); }
-}
-
-
-/*Filters*/
-
-@keyframes fadeBackgroundFilter {
-  0% { opacity: 0 }
-  100% { opacity: .2 }
-}
-
-@keyframes enhanceBackgroundFilter {
-  0% { opacity: 0 }
-  100% { opacity: .2 }
-}
-
-@keyframes hardEnhanceBackgroundFilter {
-  0% { opacity: .4 }
-  100% { opacity: .8 }
-}
-
-@keyframes hardDesenhanceBackgroundFilter {
-  0% { opacity: .8 }
-  100% { opacity: .4 }
 }

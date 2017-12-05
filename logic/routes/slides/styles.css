@@ -23,7 +23,7 @@ General
   margin-left: 18.25%;
   width: 600px;
   height: auto;
-  z-index: 2;
+  z-index: 7;
 
   @mixin clearFix;
 }

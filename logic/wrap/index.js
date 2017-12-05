@@ -47,7 +47,8 @@ class Wrap extends React.Component {
 
     // Component State
     this.state = { numbers: true, back: true,
-                   fadeEnter: true, bottomEnter: false, sideEnter: false }
+                   fadeEnter: true, bottomEnter: false, sideEnter: false,
+                   animationTimeout: 1000 }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
@@ -99,25 +100,27 @@ class Wrap extends React.Component {
         slidesRoutes = ['/intro', '/benefit', '/start', '/people'],
         socialRoutes = ['/about', '/contact'];
 
+    // 0.0 Manage Timeouts
+    currentRoute.indexOf('d') ? this.setState({ animationTimeout: 1100 }) : this.setState({ animationTimeout: 1000 })
 
-    // 0.0 Initial Load
+    // 0.1 Initial Load
     if (this.props.state.history.length == 0) {
       return this.setState({ fadeEnter: true, bottomEnter: false, sideEnter: false })
     }
 
-    // 0.1 Description over own Slide and vica versa (Fade in)
+    // 1.0 Description over own Slide and vica versa (Fade in)
     if ((currentRoute.slice(0, -12) == lastRoute) ||
         (currentRoute == lastRoute.slice(0, -12))) {
           return this.setState({ fadeEnter: true, bottomEnter: false, sideEnter: false })
     }
 
-    // 1.0 Description over [Slides, Descriptions] (Side Slide in)
+    // 2.0 Description over [Slides, Descriptions] (Side Slide in)
     if (slidesRoutes.includes(lastRoute) ||
        (lastRoute.indexOf('d') && currentRoute.indexOf('d'))) {
          return this.setState({ fadeEnter: false, bottomEnter: false, sideEnter: true })
     }
 
-    // 2.0 Slide over any Description, Social over All (Bottom Slide in)
+    // 3.0 Slide over any Description, Social over All (Bottom Slide in)
     if ((lastRoute.indexOf('d') && slidesRoutes.includes(currentRoute)) ||
         (slidesRoutes.includes(lastRoute) && slidesRoutes.includes(currentRoute)) ||
          socialRoutes.includes(currentRoute)) {
@@ -145,7 +148,7 @@ class Wrap extends React.Component {
         <Navigation history={this.props.history} showShare={this.state.descriptions} />
 
         <TransitionGroup>
-          <CSSTransition classNames={{enter: styles.enter}} timeout={1000} key={this.props.location.key}>
+          <CSSTransition classNames={{enter: styles.enter}} timeout={this.state.animationTimeout} key={this.props.location.key}>
             <Switch location={this.props.location}>
               <PropsRoute path='/about' component={Routes.About} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} />
               <PropsRoute path='/contact' component={Routes.Contact} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter}  />

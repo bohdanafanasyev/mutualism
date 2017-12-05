@@ -9,7 +9,7 @@ General
   height: 118px;
   position: fixed;
   left: 0;
-  z-index: 4;
+  z-index: 7;
   user-select: none;
 
   .wrap {

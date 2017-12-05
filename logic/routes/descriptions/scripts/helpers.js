@@ -30,7 +30,7 @@ let Helpers = {
   //---------------------
 
   nextSlideAnimate: (that, scrolled, breakingPoint) => {
-    if (breakingPoint - 50 < scrolled) that.setState({ animateTrigger: true })
+    (breakingPoint - 50 < scrolled) ? that.setState({ animateTrigger: true, filterTrigger: true }) : that.setState({ filterTrigger: false })
   },
 
 

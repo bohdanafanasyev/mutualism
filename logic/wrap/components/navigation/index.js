@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './styles.css';
 
@@ -22,15 +21,45 @@ export default class Navigation extends React.Component {
                    hideSocial: false,
                    hideShare: false,
                    shareThrottle: false,
+                   redirectThrottle: false,
                    descriptionRoute: () => this.props.history.location.pathname.length > 8 ? true : false,
                    timerOn: {},
-                   timerOff: {}
+                   timerOff: {},
+                   timerAbout: {},
+                   timerContact: {}
                  };
 
     // Helpers Bindings
     this.socialIconsOn = this.socialIconsOn.bind(this);
     this.socialIconsAutoOn = this.socialIconsAutoOn.bind(this);
     this.socialIconsOff = this.socialIconsOff.bind(this);
+    this.changeSlide = this.changeSlide.bind(this);
+    this.autoRedirect = this.autoRedirect.bind(this);
+  }
+
+
+
+  //----------------------------------------------
+  // Redirect Helpers
+  //----------------------------------------------
+
+  changeSlide(path) {
+    console.log('i')
+    if (!this.state.redirectThrottle) {
+      this.props.history.push(path);
+      setTimeout(() => this.setState({ redirectThrottle: false }), 1625);
+    }
+
+    // Ignore the interaction while slide changes
+    if (this.state.redirectThrottle) return;
+    this.setState({ redirectThrottle: true })
+  }
+
+  autoRedirect() {
+    let currentRoute = this.props.history.location.pathname;
+
+    if (currentRoute == '/about') this.setState({ timerContact: setTimeout(() => this.changeSlide('/contact'), 1000) })
+    if (currentRoute == '/contact') this.setState({ timerAbout: setTimeout(() => this.changeSlide('/about'), 1000) })
   }
 
 
@@ -79,30 +108,7 @@ export default class Navigation extends React.Component {
 
   render() {
 
-    //----------------------
-    // Auto Redirect
-    //----------------------
-
-    const autoRedirect = {
-      // Navigate to About Page
-      goAbout: () => {
-        autoRedirect.timerAbout = setTimeout(() => {
-          if (this.props.history.location.pathname != '/about') this.props.history.push('/about')
-        }, 1000)},
-
-      // Navigate to Contact Page
-      goContact: () => {
-        autoRedirect.timerContact = setTimeout(() => {
-          if (this.props.history.location.pathname != '/contact') this.props.history.push('/contact')
-        }, 1000)},
-
-      // Timers
-      timerAbout: {},
-      timerContact: {}
-    }
-
-
-    // Variables
+    // Button underline state
     let about = this.props.history.location.pathname == '/about' ? true : false,
         contact = this.props.history.location.pathname == '/contact' ? true : false;
 
@@ -113,8 +119,8 @@ export default class Navigation extends React.Component {
       <div className={classNames(styles.container, (!this.props.showShare && !this.state.descriptionRoute()) ? null : styles.containerNoShare)} >
 
         <div className={styles.wrap}>
-          <Link to='/about' onMouseEnter={() => autoRedirect.goAbout()} onMouseLeave={() => this.clearTimer(autoRedirect.timerAbout)} className={classNames(styles.button, about ? styles.active : "")} >ABOUT</Link>
-          <Link to='/contact' onMouseEnter={() => autoRedirect.goContact()} onMouseLeave={() => this.clearTimer(autoRedirect.timerContact)} className={classNames(styles.button, contact ? styles.active : "")} >CONTACT</Link>
+          <div onClick={() => this.changeSlide('/about')} onMouseEnter={() => this.autoRedirect()} onMouseLeave={() => this.clearTimer(this.state.timerAbout)} className={classNames(styles.button, about ? styles.active : null)}>ABOUT</div>
+          <div onClick={() => this.changeSlide('/contact')} onMouseEnter={() => this.autoRedirect()} onMouseLeave={() => this.clearTimer(this.state.timerContact)} className={classNames(styles.button, contact ? styles.active : null)}>CONTACT</div>
 
           <div className={styles.share} style={{display: (!this.props.showShare && !this.state.descriptionRoute()) ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
             onMouseEnter={() => this.clearTimer(this.state.timerOn)}>

@@ -36,8 +36,11 @@ class Back extends React.Component {
     function historyFilter(value) {
       if (value != "/about" && value != "/contact") return value; }
 
-    let history = this.props.historyRecords.filter(historyFilter);
-    history.length < 1 ? null : this.setState({ previousRoute: history[history.length - 1] })
+    if (typeof this.props.historyRecords !=  'object') {
+      let history = this.props.historyRecords.filter(historyFilter)
+      if (history[history.length - 1].indexOf('d')) return this.setState({ previousRoute: '/intro' })
+      history.length < 1 ? null : this.setState({ previousRoute: history[history.length - 1] })
+    }
   }
 
 

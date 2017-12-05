@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import styles from './styles/styles.css'
 import Number from './number'
@@ -23,7 +22,8 @@ export default class Numbers extends React.Component {
     // Component State
     this.state = { navigationLinks: false, linksAnimation: false, timerHide: {}, timerReveal: {},
                    display: this.props.display, style: { opacity: 0 },
-                   intro: false, benefit: false, people: false, start: false }
+                   intro: false, benefit: false, people: false, start: false,
+                   redirectThrottle: false }
 
     // Helpers Binding
     this.mountStyle = this.mountStyle.bind(this)
@@ -32,6 +32,24 @@ export default class Numbers extends React.Component {
     this.linksReveal = this.linksReveal.bind(this)
     this.linksHide = this.linksHide.bind(this)
     this.manageNumber = this.manageNumber.bind(this)
+    this.changeSlide = this.changeSlide.bind(this)
+  }
+
+
+
+  //----------------------------------------------
+  // Redirect Helper
+  //----------------------------------------------
+
+  changeSlide(path) {
+    if (!this.state.redirectThrottle) {
+      this.props.history.push(path);
+      setTimeout(() => this.setState({ redirectThrottle: false }), 1625);
+    }
+
+    // Ignore the interaction while slide changes
+    if (this.state.redirectThrottle) return;
+    this.setState({ redirectThrottle: true })
   }
 
 
@@ -137,14 +155,13 @@ export default class Numbers extends React.Component {
       <div className={styles.navigation} onMouseEnter={() => this.clearTimer(this.state.timerHide)} onMouseLeave={() => this.linksHide()} style={this.state.style} onTransitionEnd={this.transitionEnd}>
 
         <div className={this.state.navigationLinks ? styles.navigationLinks : styles.navigationLinksHidden}>
-          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/intro'>Introduction<span className={styles.number}>01</span></Link>
-          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/benefit'>Benefit<span className={styles.number}>02</span></Link>
-          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/people'>People<span className={styles.number}>03</span></Link>
-          <Link className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)} to='/start'>Start<span className={styles.number}>04</span></Link>
+          <div onClick={()=> this.changeSlide('/intro')} className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)}>Introduction<span className={styles.number}>01</span></div>
+          <div onClick={()=> this.changeSlide('/benefit')} className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)}>Benefit<span className={styles.number}>02</span></div>
+          <div onClick={()=> this.changeSlide('/people')} className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)}>People<span className={styles.number}>03</span></div>
+          <div onClick={()=> this.changeSlide('/start')} className={classNames(styles.navigationLink, this.state.linksAnimation ? styles.slideIn : styles.slideOut)}>Start<span className={styles.number}>04</span></div>
         </div>
 
         <div className={styles.navigationPageNumber} onMouseEnter={() => this.linksReveal()} onMouseLeave={() => this.clearTimer(this.state.timerReveal)}>
-
           <Number slideNumber={"1"} display={this.state.intro} />
           <Number slideNumber={"2"} display={this.state.benefit} />
           <Number slideNumber={"3"} display={this.state.people} />

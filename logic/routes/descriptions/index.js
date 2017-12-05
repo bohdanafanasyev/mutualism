@@ -23,10 +23,12 @@ class Wrap extends React.Component {
 
     // Component's State
     this.state = {
-      redirectTrigger: false,
-
       animateTrigger: false,
+      redirectTrigger: false,
+      filterTrigger: false,
       recolorBackground: false,
+
+      nextSlideAnimateStep: 0,
 
       backgroundHeaderPosition: 1,
       startRoute: false,
@@ -41,7 +43,8 @@ class Wrap extends React.Component {
     // Helpers' binding
     this.closeVisibility = this.closeVisibility.bind(this);
     this.closePosition = this.closePosition.bind(this);
-    this.nextSlide = this.nextSlide.bind(this);
+    this.nextSlideAnimate = this.nextSlideAnimate.bind(this);
+    this.nextSlideRedirect = this.nextSlideRedirect.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.updateData = this.updateData.bind(this);
     this.scrollBarWidth = this.scrollBarWidth.bind(this);
@@ -93,11 +96,16 @@ class Wrap extends React.Component {
   // Navigate to subsequent slide
   //----------------------------------------------------------
 
-  nextSlide() {
+  nextSlideAnimate() {
+    window.scrollTo(0, 0)
+
+    // Trigger Next Slide Unclipping
     this.setState({redirectTrigger: true });
-    setTimeout(() => {
-      this.props.history.push(this.props.nextRoute);
-    }, 850)
+  }
+
+  nextSlideRedirect() {
+    if (this.state.nextSlideAnimateStep == 0) return this.setState({ nextSlideAnimateStep: 1})
+    else if (this.state.nextSlideAnimateStep > 0) this.props.history.push(this.props.nextRoute);
   }
 
 
@@ -162,6 +170,7 @@ class Wrap extends React.Component {
 
 
 
+
   //----------------------
   // Render
   //----------------------
@@ -191,7 +200,7 @@ class Wrap extends React.Component {
               </div>
 
               <div className={styles.nextSlide} ref='nextSlide'>
-                <div className={styles.nextSlideContent} onClick={() => this.nextSlide()} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })}>
+                <div className={styles.nextSlideContent} onClick={() => this.nextSlideAnimate()} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })}>
                   <p className={classNames(styles.articleName, this.state.animateTrigger ? styles.animateArticleName : null)}>{this.props.nextPart}</p>
                   <p className={classNames(styles.nextPart, this.state.animateTrigger ? styles.animateNextPart : null)}>{this.state.startRoute ? '& PROSPER' : 'NEXT PART'}</p>
                 </div>
@@ -202,17 +211,17 @@ class Wrap extends React.Component {
               </div>
 
               <div className={classNames(styles.imageShadow, this.state.animateTrigger ? styles.imageShadowAnimate : null)} />
-              <div className={styles.nextSlideImageContainer} ref="nextSlideImage">
-                <div className={classNames(styles.nextSlideImageWrap, this.state.animateTrigger ? styles.nextSlideImageWrapClip : null, this.state.redirectTrigger ? styles.nextSlideImageWrapUnclip : null)} onClick={() => this.nextSlide()} >
-                  <div style={nextSlideImage} className={classNames(styles.nextSlideImage, this.state.recolorBackground ? styles.nextSlideImageMove : null, this.state.redirectTrigger ? styles.nextSlideImageBlur : null)} />
-                  <div className={classNames(styles.imageFilter, this.state.recolorBackground ? null : styles.imageFilterHard)} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })} />
+              <div className={styles.nextSlideImageContainer} ref="nextSlideImage" onClick={() => this.nextSlideAnimate()} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })} >
+                <div className={classNames(styles.nextSlideImageWrap, this.state.animateTrigger ? styles.nextSlideImageWrapClip : null, this.state.redirectTrigger ? styles.nextSlideImageWrapUnclip : null)} onAnimationEnd={() => this.nextSlideRedirect()} >
+                  <div style={nextSlideImage} className={classNames(styles.nextSlideImage, this.state.recolorBackground && !this.state.redirectTrigger ? styles.nextSlideImageMove : null)} />
+                  <div className={classNames(styles.imageFilter, this.state.recolorBackground ? null : styles.imageFilterHard)}  />
                 </div>
               </div>
 
               <div className={styles.backgroundWrap}>
                 <img src={backgroundImage} className={classNames(styles.backgroundImage, this.props.fadeEnter ? styles.fadeBackground : styles.fadeBackground)} />
-                <div className={classNames(styles.backgroundFilter, this.state.recolorBackground ? styles.hardFilter : null)} />
-                <div className={classNames(this.state.animateTrigger ? styles.backgroundFilterEnhancer : null)} />
+                <div className={styles.backgroundFilter} />
+                <div className={classNames(styles.backgroundFilterNormal, this.state.filterTrigger ? styles.backgroundFilterNormalAnimate : null)} />
                 <div className={classNames(styles.backgroundFilterHard, this.state.recolorBackground ? styles.backgroundFilterHardAnimate : null)} />
                 <h2 className={styles.backgroundHeader} style={backgroundHeaderPosition}>{this.props.header}</h2>
               </div>
