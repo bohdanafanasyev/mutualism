@@ -6,7 +6,7 @@ Next Slide Image
 
 .nextSlideImageContainer {
   height: 100%;
-  width: 14vw;
+  width: 12vw;
   display: inline-block;
   cursor: pointer;
 }
@@ -103,11 +103,11 @@ Animation Keyframes
 
 @keyframes slideImage {
   from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) }
-  to { clip-path: polygon(88.5% 0, 100% 0, 100% 100%, 87.5% 100%) }
+  to { clip-path: polygon(89.5% 0, 100% 0, 100% 100%, 88.5% 100%) }
 }
 
 @keyframes unclipImage {
-  from { clip-path: polygon(32% 0, 100% 0, 100% 100%, 12% 100%); width: 14vw; }
+  from { clip-path: polygon(32% 0, 100% 0, 100% 100%, 12% 100%); width: 12vw; }
   to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); width: 100vw;   }
 }
 

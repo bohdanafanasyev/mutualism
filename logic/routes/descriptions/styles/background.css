@@ -44,8 +44,9 @@ Image
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: no-repeat center bottom;
   background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
   animation: scaleBackground 38s ease-out forwards;
   animation-delay: 1s;
 }

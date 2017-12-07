@@ -44,7 +44,7 @@ class Wrap extends React.Component {
     this.closeVisibility = this.closeVisibility.bind(this);
     this.closePosition = this.closePosition.bind(this);
     this.nextSlideAnimate = this.nextSlideAnimate.bind(this);
-    this.nextSlideRedirect = this.nextSlideRedirect.bind(this);
+    this.nextSlideRedirectThrottler = this.nextSlideRedirectThrottler.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.updateData = this.updateData.bind(this);
     this.scrollBarWidth = this.scrollBarWidth.bind(this);
@@ -103,9 +103,12 @@ class Wrap extends React.Component {
     this.setState({redirectTrigger: true });
   }
 
+  nextSlideRedirectThrottler() {
+    this.setState({ nextSlideAnimateStep: this.state.nextSlideAnimateStep + 1}); 
+  }
+
   nextSlideRedirect() {
-    if (this.state.nextSlideAnimateStep == 0) return this.setState({ nextSlideAnimateStep: 1})
-    else if (this.state.nextSlideAnimateStep > 0) this.props.history.push(this.props.nextRoute);
+    if (this.state.nextSlideAnimateStep == 2) this.props.history.push(this.props.nextRoute);
   }
 
 
@@ -180,9 +183,9 @@ class Wrap extends React.Component {
     const closePosition = { right: this.state.closePosition },
           backgroundHeaderPosition = { marginLeft: this.state.backgroundHeaderPosition + '%'},
           scrollBarWidth = { width: this.state.scrollBarPercents + '%'},
-          backgroundImage = require(`./assets/${this.props.header.toLowerCase()}.jpg`),
           imageName = this.props.nextPart.toLowerCase() + 'Main',
-          nextSlideImage = { backgroundImage: `url(${require(`../slides/assets/${imageName}.jpg`)})` }
+          nextSlideImage = { backgroundImage: `url(${require(`../slides/assets/${imageName}.jpg`)})` },
+          backgroundImage = { backgroundImage: `url(${require(`./assets/${this.props.header.toLowerCase()}.jpg`)})` }
 
 
 
@@ -212,14 +215,14 @@ class Wrap extends React.Component {
 
               <div className={classNames(styles.imageShadow, this.state.animateTrigger ? styles.imageShadowAnimate : null)} />
               <div className={styles.nextSlideImageContainer} ref="nextSlideImage" onClick={() => this.nextSlideAnimate()} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })} >
-                <div className={classNames(styles.nextSlideImageWrap, this.state.animateTrigger ? styles.nextSlideImageWrapClip : null, this.state.redirectTrigger ? styles.nextSlideImageWrapUnclip : null)} onAnimationEnd={() => this.nextSlideRedirect()} >
+                <div className={classNames(styles.nextSlideImageWrap, this.state.animateTrigger ? styles.nextSlideImageWrapClip : null, this.state.redirectTrigger ? styles.nextSlideImageWrapUnclip : null)} onAnimationStart={() => this.nextSlideRedirectThrottler()} onAnimationEnd={() => this.nextSlideRedirect()} >
                   <div style={nextSlideImage} className={classNames(styles.nextSlideImage, this.state.recolorBackground && !this.state.redirectTrigger ? styles.nextSlideImageMove : null)} />
                   <div className={classNames(styles.imageFilter, this.state.recolorBackground ? null : styles.imageFilterHard)}  />
                 </div>
               </div>
 
               <div className={styles.backgroundWrap}>
-                <img src={backgroundImage} className={classNames(styles.backgroundImage, this.props.fadeEnter ? styles.fadeBackground : styles.fadeBackground)} />
+                <div style={backgroundImage} className={classNames(styles.backgroundImage, this.props.fadeEnter ? styles.fadeBackground : styles.fadeBackground)} />
                 <div className={styles.backgroundFilter} />
                 <div className={classNames(styles.backgroundFilterNormal, this.state.filterTrigger ? styles.backgroundFilterNormalAnimate : null)} />
                 <div className={classNames(styles.backgroundFilterHard, this.state.recolorBackground ? styles.backgroundFilterHardAnimate : null)} />
