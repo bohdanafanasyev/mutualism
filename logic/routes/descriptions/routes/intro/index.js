@@ -25,17 +25,17 @@ export default class IntroDescription extends Component {
 
     // Variables
     const images = {
-      treeHouse: require('./assets/treehouse.png'),
       centralPark: require('./assets/central-park.png'),
       clinicSquare: require('./assets/clinic-square.png'),
       clinicRect: require('./assets/clinic-rect.png'),
+      treeHouse: { backgroundImage: `url(${require('./assets/treehouse.png')})` }
     }
 
 
     return (
 
       <div className={styles.container}>
-        <Wrap nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'} fadeEnter={this.props.fadeEnter} sideEnter={this.props.sideEnter}>
+        <Wrap nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'}>
 
           <div className={styles.introduction}>
             <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>
@@ -53,13 +53,13 @@ export default class IntroDescription extends Component {
                 <span className={styles.underline} />
               </div>
             </div>
-            <div className={styles.image}>
-              <img src={images.treeHouse} />
+            <div className={styles.imageWrap}>
+              <div className={styles.image} style={images.treeHouse} />
             </div>
           </div>
 
           <div className={classNames(styles.double, styles.contentBlock)}>
-            <div className={styles.image}>
+            <div className={styles.imageWrap}>
               <img src={images.clinicRect} />
               <img src={images.clinicSquare} />
             </div>
@@ -83,7 +83,7 @@ export default class IntroDescription extends Component {
                 <span className={styles.underline} />
               </div>
             </div>
-            <div className={styles.image}  id='imageWrapper'>
+            <div className={styles.imageWrap}  id='imageWrapper'>
               <img src={images.centralPark} id='image'/>
             </div>
           </div>

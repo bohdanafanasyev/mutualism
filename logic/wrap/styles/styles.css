@@ -90,4 +90,11 @@ Page Swaps
 
 .enter {
 	z-index: 6 !important;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.exit {
+	z-index: 4 !important;
 }

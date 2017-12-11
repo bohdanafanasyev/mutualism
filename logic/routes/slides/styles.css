@@ -12,7 +12,6 @@ General
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
 }
 
 .wrap {
@@ -23,7 +22,7 @@ General
   margin-left: 18.25%;
   width: 600px;
   height: auto;
-  z-index: 7;
+  z-index: 2;
 
   @mixin clearFix;
 }
@@ -112,7 +111,6 @@ Description
   display: inline-block;
   margin: 31px 0 0 0;
   cursor: default;
-
   opacity: 0;
   animation: slideDescription 1s ease-out forwards;
   animation-delay: 1.38s;
@@ -124,11 +122,11 @@ Animating on Load
 --------------------------------------------*/
 
 .fadeContainer {
-  animation: fadeContainer .8s ease-out forwards;
+  animation: fadeContainer .91s ease-out forwards;
 }
 
 .slideContainer {
-  animation: slideContainer .8s ease-out forwards;
+  animation: slideContainer .91s ease-out forwards;
 }
 
 

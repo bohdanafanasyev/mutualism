@@ -29,7 +29,7 @@ export default class BenefitDescription extends Component {
 
     return (
 
-      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'} fadeEnter={this.props.fadeEnter} sideEnter={this.props.sideEnter}>
+      <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>

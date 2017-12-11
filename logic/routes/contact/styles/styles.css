@@ -11,7 +11,6 @@ General
   width: 100vw;
   height: 100vh;
   position: absolute;
-  animation: slideContainer .8s ease-out forwards;
 
   .wrap {
     width: 800px;
@@ -36,7 +35,7 @@ Background
   background-position: center bottom;
   height: 100%;
   animation: scaleBackground 38s ease-out forwards;
-  animation-delay: 1s;
+  animation-delay: 0.91s;
 }
 
 
@@ -65,7 +64,6 @@ Email Form
 --------------------------------------*/
 
 .emailForm {
-  z-index: 5;
   display: inline-flex;
   flex-direction: column;
   top: 0;
@@ -152,11 +150,11 @@ Animating on Load
 --------------------------------------------*/
 
 .fadeContainer {
-  animation: fadeContainer .8s ease-out forwards;
+  animation: fadeContainer 0.91s ease-out forwards;
 }
 
 .slideContainer {
-  animation: slideContainer .8s ease-out forwards;
+  animation: slideContainer 0.91s ease-out forwards;
 }
 
 .fadeBackground {
@@ -196,11 +194,6 @@ Animation Keyframes
 @keyframes scaleBackground {
   0% { transform: scale(1) }
   100% { transform: scale(1.06) }
-}
-
-@keyframes slideContainer {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0%); }
 }
 
 @keyframes slideButton {

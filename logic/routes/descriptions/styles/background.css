@@ -28,7 +28,7 @@ Header
   margin-top: 0;
   transform: translateY(-50%);
   opacity: 0;
-  animation: slideBackgroundHeader .625s ease-out forwards;
+  animation: slideBackgroundHeader 2.275s ease-out forwards;
   animation-delay: .625s;
   z-index: 7;
 }
@@ -68,7 +68,6 @@ Filters
 
 .backgroundFilter {
   animation: fadeBackgroundFilter 4s ease-out forwards;
-  animation-delay: 1s;
 
   &NormalAnimate {
     opacity: .375 }
@@ -84,7 +83,7 @@ Animating on Load
 --------------------------------------------*/
 
 .fadeBackground {
-  animation: fadeBackground 1s ease-in forwards; }
+  animation: fadeBackground .91s ease-in forwards; }
 
 
 
@@ -93,13 +92,18 @@ Animation Keyframes
 --------------------------------------------*/
 
 @keyframes slideBackgroundHeader {
-  from { transform: translate(40px, -50%); opacity: 0 }
+  from { transform: translate(60px, -50%); opacity: 0 }
   to { transform: translate(0px, -50%); opacity: 1 }
 }
 
 @keyframes fadeBackground {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes fadeBackgroundFilter {
+  from { opacity: 0; }
+  to { opacity: .6; }
 }
 
 @keyframes scaleBackground {

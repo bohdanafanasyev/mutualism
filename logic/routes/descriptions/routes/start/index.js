@@ -27,14 +27,13 @@ export default class StartDescription extends Component {
       pureview: require('./assets/pureview.png'),
       legislation: require('./assets/legislation.png'),
       footprint: require('./assets/footprint.png'),
-      environment: require('./assets/environment.jpg'),
-      background: require('./assets/background.png'),
+      environment: require('./assets/environment.png')
     }
 
 
     return (
 
-      <Wrap nextSlide={null} background={images.background} nextPart={'Live long'} nextRoute={'/intro'} header={'Start'}>
+      <Wrap nextSlide={null} nextPart={'Live long'} nextRoute={'/intro'} header={'Start'}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>

@@ -27,6 +27,7 @@ class Wrap extends React.Component {
       redirectTrigger: false,
       filterTrigger: false,
       recolorBackground: false,
+      fadeContent: false,
 
       nextSlideAnimateStep: 0,
 
@@ -48,9 +49,22 @@ class Wrap extends React.Component {
     this.onWheel = this.onWheel.bind(this);
     this.updateData = this.updateData.bind(this);
     this.scrollBarWidth = this.scrollBarWidth.bind(this);
-    this.scrollBarWidth = this.scrollBarWidth.bind(this);
+    this.manageClose = this.manageClose.bind(this);
   }
 
+
+
+  //----------------------------------------------
+  // On unMount Component Fade out Helper
+  //----------------------------------------------
+
+  manageClose() {
+    // Navigate to parent slide
+    this.props.history.push(this.props.history.location.pathname.slice(0, -12))
+
+    // Fade out content
+    this.setState({ fadeContent: true });
+  }
 
 
   //----------------------------------------------------------
@@ -97,14 +111,12 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   nextSlideAnimate() {
-    window.scrollTo(0, 0)
-
     // Trigger Next Slide Unclipping
     this.setState({redirectTrigger: true });
   }
 
   nextSlideRedirectThrottler() {
-    this.setState({ nextSlideAnimateStep: this.state.nextSlideAnimateStep + 1}); 
+    this.setState({ nextSlideAnimateStep: this.state.nextSlideAnimateStep + 1});
   }
 
   nextSlideRedirect() {
@@ -120,7 +132,7 @@ class Wrap extends React.Component {
   onWheel(e) {
     // Rewriting default behavior
     e.preventDefault();
-    window.scrollBy(e.deltaY, 0);
+    window.scrollBy(e.deltaY / 1.6, 0);
 
     // Depending methods
     this.scrollBarWidth();
@@ -137,15 +149,22 @@ class Wrap extends React.Component {
 
 
   //----------------------------------------------------------
+  // Reset scroll position on page refresh
+  //----------------------------------------------------------
+
+  componentWillMount() {
+    window.scroll({ left: 0, behavior: 'smooth' })
+  }
+
+
+
+  //----------------------------------------------------------
   // Subscribe to wheel events
   //----------------------------------------------------------
 
   componentDidMount() {
-    // Reset scroll position on page refresh
-    window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
-
     // Set up initial close position & reset scroll position
-    window.scrollTo(0, 0)
+    window.scroll({ left: 0, behavior: 'smooth' });
 
     // Recalculate close & header positions on window resize
     window.addEventListener('resize', this.updateData);
@@ -164,6 +183,9 @@ class Wrap extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateData);
+    window.scroll({ left: 0, behavior: 'smooth' });
+
+
 
     // Clear highlighted scroll bar effect clearing
     if (this.state.scrollBarTimer != false) {
@@ -183,8 +205,9 @@ class Wrap extends React.Component {
     const closePosition = { right: this.state.closePosition },
           backgroundHeaderPosition = { marginLeft: this.state.backgroundHeaderPosition + '%'},
           scrollBarWidth = { width: this.state.scrollBarPercents + '%'},
-          imageName = this.props.nextPart.toLowerCase() + 'Main',
-          nextSlideImage = { backgroundImage: `url(${require(`../slides/assets/${imageName}.jpg`)})` },
+          imageName = this.props.nextPart.toLowerCase(),
+          nextSlideImage = (imageName == 'live long') ? null : this.state.redirectTrigger ? { backgroundImage: `url(${require(`./assets/${this.props.nextPart.toLowerCase()}.jpg`)})` } :
+                                                                                            { backgroundImage: `url(${require(`../slides/assets/${imageName  + 'Main'}.jpg`)})` },
           backgroundImage = { backgroundImage: `url(${require(`./assets/${this.props.header.toLowerCase()}.jpg`)})` }
 
 
@@ -194,11 +217,11 @@ class Wrap extends React.Component {
             <div className={classNames(styles.container)} onWheel={this.onWheel} ref='container'>
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
-              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} ref='close' onClick={() => this.props.history.push(this.props.history.location.pathname.slice(0, -12))}>
+              <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} ref='close' onClick={() => this.manageClose()}>
                 <a className={this.state.closeCross ? styles.closeCross : styles.closeLine}>&nbsp;</a>
               </div>
 
-              <div className={styles.content} >
+              <div className={styles.content} style={{opacity: this.state.fadeContent ? '0' : '1', transition: '.325s ease-out'}} id='test'>
                 { this.props.children }
               </div>
 
@@ -213,11 +236,13 @@ class Wrap extends React.Component {
                 </div>
               </div>
 
-              <div className={classNames(styles.imageShadow, this.state.animateTrigger ? styles.imageShadowAnimate : null)} />
-              <div className={styles.nextSlideImageContainer} ref="nextSlideImage" onClick={() => this.nextSlideAnimate()} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })} >
-                <div className={classNames(styles.nextSlideImageWrap, this.state.animateTrigger ? styles.nextSlideImageWrapClip : null, this.state.redirectTrigger ? styles.nextSlideImageWrapUnclip : null)} onAnimationStart={() => this.nextSlideRedirectThrottler()} onAnimationEnd={() => this.nextSlideRedirect()} >
-                  <div style={nextSlideImage} className={classNames(styles.nextSlideImage, this.state.recolorBackground && !this.state.redirectTrigger ? styles.nextSlideImageMove : null)} />
-                  <div className={classNames(styles.imageFilter, this.state.recolorBackground ? null : styles.imageFilterHard)}  />
+              <div style={{display: this.props.nextPart.toLowerCase() != 'live long' ? 'block' : 'none'}}>
+                <div className={classNames(styles.imageShadow, this.state.animateTrigger ? styles.imageShadowAnimate : null)} />
+                <div className={styles.nextSlideImageContainer} ref="nextSlideImage" onClick={() => this.nextSlideAnimate()} onMouseEnter={() => this.setState({ recolorBackground: true })} onMouseLeave={() => this.setState({ recolorBackground: false })} >
+                  <div className={classNames(styles.nextSlideImageWrap, this.state.animateTrigger ? styles.nextSlideImageWrapClip : null, this.state.redirectTrigger ? styles.nextSlideImageWrapUnclip : null)} onAnimationStart={() => this.nextSlideRedirectThrottler()} onAnimationEnd={() => this.nextSlideRedirect()} >
+                    <div style={nextSlideImage} className={classNames(styles.nextSlideImage, this.state.recolorBackground && !this.state.redirectTrigger ? styles.nextSlideImageMove : null, this.state.redirectTrigger ? styles.nextSlideImageBlur : null)} />
+                    <div className={classNames(styles.imageFilter, this.state.recolorBackground ? null : styles.imageFilterHard)}  />
+                  </div>
                 </div>
               </div>
 

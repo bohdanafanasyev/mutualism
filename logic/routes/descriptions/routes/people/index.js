@@ -4,6 +4,7 @@ import styles from './styles/styles.css';
 import classNames from 'classnames';
 
 
+
 //----------------------------------------------
 // Benefit's Description Component
 //----------------------------------------------
@@ -27,14 +28,14 @@ export default class IntroDescription extends Component {
       ken: { backgroundImage: `url(${require('./assets/ken.png')})` },
       renzo: { backgroundImage: `url(${require('./assets/renzo.png')})` },
       mike: { backgroundImage: `url(${require('./assets/mike.png')})` },
-      background: require('./assets/background.png'),
-      nextSlide: require('./assets/next.png')
+      nextSlide: require('../../../slides/assets/startMain.jpg')
     }
+    
 
 
     return (
 
-      <Wrap nextSlide={images.nextSlide} background={images.background} nextPart={'Start'} nextRoute={'/start/description'} headers={'People'}>
+      <Wrap nextSlide={images.nextSlide} nextPart={'Start'} nextRoute={'/start/description'} header={'People'}>
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionheaders}>Sustainable Architecture</h2>

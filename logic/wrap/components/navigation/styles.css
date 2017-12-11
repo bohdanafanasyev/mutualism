@@ -32,19 +32,6 @@ General
 
 
 /*--------------------
-Share Block
-----------------------*/
-
-.share {
-  height: 24px;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-}
-
-
-
-/*--------------------
 Buttons
 ----------------------*/
 
@@ -54,9 +41,7 @@ Buttons
   font-size: 18px;
   font-weight: inherit;
   letter-spacing: 2px;
-  float: left;
   cursor: pointer;
-  position: relative;
   padding-bottom: 4px;
   opacity: 0;
   animation: slideButton .777s ease-out forwards;
@@ -81,7 +66,30 @@ Buttons
 /*--- Acitve ---*/
 
 .active:after {
-    width: 98%
+  width: 98%
+}
+
+.button {
+  position: relative;
+  float: left;
+}
+
+
+/*--------------------
+Share Block
+----------------------*/
+
+.share {
+  height: 24px;
+  cursor: pointer;
+  position: absolute;
+  position: fixed;
+  right: 0;
+}
+
+.buttonShare {
+  position: fixed;
+  right: 0px;
 }
 
 
@@ -92,13 +100,12 @@ Animation Classes
 --------------------------------------------*/
 
 .slideInShare {
-  animation: slideInShare .777s ease-out forwards;
-  float: right;
+  animation: slideInShare .57s ease-out forwards;
+  animation-delay: .38s;
 }
 
 .slideOutShare {
-  animation: slideOutShare .777s ease-out forwards;
-  float: right;
+  animation: slideOutShare .625s ease-out forwards;
 
   &:after {
     transition: .05s; }

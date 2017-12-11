@@ -75,7 +75,7 @@ Animations
 --------------------------------------------*/
 
 .animateArticleName {
-  animation: slideArticle .625s ease-out forwards;
+  animation: slideArticle 1s ease-out forwards;
 }
 
 .animateNextPart {

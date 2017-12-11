@@ -47,7 +47,7 @@ class Wrap extends React.Component {
 
     // Component State
     this.state = { numbers: true, back: true,
-                   fadeEnter: true, bottomEnter: false, sideEnter: false,
+                   fadeEnter: true, bottomEnter: false, sideEnter: false, fadeContent: false,
                    animationTimeout: 1000 }
 
     // Helpers Bindings
@@ -70,7 +70,6 @@ class Wrap extends React.Component {
     this.manageBack();
     this.manageNumbers();
     this.manageAnimations();
-
 
     // Redirect to intro
     let registredRoutes = ['/intro', '/benefit', '/people', '/start', '/intro/description', '/benefit/description', '/people/description', '/start/description', '/contact', '/about'],
@@ -145,18 +144,20 @@ class Wrap extends React.Component {
     return (
 
       <div>
-        <Navigation history={this.props.history} showShare={this.state.descriptions} />
+        <Navigation history={this.props.history} />
 
         <TransitionGroup>
-          <CSSTransition classNames={{enter: styles.enter}} timeout={this.state.animationTimeout} key={this.props.location.key}>
+          <CSSTransition classNames={{enter: styles.enter, exit: styles.exit}} timeout={this.state.animationTimeout} key={this.props.location.key}>
             <Switch location={this.props.location}>
               <PropsRoute path='/about' component={Routes.About} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} />
               <PropsRoute path='/contact' component={Routes.Contact} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter}  />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <PropsRoute exact key={path} path={path} component={Routes.Slides} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} />
+                  <PropsRoute exact key={path} path={path} component={Routes.Slides} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} fadeContent={this.state.fadeContent} />
               )}
-              <PropsRoute path='/intro/description' component={Routes.IntroDescription} fadeEnter={this.state.fadeEnter} sideEnter={this.state.sideEnter} />
-              <PropsRoute path='/benefit/description' component={Routes.BenefitDescription} fadeEnter={this.state.fadeEnter} sideEnter={this.state.sideEnter} />
+              <Route path='/intro/description' component={Routes.IntroDescription} />
+              <Route path='/benefit/description' component={Routes.BenefitDescription}  />
+              <Route path='/people/description' component={Routes.PeopleDescription} />
+              <Route path='/start/description' component={Routes.StartDescription}  />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

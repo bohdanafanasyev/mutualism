@@ -17,7 +17,7 @@ Social Headers
   cursor: default;
 
   opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 0.91s ease-out forwards;
   animation-delay: 1.39s;
 }
 

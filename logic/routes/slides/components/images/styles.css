@@ -51,8 +51,10 @@ Upper Side
   overflow: hidden;
   opacity: 0;
   transform: translateX(-100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   animation: slideWrap 1s ease-out forwards;
   animation-delay: .38s;
+  transition: .625s ease-out;
 }
 
 .upper {
@@ -96,7 +98,7 @@ Filter
 --------------------*/
 
 .sideGradient {
-  width: 23vw;
+  width: 35vw;
   height: 100vh;
   position: absolute;
   right: 0;
@@ -104,7 +106,7 @@ Filter
   opacity: 0;
   background-image: url('../../assets/sidegradient.png');
   background-size: cover;
-  animation: filterSide 1.39s ease-out forwards;
+  animation: gradientSide 1.39s ease-out forwards;
   animation-delay: .625s;
 }
 
@@ -122,6 +124,9 @@ Animating on Load
   animation: slideMain .625s ease-out forwards;
 }
 
+.clipWrap {
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 0% 100%);
+}
 
 
 /*--------------------------------------------
@@ -141,8 +146,7 @@ Animation Keyframes
 }
 
 @keyframes scaleMain {
-  0% { opacity: 0 }
-  1.64% { opacity: 1; transform: scale(1) translateX(0); }
+  0% { transform: scale(1) translateX(0); }
   100% { transform: scale(1.04) translateX(20px); }
 }
 
@@ -174,9 +178,9 @@ Animation Keyframes
   100% { opacity: .14}
 }
 
-@keyframes filterSide {
+@keyframes gradientSide {
   0% { opacity: 0;}
-  100% { opacity: .4}
+  100% { opacity: .5}
 }
 
 

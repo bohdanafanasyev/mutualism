@@ -22,15 +22,19 @@ class Slides extends React.Component {
     // Component's State
     this.state = { breaker: false,
                    loaded: false,
-                   animationTimer: {},
-                   textfilter: false }
+                   textfilter: false,
+                   fadeContent: false,
+                   animationTimer: {} }
 
+
+   //Helpers Binding
+   this.manageContent = this.manageContent.bind(this);
   }
 
 
 
   //----------------------------------------------
-  // On Mount Component Freeze
+  // On Mount Component temporary freeze
   //----------------------------------------------
 
   componentWillMount() {
@@ -40,6 +44,16 @@ class Slides extends React.Component {
   componentWillUnmount() {
     if (typeof this.state.animationTimer !== undefined) clearTimeout(this.state.animationTimer)
   }
+
+
+  //----------------------------------------------
+  // On unMount Component Fade out Helper
+  //----------------------------------------------
+
+  manageContent() {
+    this.setState({ fadeContent: true });
+  }
+
 
 
   //----------------------------------------------
@@ -60,12 +74,17 @@ class Slides extends React.Component {
 
     // Route response
     if (!this.state.breaker) {
-      if (e.deltaY < 0 && path == '/intro') goTo('/benefit');
-      if (e.deltaY > 0 && path == '/benefit') goTo('/intro');
-      if (e.deltaY < 0 && path == '/benefit') goTo('/people');
-      if (e.deltaY > 0 && path == '/people') goTo('/benefit');
-      if (e.deltaY < 0 && path == '/people') goTo('/start');
-      if (e.deltaY > 0 && path == '/start') goTo('/people');
+      if (e.deltaY > 0 && path == '/intro') goTo('/benefit');
+      if (e.deltaY < 0 && path == '/intro') goTo('/start');
+
+      if (e.deltaY > 0 && path == '/benefit') goTo('/people');
+      if (e.deltaY < 0 && path == '/benefit') goTo('/intro');
+
+      if (e.deltaY > 0 && path == '/people') goTo('/start');
+      if (e.deltaY < 0 && path == '/people') goTo('/benefit');
+
+      if (e.deltaY > 0 && path == '/start') goTo('/intro');
+      if (e.deltaY < 0 && path == '/start') goTo('/people');
     }
   }
 
@@ -90,19 +109,21 @@ class Slides extends React.Component {
 
     return (
 
-        <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.slideContainer)} ref="container" onWheel={(e) => this.onWheel(e)}>
+        <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.slideContainer)} onWheel={(e) => this.onWheel(e)} ref="container">
           <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
 
-            <div className={styles.headersWrap}>
-                <h1 className={styles.mainHeader}>{slide.header}</h1>
-                <h2 className={styles.subHeader}>{slide.subHeader}</h2>
+          <div style={{opacity: this.state.fadeContent ? '0' : '1', transition: '.325s ease-out'}}>
+              <div className={styles.headersWrap}>
+                  <h1 className={styles.mainHeader}>{slide.header}</h1>
+                  <h2 className={styles.subHeader}>{slide.subHeader}</h2>
+              </div>
+              <p className={styles.description}>{slide.description}</p>
+              <LearnMore manageContent={this.manageContent} />
             </div>
-            <p className={styles.description}>{slide.description}</p>
-            <LearnMore manageContent={this.props.history} />
           </div>
 
-          <div className={styles.filter} style={{opacity: this.state.textfilter ? "1" : "0.4"}} onMouseOver={() => this.setState({ textfilter: false })} />
-          <Images images={images} fadeEnter={this.props.fadeEnter} bottomEnter={this.props.bottomEnter} />
+          <div className={styles.filter} style={{opacity: this.state.textfilter ? "1" : ".6"}} onMouseOver={() => this.setState({ textfilter: false })} />
+          <Images images={images} fadeEnter={this.props.fadeEnter} bottomEnter={this.props.bottomEnter} fadeContent={this.state.fadeContent}/>
         </div>
 
     )

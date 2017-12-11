@@ -17,17 +17,23 @@ export default class Navigation extends React.Component {
     super(props);
 
     // Component State
-    this.state = { showSocial: false,
+    this.state = { initialLoad: true,
+                   showSocial: false,
                    hideSocial: false,
                    hideShare: false,
+                   removeShare: false,
                    shareThrottle: false,
                    redirectThrottle: false,
-                   descriptionRoute: () => this.props.history.location.pathname.length > 8 ? true : false,
                    timerOn: {},
                    timerOff: {},
                    timerAbout: {},
                    timerContact: {}
                  };
+
+    // Manage container on rounte change
+    this.props.history.listen((location, action) => {
+      this.manageContainer(location)
+    });
 
     // Helpers Bindings
     this.socialIconsOn = this.socialIconsOn.bind(this);
@@ -35,7 +41,38 @@ export default class Navigation extends React.Component {
     this.socialIconsOff = this.socialIconsOff.bind(this);
     this.changeSlide = this.changeSlide.bind(this);
     this.autoRedirect = this.autoRedirect.bind(this);
+    this.manageContainer = this.manageContainer.bind(this);
   }
+
+
+  //----------------------------------------------
+  // Manage container on initial load
+  //----------------------------------------------
+
+  componentWillMount() {
+    let location = this.props.history.location;
+
+    // Backup for initial load on description route
+    if (location.pathname.indexOf('d') > 0 && this.state.initialLoad) return this.setState({ hideShare: true, removeShare: true })
+
+    // Morph container depending on loaded route
+    this.manageContainer(location)
+  }
+
+
+
+  //----------------------------------------------
+  // Morph container for description routes
+  //----------------------------------------------
+
+  manageContainer(location) {
+    if (location.pathname.indexOf('d') > 0) {
+      this.setState({ hideShare: true })
+      setTimeout(() => this.setState({ removeShare: true }), 625)
+    }
+    else this.setState({ removeShare: false, hideShare: false });
+  }
+
 
 
 
@@ -44,7 +81,6 @@ export default class Navigation extends React.Component {
   //----------------------------------------------
 
   changeSlide(path) {
-    console.log('i')
     if (!this.state.redirectThrottle) {
       this.props.history.push(path);
       setTimeout(() => this.setState({ redirectThrottle: false }), 1625);
@@ -94,7 +130,7 @@ export default class Navigation extends React.Component {
                                     setTimeout(() => {
                                       this.setState({ hideShare: false })
                                         setTimeout(() => this.setState({ shareThrottle: false }), 625)
-                                      }, 600)
+                                      }, 220)
                                     }, 600)
                                }, 2000)
                             })
@@ -116,13 +152,13 @@ export default class Navigation extends React.Component {
 
     return (
 
-      <div className={classNames(styles.container, (!this.props.showShare && !this.state.descriptionRoute()) ? null : styles.containerNoShare)} >
+      <div className={classNames(styles.container, this.state.removeShare ? styles.containerNoShare : null)} >
 
         <div className={styles.wrap}>
           <div onClick={() => this.changeSlide('/about')} onMouseEnter={() => this.autoRedirect()} onMouseLeave={() => this.clearTimer(this.state.timerAbout)} className={classNames(styles.button, about ? styles.active : null)}>ABOUT</div>
           <div onClick={() => this.changeSlide('/contact')} onMouseEnter={() => this.autoRedirect()} onMouseLeave={() => this.clearTimer(this.state.timerContact)} className={classNames(styles.button, contact ? styles.active : null)}>CONTACT</div>
 
-          <div className={styles.share} style={{display: (!this.props.showShare && !this.state.descriptionRoute()) ? 'inline-block' : 'none', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
+          <div className={styles.share} style={{display: this.state.removeShare ? 'none' : 'inline-block', pointerEvents: this.state.shareThrottle ? 'none' : 'all'}}
             onMouseEnter={() => this.clearTimer(this.state.timerOn)}>
             <SocialIcons parentState={this.state} clearTimer={this.clearTimer} socialIconsOff={this.socialIconsOff}  />
             <a onClick={() => this.socialIconsOn()}

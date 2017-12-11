@@ -28,7 +28,7 @@ Next Slide Image
 
   &Unclip {
     position: fixed;
-    animation: unclipImage .625s ease-out forwards; }
+    animation: unclipImage 1s ease-out forwards; }
 }
 
 .nextSlideImage {
@@ -44,7 +44,11 @@ Next Slide Image
   pointer-events: none;
 
   &Move {
-    transform: translateX(100px);}
+    transform: translateX(100px); }
+
+  &Blur {
+    transition: .38s ease-out;
+    transition-delay: .62s; }
 }
 
 
@@ -98,20 +102,15 @@ Animation Keyframes
 
 @keyframes slideImageShadow {
   from { right: 0; transform: rotate(0); opacity: 0; }
-  to { right: calc(14vw - 46px); transform: rotate(3deg); opacity: .4 }
+  to { right: calc(14vw - 62px); transform: rotate(1.4deg); opacity: .4 }
 }
 
 @keyframes slideImage {
   from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%) }
-  to { clip-path: polygon(89.5% 0, 100% 0, 100% 100%, 88.5% 100%) }
+  to { clip-path: polygon(90.5% 0, 100% 0, 100% 100%, 88.5% 100%) }
 }
 
 @keyframes unclipImage {
-  from { clip-path: polygon(32% 0, 100% 0, 100% 100%, 12% 100%); width: 12vw; }
-  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); width: 100vw;   }
-}
-
-@keyframes blurImage {
-  from { filter: blur(0) }
-  to { filter: blur(2px) }
+  from { clip-path: polygon(90.5% 0, 100% 0, 100% 100%, 88.5% 100%) }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
 }

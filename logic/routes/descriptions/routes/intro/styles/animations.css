@@ -1,0 +1,76 @@
+/*----------------------------------------
+Animations
+----------------------------------------*/
+
+/*--------------------
+Introduction
+--------------------*/
+
+@keyframes slideHeader {
+  from { transform: translateX(7px); opacity: 0; }
+  to { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes slideText {
+  from { transform: translateY(7px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}
+
+
+
+/*--------------------
+Description
+--------------------*/
+
+@keyframes growLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes fadeHeader {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideSubHeader {
+  from { transform: translateY(2px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}
+
+@keyframes slideDescription {
+  from { transform: translateY(-7px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}
+
+
+
+
+
+/*--------------------
+Verctical Image
+--------------------*/
+
+@keyframes verticalSlide {
+  from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+  to { clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%); }
+}
+
+@keyframes verticalSlide {
+  from { clip-path: circle(0.0% at 50% 50%); }
+  to { clip-path: circle(70.7% at 50% 50%); }
+}
+
+@keyframes verticalSlide {
+  from { clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 0); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+@keyframes verticalSlide {
+  from { clip-path: polygon(0 0, 0 100%, 100% 100%, 0 100%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/*@keyframes verticalSlide {
+  from { clip-path: polygon(0 85%, 0 85%, 0 85%, 0 85%); }
+  to { clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0); }
+}*/
