@@ -42,7 +42,9 @@ export default class Numbers extends React.Component {
   //----------------------------------------------
 
   changeSlide(path) {
-    if (!this.state.redirectThrottle) {
+    let currentRoute = this.props.location.pathname;
+
+    if (!this.state.redirectThrottle && currentRoute != path) {
       this.props.history.push(path);
       setTimeout(() => this.setState({ redirectThrottle: false }), 1625);
     }
@@ -59,7 +61,7 @@ export default class Numbers extends React.Component {
   //----------------------------------------------
 
   componentWillMount() {
-    this.manageNumber(this.props.location.pathname)
+    this.manageNumber(this.props.location.pathname);
   }
 
   manageNumber(pathname) {

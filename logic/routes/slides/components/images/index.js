@@ -26,11 +26,11 @@ export default class Images extends React.Component {
 
       <div className={styles.images}>
         <div className={styles.mainWrap} >
-          <div className={classNames(styles.main, this.props.fadeEnter ? styles.fadeMain : styles.slideMain)} style={this.props.images.main} />
+          <div className={classNames(styles.main, this.props.fadeEnter ? styles.fadeMain : styles.slideMain)} style={this.props.images.main} id='main'/>
         </div>
         <div className={styles.filterNormal} />
-        <div className={classNames(styles.upperWrap, this.props.fadeContent ? styles.clipWrap : null)} >
-          <div className={styles.upper} style={this.props.images.upper}/>
+        <div className={classNames(styles.upperWrap, this.props.fadeContent ? styles.clipWrap : null)}>
+          <div className={styles.upper} style={this.props.images.upper} id='upper'/>
           <div className={styles.filterHard} />
         </div>
         <div className={styles.sideGradient} />

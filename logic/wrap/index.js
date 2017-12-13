@@ -149,8 +149,8 @@ class Wrap extends React.Component {
         <TransitionGroup>
           <CSSTransition classNames={{enter: styles.enter, exit: styles.exit}} timeout={this.state.animationTimeout} key={this.props.location.key}>
             <Switch location={this.props.location}>
-              <PropsRoute path='/about' component={Routes.About} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} />
-              <PropsRoute path='/contact' component={Routes.Contact} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter}  />
+              <PropsRoute path='/about' component={Routes.About} fadeEnter={this.state.fadeEnter} />
+              <PropsRoute path='/contact' component={Routes.Contact} fadeEnter={this.state.fadeEnter} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
                   <PropsRoute exact key={path} path={path} component={Routes.Slides} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} fadeContent={this.state.fadeContent} />
               )}

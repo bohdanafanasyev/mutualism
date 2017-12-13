@@ -12,8 +12,20 @@ export default class About extends React.Component {
 
   constructor(props) {
     super(props)
+
+    // Component's state
+    this.state = { loaded: false }
   }
 
+
+
+  //----------------------------------------------
+  // Disable background scale until loaded
+  //----------------------------------------------
+
+  componentDidMount() {
+    setTimeout(() => this.setState({ loaded: true }), 1000);
+  }
 
 
   //----------------------
@@ -27,9 +39,9 @@ export default class About extends React.Component {
 
     return (
 
-      <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.slideContainer)} onWheel={(e) => e.preventDefault()}>
-        <div className={classNames(this.props.fadeEnter ? styles.fadeBackground : styles.slideBackground)}>
-          <div className={styles.background} style={background} />
+      <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : styles.unclipContainer)} onWheel={(e) => e.preventDefault()}>
+        <div className={classNames(this.props.fadeEnter ? styles.fadeBackground : null)}>
+          <div className={classNames(styles.background, this.state.loaded ? styles.scaleBackground : null)} style={background} />
         </div>
         <div className={styles.wrap} >
           <div className={styles.headersWrap}>

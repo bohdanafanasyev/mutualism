@@ -34,8 +34,9 @@ Main
   .main {
     background-repeat: no-repeat;
     background-position: center bottom;;
-    animation-delay: .625s;
-    animation: scaleMain 38s ease-out forwards; }
+    /*animation-delay: .625s;*/
+    /*animation: scaleMain 38s ease-out forwards;*/
+   }
 }
 
 
@@ -49,20 +50,24 @@ Upper Side
   height: 100%;
   position: absolute;
   overflow: hidden;
-  opacity: 0;
-  transform: translateX(-100%);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  animation: slideWrap 1s ease-out forwards;
-  animation-delay: .38s;
+  /*opacity: 0;*/
+  /*transform: translateX(-100%);*/
+
+  animation: unclipWrap 1s ease-out forwards;
+  animation-delay: 1s;
   transition: .625s ease-out;
+
+
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
 }
 
 .upper {
   background-position: bottom center;
-  transform: scale(1) translateX(100%);
-  animation: slideUpper 38s ease-out forwards;
-  transform-origin: 60% 40%;
-  animation-delay: 1.38s;
+  /*transform: scale(1.02);*/
+  opacity: 1;
+  /*animation: slideUpper 38s ease-out forwards;*/
+  /*transform-origin: 60% 40%;*/
+  /*animation-delay: 1.38s;*/
 }
 
 
@@ -117,15 +122,15 @@ Animating on Load
 --------------------------------------------*/
 
 .fadeMain {
-  animation: fadeMain .625s ease-out forwards;
+  /*animation: fadeMain .625s ease-out forwards;*/
 }
 
 .slideMain {
-  animation: slideMain .625s ease-out forwards;
+  /*animation: slideMain .625s ease-out forwards;*/
 }
 
 .clipWrap {
-  clip-path: polygon(0 0, 0 100%, 100% 100%, 0% 100%);
+  animation: clipWrap .625s ease-out forwards;
 }
 
 
@@ -153,10 +158,14 @@ Animation Keyframes
 
 /* Slide Image */
 
-@keyframes slideWrap {
-  0% { transform: translateX(-100%); opacity: 0}
-  60%  { opacity: .4 }
-  100%  { transform: translateX(0); opacity: 1 }
+@keyframes unclipWrap {
+  0% { clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); }
+  100%  {clip-path: polygon(0 0, 114% 0%, 119% 100%, 0 100%); }
+}
+
+@keyframes clipWrap {
+  0%  {clip-path: polygon(0 0, 114% 0%, 119% 100%, 0 100%); }
+  100%  {  clip-path: polygon(0 0, 0 100%, 100% 100%, 0% 100%); }
 }
 
 @keyframes slideUpper {

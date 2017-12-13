@@ -12,6 +12,7 @@ General
   position: absolute;
   top: 0;
   left: 0;
+  overflow: hidden;
 }
 
 .wrap {
@@ -75,7 +76,7 @@ Main Header
   margin: 0 0 -10px -16px;
 
   opacity: 0;
-  animation: fadeMain 1s linear forwards;
+  animation: fadeMainHeader 1s linear forwards;
   animation-delay: 1.39s;
 }
 
@@ -92,7 +93,7 @@ Sub Header
   transform: translateY(-59px);
 
   opacity: 0;
-  animation: slideSub .62s ease-out forwards;
+  animation: slideSubHeader .62s ease-out forwards;
   animation-delay: .76s;
 }
 
@@ -122,11 +123,15 @@ Animating on Load
 --------------------------------------------*/
 
 .fadeContainer {
-  animation: fadeContainer .91s ease-out forwards;
+  animation: fadeContainer 1s ease-out forwards;
 }
 
-.slideContainer {
-  animation: slideContainer .91s ease-out forwards;
+.unclipTop {
+  animation: unclipTop 1s ease-out forwards;
+}
+
+.unclipBottom {
+  animation: unclipBottom 1s ease-out forwards;
 }
 
 
@@ -135,9 +140,21 @@ Animating on Load
 Animation Keyframes
 --------------------------------------------*/
 
-@keyframes slideContainer {
+/*@keyframes slideContainer {
   from { transform: translateY(100%); }
   to { transform: translateY(0%); }
+}*/
+
+/*Background*/
+
+@keyframes unclipTop {
+  from { clip-path: polygon(100% 100%, 100% 0, 100% 100%, 0% 100%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+}
+
+@keyframes unclipBottom {
+  from { clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 0); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
 }
 
 @keyframes fadeContainer {
@@ -145,17 +162,20 @@ Animation Keyframes
   to { opacity: 1; }
 }
 
-@keyframes fadeMain {
-  from { opacity: 0 }
-  to { opacity: 1 }
-}
-
 @keyframes fadeFilter {
   from { opacity: 0 }
   to { opacity: 0.05 }
 }
 
-@keyframes slideSub {
+
+/*Content*/
+
+@keyframes fadeMainHeader {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideSubHeader {
   from { transform: translate(7px, -59px); opacity: 0; }
   to { transform: translate(0px, -59px); opacity: 1; }
 }
