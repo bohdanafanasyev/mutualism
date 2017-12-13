@@ -140,21 +140,16 @@ Animating on Load
 Animation Keyframes
 --------------------------------------------*/
 
-/*@keyframes slideContainer {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0%); }
-}*/
-
 /*Background*/
 
 @keyframes unclipTop {
-  from { clip-path: polygon(100% 100%, 100% 0, 100% 100%, 0% 100%); }
-  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+  from { clip-path: polygon(100% 100%, 100% 0, 0 0, 100% 0) }
+  to { clip-path: polygon(100% 100%, 100% 0, 0 0, 0 100%) }
 }
 
 @keyframes unclipBottom {
-  from { clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 0); }
-  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+  from { clip-path: polygon(100% 100%, 100% 0, 100% 100%, 0 100%) }
+  to { clip-path: polygon(100% 100%, 100% 0, 0 0, 0 100%) }
 }
 
 @keyframes fadeContainer {

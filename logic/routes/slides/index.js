@@ -55,7 +55,6 @@ class Slides extends React.Component {
   }
 
 
-
   //----------------------------------------------
   // Wheel Scroll Helpers
   //----------------------------------------------
@@ -64,8 +63,7 @@ class Slides extends React.Component {
     e.preventDefault();
 
     // Wheel Redirect for Slides
-    if (this.state.loaded && !this.state.breaker) {
-      this.scrollRedirect(e); }
+    if (this.state.loaded && !this.state.breaker)  this.scrollRedirect(e);
   }
 
   scrollRedirect(e) {
@@ -106,10 +104,9 @@ class Slides extends React.Component {
 
 
 
-
     return (
 
-        <div className={classNames(styles.container, this.props.fadeEnter ? styles.unclipBottom : styles.unclipTop)} onWheel={(e) => this.onWheel(e)} ref="container">
+        <div className={classNames(styles.container, this.props.fadeEnter ? styles.fadeContainer : null, this.props.bottomCorner ? styles.unclipBottom : null, this.props.topCorner ? styles.unclipTop : null)} onWheel={(e) => this.onWheel(e)} ref="container">
           <div className={styles.wrap} onMouseEnter={() => this.setState({ textfilter: true })}>
 
           <div style={{opacity: this.state.fadeContent ? '0' : '1', transition: '.325s ease-out'}}>

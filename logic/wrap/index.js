@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { connect } from 'react-redux';
 import { historyUpdate } from '../container/store/history';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
@@ -47,8 +47,7 @@ class Wrap extends React.Component {
 
     // Component State
     this.state = { numbers: true, back: true,
-                   fadeEnter: true, bottomEnter: false, sideEnter: false, fadeContent: false,
-                   animationTimeout: 1000 }
+                   fadeEnter: true, bottomCorner: false, topCorner: false }
 
     // Helpers Bindings
     this.manageBack = this.manageBack.bind(this);
@@ -96,34 +95,21 @@ class Wrap extends React.Component {
     let history = this.props.state.history,
         lastRoute = history[history.length - 1] || 'empty',
         currentRoute = location.pathname,
-        slidesRoutes = ['/intro', '/benefit', '/start', '/people'],
-        socialRoutes = ['/about', '/contact'];
+        slidesRoutes = ['/intro', '/benefit', '/start', '/people'];
 
-    // 0.0 Manage Timeouts
-    currentRoute.indexOf('d') ? this.setState({ animationTimeout: 1100 }) : this.setState({ animationTimeout: 1000 })
-
-    // 0.1 Initial Load
+    // 0.0 Initial Load
     if (this.props.state.history.length == 0) {
-      return this.setState({ fadeEnter: true, bottomEnter: false, sideEnter: false })
+      this.setState({ fadeEnter: true, bottomCorner: false, topCorner: false })
     }
 
-    // 1.0 Description over own Slide and vica versa (Fade in)
-    if ((currentRoute.slice(0, -12) == lastRoute) ||
-        (currentRoute == lastRoute.slice(0, -12))) {
-          return this.setState({ fadeEnter: true, bottomEnter: false, sideEnter: false })
+    // 1.0 Slide over any Description, Social over All (Bottom Slide in)
+    if ((lastRoute.indexOf('d') > 0) && slidesRoutes.includes(currentRoute)) {
+      this.setState({ fadeEnter: false, bottomCorner: false, topCorner: true })
     }
 
-    // 2.0 Description over [Slides, Descriptions] (Side Slide in)
-    if (slidesRoutes.includes(lastRoute) ||
-       (lastRoute.indexOf('d') && currentRoute.indexOf('d'))) {
-         return this.setState({ fadeEnter: false, bottomEnter: false, sideEnter: true })
-    }
-
-    // 3.0 Slide over any Description, Social over All (Bottom Slide in)
-    if ((lastRoute.indexOf('d') && slidesRoutes.includes(currentRoute)) ||
-        (slidesRoutes.includes(lastRoute) && slidesRoutes.includes(currentRoute)) ||
-         socialRoutes.includes(currentRoute)) {
-          this.setState({ fadeEnter: false, bottomEnter: true, sideEnter: false })
+    // 2.0 Slide over any Description, Social over All (Bottom Slide in)
+    if (slidesRoutes.includes(lastRoute) && slidesRoutes.includes(currentRoute)) {
+      this.setState({ fadeEnter: false, bottomCorner: true, topCorner: false })
     }
   }
 
@@ -147,15 +133,15 @@ class Wrap extends React.Component {
         <Navigation history={this.props.history} />
 
         <TransitionGroup>
-          <CSSTransition classNames={{enter: styles.enter, exit: styles.exit}} timeout={this.state.animationTimeout} key={this.props.location.key}>
+          <CSSTransition classNames={{enter: styles.enter, exit: styles.exit}} timeout={1000} key={this.props.location.key}>
             <Switch location={this.props.location}>
               <PropsRoute path='/about' component={Routes.About} fadeEnter={this.state.fadeEnter} />
               <PropsRoute path='/contact' component={Routes.Contact} fadeEnter={this.state.fadeEnter} />
               {["/intro", "/benefit", "/people", "/start"].map(path =>
-                  <PropsRoute exact key={path} path={path} component={Routes.Slides} fadeEnter={this.state.fadeEnter} bottomEnter={this.state.bottomEnter} fadeContent={this.state.fadeContent} />
+                  <PropsRoute exact key={path} path={path} component={Routes.Slides} fadeEnter={this.state.fadeEnter} bottomCorner={this.state.bottomCorner} topCorner={this.state.topCorner} />
               )}
               <Route path='/intro/description' component={Routes.IntroDescription} />
-              <Route path='/benefit/description' component={Routes.BenefitDescription}  />
+              <Route path='/benefit/description' component={Routes.BenefitDescription} />
               <Route path='/people/description' component={Routes.PeopleDescription} />
               <Route path='/start/description' component={Routes.StartDescription}  />
             </Switch>

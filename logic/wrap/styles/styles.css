@@ -97,4 +97,6 @@ Page Swaps
 
 .exit {
 	z-index: 4 !important;
+	filter: brightness(60%);
+	transition: 1s;
 }
