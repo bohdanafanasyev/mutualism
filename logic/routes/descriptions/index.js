@@ -125,11 +125,10 @@ class Wrap extends React.Component {
   }
 
   nextSlideRedirect() {
-    // Reset scroll position
-    window.scroll({ left: 0, top: 0 })
-
     // Redirect to next description
-    if (this.state.nextSlideAnimateStep == 2) this.props.history.push(this.props.nextRoute);
+    if (this.state.nextSlideAnimateStep == 2) {
+      window.scroll({ left: 0, top: 0 })
+      this.props.history.push(this.props.nextRoute); }
   }
 
 
