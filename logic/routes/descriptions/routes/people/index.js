@@ -13,7 +13,50 @@ export default class IntroDescription extends Component {
 
   constructor(props) {
     super(props)
+
+    // Component's State
+    this.state = { William: true,
+                   Ken: false,
+                   Renzo: false,
+                   Mike: false }
+
+
+    // Helpers' binding
+    this.elementsVisibility = this.elementsVisibility.bind(this);
   }
+
+
+
+  //----------------------------------------------
+  // Subscribing & Unsubscribing to scrolling
+  //----------------------------------------------
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.elementsVisibility, false) }
+
+  componentDidUpdate() {
+    if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.elementsVisibility, false) }
+
+
+
+  //----------------------------------------------
+  // Elements visibility helper
+  //----------------------------------------------
+
+  elementsVisibility() {
+    const elements = ['Ken', 'Renzo', 'Mike'],
+          windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+    elements.forEach((el) => {
+      let bounds = this.refs[el].getBoundingClientRect(),
+          visible = ((bounds.left + bounds.width / 2.6) <= windowWidth) && ((bounds.left + bounds.width) >= 0);
+      if (visible) this.setState({ [el] : true  })
+    })
+  }
+
 
 
   //----------------------
@@ -30,7 +73,7 @@ export default class IntroDescription extends Component {
       mike: { backgroundImage: `url(${require('./assets/mike.png')})` },
       nextSlide: require('../../../slides/assets/startMain.jpg')
     }
-    
+
 
 
     return (
@@ -38,14 +81,14 @@ export default class IntroDescription extends Component {
       <Wrap nextSlide={images.nextSlide} nextPart={'Start'} nextRoute={'/start/description'} header={'People'}>
 
         <div className={styles.introduction}>
-          <h2 className={styles.introductionheaders}>Sustainable Architecture</h2>
+          <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>
           <p className={styles.introductionText}>Seeks to minimize the negative environmental impact By efficiency and moderation in the use of materials, energy, and development space and the ecosystem at large. Sustainable architecture uses a conscious approach to energy and ecological conservation in the design of the built environment.
           <br /><br />
           The idea of sustainability, or ecological design, is to ensure that our actions and decisions today do not inhibit the opportunities of future generations..</p>
         </div>
 
-        <div className={styles.contentBlock}>
-          <div className={styles.vertical} style={images.william} />
+        <div className={classNames(styles.contentBlock, styles.firstChild, this.state.William ? styles.contentBlockAnimate : null)} ref='William'>
+          <div className={styles.william} style={images.william} />
           <div className={styles.headers}>
             <h5 className={styles.surname}>McDonough</h5>
             <h6 className={styles.name}>William</h6>
@@ -56,20 +99,22 @@ export default class IntroDescription extends Component {
           </p>
         </div>
 
-        <div className={styles.contentBlock}>
-          <div className={styles.square} style={images.ken} />
+
+        <div className={classNames(styles.contentBlock, this.state.Ken ? styles.contentBlockAnimate : null)} ref='Ken'>
+          <div className={styles.ken} style={images.ken} />
           <div className={styles.headers}>
             <h5 className={styles.surname}>Yeang</h5>
             <h6 className={styles.name}>Ken</h6>
-            <span className={styles.underline} />
+            <span className={styles.underlineReversed} />
           </div>
           <p className={styles.text}>
             Ken Yeang, born  in 1948, is a Malaysian architect, ecologist and author known for his signature ecoarchitecture and ecomasterplans. Yeang is an early pioneer of ecology-based green design and master-planning,  carrying out design and research in this field since 1971. He was named by the Guardian as "one of the 50 people who could save the planet".
           </p>
         </div>
 
-        <div className={styles.contentBlock}>
-          <div className={styles.squareReversed} style={images.renzo} />
+
+        <div className={classNames(styles.contentBlock, this.state.Renzo ? styles.contentBlockAnimate : null)} ref='Renzo'>
+          <div className={styles.renzo} style={images.renzo} />
           <div className={classNames(styles.headers, styles.headersReversed)}>
             <h5 className={styles.surname}>Piano</h5>
             <h6 className={styles.name}>Renzo</h6>
@@ -80,12 +125,13 @@ export default class IntroDescription extends Component {
           </p>
         </div>
 
-        <div className={styles.contentBlock}>
-          <div className={styles.verticalReversed} style={images.mike} />
+
+        <div className={classNames(styles.contentBlock, this.state.Mike ? styles.contentBlockAnimate : null)} ref='Mike'>
+          <div className={styles.mike} style={images.mike} />
           <div className={classNames(styles.headers, styles.headersReversed)}>
             <h5 className={styles.surname}>Reynolds</h5>
             <h6 className={styles.name}>Mike</h6>
-            <span className={styles.underline} />
+            <span className={styles.underlineReversed} />
           </div>
           <p className={styles.text}>
             American architect based in New Mexico, known for the design and construction of "earthship" passive solar houses. He is a proponent of "radically sustainable living". He has been a critic of the profession of architecture for reusing unconventional building materials from waste.

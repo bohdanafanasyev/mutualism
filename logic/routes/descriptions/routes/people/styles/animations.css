@@ -1,0 +1,80 @@
+/*-----------------------------------------------------------
+Animations
+-----------------------------------------------------------*/
+
+/*-------------------
+Introduction
+-------------------*/
+
+.introduction {
+  &Header {
+    animation: slideHeader 1s ease-out forwards;
+    animation-delay: 1s; }
+
+  &Text {
+    animation: slideText 1s ease-out forwards;
+    animation-delay: 1s; }
+}
+
+
+
+/*-------------------
+Description
+-------------------*/
+
+.contentBlockAnimate {
+  .surname {
+    animation: fadeHeader 2.625s ease-out forwards;
+    animation-delay: 1s; }
+
+  .name {
+    animation: slideSubHeader .625s ease-out forwards;
+    animation-delay: .750s; }
+
+  .underline, .underlineReversed {
+    animation: growLine 1s ease-out forwards;
+    animation-delay: .375s; }
+
+  .text {
+    animation: slideDescription 1s ease-out forwards;
+    animation-delay: .375s; }
+}
+
+.firstChild {
+  .surname {
+    animation-delay: 1.625s; }
+
+  .name {
+    animation-delay: 1.375s; }
+
+  .underline, .underlineReversed {
+    animation-delay: 1s; }
+
+  .text {
+    animation-delay: 1s; }
+}
+
+
+
+/*--------------------------------------
+Content Blocks Images
+--------------------------------------*/
+
+.contentBlockAnimate {
+
+  .william {
+    animation: williamAnimate 3s ease-out forwards;
+    animation-delay: 1s; }
+
+  .ken {
+    animation: kenAnimate 3s ease-out forwards; }
+
+  .renzo {
+    animation: renzoAnimate 3s ease-out forwards; }
+
+  .mike {
+    animation: mikeAnimate 3s ease-out forwards; }
+
+  .ken, .renzo, .mike {
+    animation-delay: .375s }
+}

@@ -24,8 +24,8 @@ Description
 
 .descriptionAnimate {
   .companyHeader {
-    animation: fadeHeader 2s ease-out forwards;
-    animation-delay: 1s; }
+    animation: fadeHeader 3s ease-out forwards;
+    animation-delay: .750s; }
 
   .projectHeader {
     animation: slideSubHeader .625s ease-out forwards;
@@ -42,7 +42,7 @@ Description
 
 .firstChild {
   .companyHeader {
-    animation-delay: 1.625s; }
+    animation-delay: 1.375s; }
 
   .projectHeader {
     animation-delay: 1.375s; }

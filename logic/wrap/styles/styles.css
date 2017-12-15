@@ -89,7 +89,7 @@ Page Swaps
 /* cubic-bezier(.05,.32,.53,.99) */
 
 .enter {
-	z-index: 6 !important;
+	z-index: 100 !important;
 	position: fixed;
 	top: 0;
 	left: 0;

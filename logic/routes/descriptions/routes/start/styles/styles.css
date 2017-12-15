@@ -1,5 +1,9 @@
 @import '../../../../../wrap/styles/mixins/fontsharper.css';
 @import '../../../../../wrap/styles/mixins/clearfix.css';
+@import './keyframes.css';
+@import './animations.css';
+
+
 
 /*----------------------------------------
 Introduction
@@ -11,7 +15,8 @@ Introduction
   &Header {
     @mixin fontSharper;
     font-family:  Tw Cen Regular;
-    font-size: 36px; }
+    font-size: 36px;
+    opacity: 0 }
 
   &Text {
     @mixin fontSharper;
@@ -19,7 +24,8 @@ Introduction
     font-size: 15px;
     line-height: 22px;
     width: 420px;
-    cursor: default; }
+    cursor: default;
+    opacity: 0 }
 }
 
 
@@ -36,7 +42,8 @@ Content Block
   flex-grow: 0;
 
   &Column {
-    flex-direction: column; }
+    width: 610px;
+    flex-flow: row wrap; }
 
   &:hover .mainHeader {
     color: rgba(255, 255, 255, .68); }
@@ -51,10 +58,13 @@ Description
   width: 360px;
 
   &Narrow {
-    max-width: 200px; }
+    max-width: 210px; }
 
   &Wide {
     width: 540px; }
+
+  &Square {
+    width: 270px }
 }
 
 
@@ -69,19 +79,22 @@ Headers
 
   .mainHeader, .subHeader {
     @mixin fontSharper;
-    font-family: Tw Cen Regular; }
+    font-family: Tw Cen Regular;
+    opacity: 0; }
 
   .mainHeader {
     font-size: 38px;
     letter-spacing: 1.2px;
     color: rgba(255, 255, 255, .32);
     margin: 20px 0 0 29px;
-    transition: color .6s ease-in-out; }
+    transition: color .6s ease-in-out;
+    opacity: 0; }
 
   .subHeader {
     font-weight: lighter;
     font-size: 26px;
-    margin: -21px 0 0 30px; }
+    margin: -21px 0 0 30px;
+    opacity: 0; }
 }
 
 
@@ -95,6 +108,7 @@ Description
   line-height: 22px;
   letter-spacing: .1px;
   margin: 32px 0 0 0;
+  opacity: 0;
 }
 
 .quote {
@@ -104,6 +118,7 @@ Description
 .text {
   font-family: Soleil Regular;
 }
+
 
 
 /*-------------------
@@ -118,6 +133,8 @@ Quoted Image
 
 .quotedImageRow {
   margin-top: 24px;
+
+  .quote { margin-top: 60px; }
 }
 
 
@@ -131,9 +148,12 @@ Verctical
 --------------------*/
 
 .vertical {
+  height: 335px;
+  width: 237px;
   margin-right: 30px;
   background-position: 50% 0;
   background-size: cover;
+  opacity: 0;
 }
 
 
@@ -142,9 +162,12 @@ Square
 --------------------*/
 
 .square {
-  margin-left: 30px;
+  height: 286px;
+  width: 286px;
+  margin: 10px 30px 0 0;
   background-position: 50% 0;
   background-size: cover;
+  opacity: 0;
 }
 
 
@@ -153,6 +176,13 @@ Rectangular
 --------------------*/
 
 .rectangular {
+  height: 207px;
+  width: 285px;
   float: left;
-  margin-right: 30px;
+  margin-bottom: 30px;
+  opacity: 0;
+}
+
+.rectangularReversed {
+  margin: 13px 30px 0 0;
 }

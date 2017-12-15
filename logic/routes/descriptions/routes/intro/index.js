@@ -36,6 +36,9 @@ export default class IntroDescription extends Component {
   componentDidUpdate() {
     if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.elementsVisibility, false) }
+
 
 
   //----------------------------------------------

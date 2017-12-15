@@ -114,6 +114,10 @@ class Wrap extends React.Component {
   nextSlideAnimate() {
     // Trigger Next Slide Unclipping
     this.setState({redirectTrigger: true });
+
+
+    // If Start route redirect to About
+    if (this.props.nextPart == 'Live long') this.props.history.push('/about');
   }
 
   nextSlideRedirectThrottler() {
@@ -121,6 +125,10 @@ class Wrap extends React.Component {
   }
 
   nextSlideRedirect() {
+    // Reset scroll position
+    window.scroll({ left: 0, top: 0 })
+
+    // Redirect to next description
     if (this.state.nextSlideAnimateStep == 2) this.props.history.push(this.props.nextRoute);
   }
 
@@ -150,23 +158,10 @@ class Wrap extends React.Component {
 
 
   //----------------------------------------------------------
-  // Reset scroll position on page refresh
-  //----------------------------------------------------------
-
-  componentWillMount() {
-    // window.scroll({ left: 0, behavior: 'smooth' })
-  }
-
-
-
-  //----------------------------------------------------------
   // Subscribe to wheel events
   //----------------------------------------------------------
 
   componentDidMount() {
-    // Set up initial close position & reset scroll position
-    // window.scroll({ left: 0, behavior: 'smooth' });
-
     // Recalculate close & header positions on window resize
     window.addEventListener('resize', this.updateData);
 
@@ -184,9 +179,6 @@ class Wrap extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateData);
-    // window.scroll({ left: 0, behavior: 'smooth' });
-
-
 
     // Clear highlighted scroll bar effect clearing
     if (this.state.scrollBarTimer != false) {
