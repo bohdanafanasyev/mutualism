@@ -41,6 +41,7 @@ class Wrap extends React.Component {
       closeCross: false,
       closePosition: 79 }
 
+
     // Helpers' binding
     this.closeVisibility = this.closeVisibility.bind(this);
     this.closePosition = this.closePosition.bind(this);
@@ -153,7 +154,7 @@ class Wrap extends React.Component {
   //----------------------------------------------------------
 
   componentWillMount() {
-    window.scroll({ left: 0, behavior: 'smooth' })
+    // window.scroll({ left: 0, behavior: 'smooth' })
   }
 
 
@@ -164,7 +165,7 @@ class Wrap extends React.Component {
 
   componentDidMount() {
     // Set up initial close position & reset scroll position
-    window.scroll({ left: 0, behavior: 'smooth' });
+    // window.scroll({ left: 0, behavior: 'smooth' });
 
     // Recalculate close & header positions on window resize
     window.addEventListener('resize', this.updateData);
@@ -183,7 +184,7 @@ class Wrap extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateData);
-    window.scroll({ left: 0, behavior: 'smooth' });
+    // window.scroll({ left: 0, behavior: 'smooth' });
 
 
 
@@ -221,7 +222,7 @@ class Wrap extends React.Component {
                 <a className={this.state.closeCross ? styles.closeCross : styles.closeLine}>&nbsp;</a>
               </div>
 
-              <div className={styles.content} style={{opacity: this.state.fadeContent ? '0' : '1', transition: '.325s ease-out'}} id='test'>
+              <div className={styles.content} style={{opacity: this.state.fadeContent ? '0' : '1', transition: '.325s ease-out'}}>
                 { this.props.children }
               </div>
 

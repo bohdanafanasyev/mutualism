@@ -50,6 +50,7 @@
     "react-router-scroll": "^0.4.1",
     "react-transition-group": "^2.2.0",
     "react-typist": "^1.1.1",
+    "react-visibility-sensor": "^3.11.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   }

@@ -1,0 +1,33 @@
+/*----------------------------------------
+Keyframes
+----------------------------------------*/
+
+/*--------------------
+Introduction
+--------------------*/
+
+@keyframes slideHeader {
+  from { transform: translateX(7px); opacity: 0; }
+  to { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes slideText {
+  from { transform: translateY(7px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}
+
+
+
+/*--------------------
+Description
+--------------------*/
+
+@keyframes fadeNumeration {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideSubHeader {
+  from { transform: translateX(-4px); opacity: 0; }
+  to { transform: translateY(0px); opacity: 1; }
+}

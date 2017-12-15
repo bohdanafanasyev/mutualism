@@ -16,7 +16,6 @@ General
   left: 0;
   cursor: default;
   display: flex;
-  overflow-y: hidden;
   align-items: center;
 }
 

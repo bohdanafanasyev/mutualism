@@ -1,4 +1,8 @@
 @import '../../../../../wrap/styles/mixins/fontsharper.css';
+@import './keyframes.css';
+@import './animations.css';
+
+
 
 /*----------------------------------------
 Introduction
@@ -6,11 +10,13 @@ Introduction
 
 .introduction {
   padding-left: 128px;
+  width: 400px;
 
   &Header {
     @mixin fontSharper;
     font-family:  Tw Cen Regular;
-    font-size: 36px; }
+    font-size: 36px;
+    opacity: 0 }
 
   &Text {
     @mixin fontSharper;
@@ -18,7 +24,8 @@ Introduction
     font-size: 15px;
     line-height: 22px;
     width: 360px;
-    cursor: default; }
+    cursor: default;
+    opacity: 0 }
 }
 
 
@@ -51,12 +58,14 @@ Headline
     letter-spacing: -2px;
     line-height: 1;
     color: rgba(255, 255, 255, 0.4);
-    margin-left: -50px; }
+    margin-left: -50px;
+    opacity: 0 }
 
   .header {
     font-size: 36px;
     font-weight: 400;
-    margin: 0 0 0 27px; }
+    margin: 0 0 0 27px;
+    opacity: 0 }
 }
 
 
@@ -71,4 +80,5 @@ Text
   line-height: 22px;
   margin: 26px 30px 0 0;
   display: block;
+  opacity: 0;
 }

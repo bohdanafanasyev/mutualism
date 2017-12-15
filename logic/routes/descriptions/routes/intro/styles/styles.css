@@ -1,10 +1,11 @@
 @import '../../../../../wrap/styles/mixins/fontsharper.css';
+@import './keyframes.css';
 @import './animations.css';
 
 
-/*----------------------------------------
+/*------------------------------------------------------------
 General
-----------------------------------------*/
+------------------------------------------------------------*/
 
 .container {
   width: 100vw;
@@ -14,9 +15,9 @@ General
 
 
 
-/*----------------------------------------
+/*------------------------------------------------------------
 Introduction
-----------------------------------------*/
+------------------------------------------------------------*/
 
 .introduction {
   padding-left: 128px;
@@ -25,11 +26,7 @@ Introduction
     @mixin fontSharper;
     font-family:  Tw Cen Regular;
     font-size: 36px;
-
-    opacity: 0;
-    animation: slideHeader 1s ease-out forwards;
-    animation-delay: 1s;
-  }
+    opacity: 0; }
 
   &Text {
     @mixin fontSharper;
@@ -38,23 +35,20 @@ Introduction
     line-height: 22px;
     width: 360px;
     cursor: default;
-
-    opacity: 0;
-    animation: slideText 1s ease-out forwards;
-    animation-delay: 1s; }
+    opacity: 0; }
 }
 
 
 
-/*----------------------------------------
+/*------------------------------------------------------------
 Content Block
-----------------------------------------*/
+------------------------------------------------------------*/
 
 .contentBlock {
   width: 70vh;
   min-width: 550px;
   height: 100%;
-  max-height: 500px;
+  max-height: 457px;
   margin-left: 207px;
   display: flex;
 
@@ -64,6 +58,7 @@ Content Block
   &:hover .companyHeader {
     color: rgba(255, 255, 255, .68); }
 }
+
 
 
 /*----------------------------------------
@@ -94,40 +89,30 @@ Headers
   color: rgba(255, 255, 255, .32);
   margin: 29px 0 0 0px;
   transition: color .6s ease-in-out;
-
-  opacity: 0;
-  animation: fadeHeader 2s ease-out forwards;
-  animation-delay: 1.625s;
-}
+  opacity: 0; }
 
 .projectHeader {
   font-weight: lighter;
   font-size: 26px;
   margin: -21px 0 0 -1px;
-
-  opacity: 0;
-  animation: slideSubHeader .625s ease-out forwards;
-  animation-delay: 1.375s;
-}
+  opacity: 0; }
 
 
 /*--------------------
 Underline
 --------------------*/
 
-.underline {
+.underline, .underlineLeft {
   width: 100%;
   height: 2px;
   background-color: white;
   display: block;
   margin: -7px 0 49px 0;
-
-
-  transform-origin: right;
   transform: scaleX(0);
-  animation: growLine 1s ease-out forwards;
-  animation-delay: 1s;
 }
+
+.underline { transform-origin: right }
+.underlineLeft { transform-origin: left }
 
 
 /*--------------------
@@ -140,11 +125,7 @@ Text
   font-size: 15px;
   line-height: 22px;
   margin: 49px 30px 0 0;
-
-  opacity: 0;
-  animation: slideDescription 1s ease-out forwards;
-  animation-delay: 1s;
-}
+  opacity: 0; }
 
 
 
@@ -159,24 +140,19 @@ Verctical
 .vertical {
 
   .imageWrap {
-    flex: 1;
+    flex: .89;
+    max-width: 457px;
     position: relative;
-    overflow: hidden;
-
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 0 100%);
-    animation: verticalSlide 1s ease-out forwards;
-    animation-delay: 1s;
 
     .image {
-      height: 100%;
-      width: 100%;
+      height: 457px;
+      width: 286px;
       position: absolute;
       top: 0;
       left: 0;
       background-position: center;
       background-size: cover;
-      box-shadow: 3px 3px 25px 0px rgba(0,0,0,0.3);
-    }
+      clip-path: polygon(0 0, 0 100%, 100% 100%, 0 100%); }
   }
 }
 
@@ -198,20 +174,22 @@ Double Image
       margin: 0 0 0 30px; }
   }
 
-  .image {
-    flex: 1.15;
+  .imageWrap {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    img {
+    .image {
       width: 100%;
-      height: auto;
-      box-shadow: 3px 3px 25px 0px rgba(0,0,0,0.3); }
+      height: 208px;
+      box-shadow: 3px 3px 25px 0px rgba(0,0,0,.3);
+      opacity: 0;
+    }
 
-    img:last-child {
+    .image:last-child {
       width: 60%;
-      height: auto;
-      margin: -35px 0px 0 30px; }
+      margin: -35px 0px 0 30px;
+    }
   }
 }

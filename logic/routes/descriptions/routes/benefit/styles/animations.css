@@ -1,0 +1,48 @@
+/*-----------------------------------------------------------
+Animations
+-----------------------------------------------------------*/
+
+/*-------------------
+Introduction
+-------------------*/
+
+.introduction {
+  &Header {
+    animation: slideHeader 1s ease-out forwards;
+    animation-delay: 1s; }
+
+  &Text {
+    animation: slideText 1s ease-out forwards;
+    animation-delay: 1s; }
+}
+
+
+
+/*-------------------
+Description
+-------------------*/
+
+.contentBlockAnimate {
+  .numeration {
+    animation: fadeNumeration 2s ease-out forwards;
+    animation-delay: .375s; }
+
+  .header {
+    animation: slideSubHeader .625s ease-out forwards;
+    animation-delay: .375s; }
+
+  .text {
+    animation: slideText 1s ease-out forwards;
+    animation-delay: .375s; }
+}
+
+.firstChild {
+  .numeration {
+    animation-delay: 1s; }
+
+  .header {
+    animation-delay: 1s; }
+
+  .text {
+    animation-delay: 1s; }
+}

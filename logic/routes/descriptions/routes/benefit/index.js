@@ -13,6 +13,44 @@ export default class BenefitDescription extends Component {
 
   constructor(props) {
     super(props)
+
+    // Component's State
+    this.state = { Resources: true,
+                   Environment: false,
+                   Health: false }
+
+
+    // Helpers' binding
+    this.elementsVisibility = this.elementsVisibility.bind(this);
+  }
+
+
+
+  //----------------------------------------------
+  // Subscribing & Unsubscribing to scrolling
+  //----------------------------------------------
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.elementsVisibility, false) }
+
+  componentDidUpdate() {
+    if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }
+
+
+
+  //----------------------------------------------
+  // Elements visibility helper
+  //----------------------------------------------
+
+  elementsVisibility() {
+    const elements = ['Environment', 'Health'],
+          windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+    elements.forEach((el) => {
+      let bounds = this.refs[el].getBoundingClientRect(),
+          visible = ((bounds.left + bounds.width / 2.6) <= windowWidth) && ((bounds.left + bounds.width) >= 0);
+      if (visible) this.setState({ [el] : true  })
+    })
   }
 
 
@@ -38,7 +76,7 @@ export default class BenefitDescription extends Component {
           The idea of sustainability, or ecological design, is to ensure that our actions and decisions today do not inhibit the opportunities of future generations..</p>
         </div>
 
-        <div className={classNames(styles.high, styles.contentBlock)}>
+        <div className={classNames(styles.contentBlock, styles.firstChild, this.state.Resources ? styles.contentBlockAnimate : null)} ref='Resources'>
           <div className={styles.headline}>
             <span className={styles.numeration}>1.</span>
             <h4 className={styles.header}>Resources</h4>
@@ -50,7 +88,7 @@ export default class BenefitDescription extends Component {
           </p>
         </div>
 
-        <div className={classNames(styles.high, styles.contentBlock)}>
+        <div className={classNames(styles.contentBlock, this.state.Environment ? styles.contentBlockAnimate : null)} ref='Environment'>
           <div className={styles.headline}>
             <span className={styles.numeration}>2.</span>
             <h4 className={styles.header}>Environment</h4>
@@ -60,7 +98,7 @@ export default class BenefitDescription extends Component {
           </p>
         </div>
 
-        <div className={classNames(styles.high, styles.contentBlock)}>
+        <div className={classNames(styles.contentBlock, this.state.Health ? styles.contentBlockAnimate : null)} ref='Health'>
           <div className={styles.headline}>
             <span className={styles.numeration}>3.</span>
             <h4 className={styles.header}>Health & Unity</h4>
