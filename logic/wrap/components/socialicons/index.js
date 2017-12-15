@@ -21,6 +21,10 @@ export default class SocialIcons extends React.Component {
   }
 
 
+  componentWillMount() {
+    console.log(this.props.parentState)
+  }
+
 
   //----------------------------------------------
   // Helpers
@@ -52,7 +56,7 @@ export default class SocialIcons extends React.Component {
            onMouseEnter={() => {this.clearTimer(parentState.timerOff); this.clearTimer(this.state.timerOff)}}>
 
         <div className={styles.wrap}>
-          <a className={classNames(styles.socialIcon, styles.facebook, parentState.hideSocial ? styles.fadeOut : styles.fadeIn )}>&nbsp;</a>
+          <a className={classNames(styles.socialIcon, styles.facebook, parentState.hideSocial  ? styles.fadeOut : styles.fadeIn )}>&nbsp;</a>
           <a className={classNames(styles.socialIcon, styles.google, parentState.hideSocial ? styles.fadeOut : styles.fadeIn )}>&nbsp;</a>
           <a className={classNames(styles.socialIcon, styles.pinterest, parentState.hideSocial ? styles.fadeOut : styles.fadeIn )}>&nbsp;</a>
           <a className={classNames(styles.socialIcon, styles.twitter, parentState.hideSocial ? styles.fadeOut : styles.fadeIn )}>&nbsp;</a>

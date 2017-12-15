@@ -67,8 +67,8 @@ export default class Navigation extends React.Component {
 
   manageContainer(location) {
     if (location.pathname.indexOf('d') > 0) {
-      this.setState({ hideShare: true })
-      setTimeout(() => this.setState({ removeShare: true }), 625)
+      this.setState({ hideShare: true, hideSocial: true })
+      setTimeout(() => this.setState({ removeShare: true, showSocial: false }), 625)
     }
     else this.setState({ removeShare: false, hideShare: false });
   }
