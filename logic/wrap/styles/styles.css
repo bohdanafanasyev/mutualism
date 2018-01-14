@@ -92,11 +92,15 @@ Page Swaps
 	z-index: 6 !important;
 	position: fixed;
 	top: 0;
-	left: 0;
+	right: 0;
 }
 
 .exit {
 	z-index: 4 !important;
-	filter: brightness(60%);
+	/* filter: brightness(60%); */
 	transition: 1s;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
 }

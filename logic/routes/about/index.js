@@ -43,6 +43,7 @@ export default class About extends React.Component {
         <div className={classNames(this.props.fadeEnter ? styles.fadeBackground : null)}>
           <div className={classNames(styles.background, this.state.loaded ? styles.scaleBackground : null)} style={background} />
         </div>
+        <div className={styles.backgroundFilter} />
         <div className={styles.wrap} >
           <div className={styles.headersWrap}>
             <p className={styles.backgroundHeader}>Mutualism</p>

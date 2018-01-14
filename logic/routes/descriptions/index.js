@@ -117,7 +117,7 @@ class Wrap extends React.Component {
 
 
     // If Start route redirect to About
-    if (this.props.nextPart == 'Live long') this.props.history.push('/about');
+    if (this.props.nextPart == 'Live long') this.props.history.push('/intro');
   }
 
   nextSlideRedirectThrottler() {
@@ -139,14 +139,18 @@ class Wrap extends React.Component {
 
   onWheel(e) {
     // Rewriting default behavior
-    e.preventDefault();
-    window.scrollBy(e.deltaY / 1.6, 0);
+    // e.preventDefault();
+    window.scrollBy({left: 1000, top: 0, behavior: 'smooth'});
+    var e = 600;
 
     // Depending methods
     this.scrollBarWidth();
     this.scrollBarHighlight();
     this.closePosition();
     this.backgroundHeaderPosition(e);
+
+
+
   }
 
   updateData() {
@@ -206,7 +210,7 @@ class Wrap extends React.Component {
 
           return (
 
-            <div className={classNames(styles.container)} onWheel={this.onWheel} ref='container'>
+            <div className={classNames(styles.container)} onWheel={this.onWheel} ref='container' onClick={() => this.onWheel()}>
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
               <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} ref='close' onClick={() => this.manageClose()}>

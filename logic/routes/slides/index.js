@@ -119,7 +119,7 @@ class Slides extends React.Component {
             </div>
           </div>
 
-          <div className={styles.filter} style={{opacity: this.state.textfilter ? "1" : ".6"}} onMouseOver={() => this.setState({ textfilter: false })} />
+          <div className={styles.filter} style={{opacity: this.state.textfilter ? "1" : ".8"}} onMouseOver={() => this.setState({ textfilter: false })} />
           <Images images={images} fadeEnter={this.props.fadeEnter} bottomEnter={this.props.bottomEnter} fadeContent={this.state.fadeContent}/>
         </div>
 

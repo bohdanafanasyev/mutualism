@@ -105,6 +105,8 @@ class Wrap extends React.Component {
     // 1.0 Slide over any Description, Social over All (Bottom Slide in)
     if ((lastRoute.indexOf('d') > 0) && slidesRoutes.includes(currentRoute)) {
       this.setState({ fadeEnter: false, bottomCorner: false, topCorner: true })
+      window.scroll({ left: 0, top: 0 })
+
     }
 
     // 2.0 Slide over any Description, Social over All (Bottom Slide in)

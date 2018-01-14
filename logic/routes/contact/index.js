@@ -44,6 +44,7 @@ export default class Contact extends React.Component {
         <div className={classNames(this.props.fadeEnter ? styles.fadeBackground : null)}>
         <div className={classNames(styles.background, this.state.loaded ? styles.scaleBackground : null)} style={background} />
         </div>
+        <div className={styles.backgroundFilter} />
         <div className={styles.wrap}>
           <div className={styles.emailForm}>
             <div className={styles.headersWrap}>

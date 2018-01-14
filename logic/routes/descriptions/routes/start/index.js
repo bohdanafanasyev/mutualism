@@ -79,8 +79,8 @@ export default class StartDescription extends Component {
       <Wrap nextSlide={null} nextPart={'Live long'} nextRoute={'/intro'} header={'Start'}>
 
         <div className={styles.introduction}>
-          <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>
-          <p className={styles.introductionText}>Seeks to minimize the negative environmental impact By efficiency and moderation in the use of materials, energy, and development space and the ecosystem at large. Sustainable architecture uses a conscious approach to energy and ecological conservation in the design of the built environment.
+          <h2 className={styles.introductionHeader}>Build for the Future</h2>
+          <p className={styles.introductionText}>Numerous passive architectural strategies have been developed over time. Examples of such strategies include the arrangement of rooms or the sizing and orientation of windows in a building, and the orientation of facades and streets or the ratio between building heights and street widths for urban planning.
           <br /><br />
           The idea of sustainability, or ecological design, is to ensure that our actions and decisions today do not inhibit the opportunities of future generations..</p>
         </div>

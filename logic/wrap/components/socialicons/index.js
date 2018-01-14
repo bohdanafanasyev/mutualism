@@ -21,10 +21,6 @@ export default class SocialIcons extends React.Component {
   }
 
 
-  componentWillMount() {
-    console.log(this.props.parentState)
-  }
-
 
   //----------------------------------------------
   // Helpers

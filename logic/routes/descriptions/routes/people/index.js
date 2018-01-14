@@ -81,11 +81,13 @@ export default class IntroDescription extends Component {
       <Wrap nextSlide={images.nextSlide} nextPart={'Start'} nextRoute={'/start/description'} header={'People'}>
 
         <div className={styles.introduction}>
-          <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>
-          <p className={styles.introductionText}>Seeks to minimize the negative environmental impact By efficiency and moderation in the use of materials, energy, and development space and the ecosystem at large. Sustainable architecture uses a conscious approach to energy and ecological conservation in the design of the built environment.
+          <h2 className={styles.introductionHeader}>The Ones who Inspire</h2>
+          <p className={styles.introductionText}>As a civilization, we are on the cusp of a transformation from a centralized to a distributed energy generation network that will redefine the built environment. The urban fabric of communities has a critical role to play in this transformation as architecture will need to accommodate large-scale renewable energy generation systems.
           <br /><br />
-          The idea of sustainability, or ecological design, is to ensure that our actions and decisions today do not inhibit the opportunities of future generations..</p>
+          This might seem far away, but current commitments established to help create a sustainable future, like the Architecture 2030 Challenge, will usher in this profound shift in a few years...</p>
         </div>
+
+
 
         <div className={classNames(styles.contentBlock, styles.firstChild, this.state.William ? styles.contentBlockAnimate : null)} ref='William'>
           <div className={styles.william} style={images.william} />
@@ -131,7 +133,7 @@ export default class IntroDescription extends Component {
           <div className={classNames(styles.headers, styles.headersReversed)}>
             <h5 className={styles.surname}>Reynolds</h5>
             <h6 className={styles.name}>Mike</h6>
-            <span className={styles.underlineReversed} />
+            <span className={styles.underline} />
           </div>
           <p className={styles.text}>
             American architect based in New Mexico, known for the design and construction of "earthship" passive solar houses. He is a proponent of "radically sustainable living". He has been a critic of the profession of architecture for reusing unconventional building materials from waste.

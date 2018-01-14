@@ -74,10 +74,12 @@ export default class BenefitDescription extends Component {
 
         <div className={styles.introduction}>
           <h2 className={styles.introductionHeader}>Selfsuficient & Independent</h2>
-          <p className={styles.introductionText}>Seeks to minimize the negative environmental impact By efficiency and moderation in the use of materials, energy, and development space and the ecosystem at large. Sustainable architecture uses a conscious approach to energy and ecological conservation in the design of the built environment.
+          <p className={styles.introductionText}>Sustainable building requires that architects, engineers and contractors all co-create with the environment focusing on renewable energy, sustainable materials, water conservation, site development and indoor environmental quality. Green design and construction not only helps cut down on emissions released into the ozone.
           <br /><br />
-          The idea of sustainability, or ecological design, is to ensure that our actions and decisions today do not inhibit the opportunities of future generations..</p>
+          The benefits of sustainable building can be generally categorized in the following ways; environmental benefits, economic benefits and social benefits...</p>
         </div>
+
+
 
         <div className={classNames(styles.contentBlock, styles.firstChild, this.state.Resources ? styles.contentBlockAnimate : null)} ref='Resources'>
           <div className={styles.headline}>
