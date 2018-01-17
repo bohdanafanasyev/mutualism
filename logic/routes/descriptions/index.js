@@ -139,26 +139,15 @@ class Wrap extends React.Component {
 
   onWheel(e) {
     // Rewriting default behavior
-    e.preventDefault();
+    // e.preventDefault();
     // window.scrollBy(e.deltaY / 1.6, 0);
 
-    var i = 1;
-
-
-    if (i == 1) {
-      console.log('w')
-      i = 2
-
-    }
 
     // Depending methods
     this.scrollBarWidth();
     this.scrollBarHighlight();
     this.closePosition();
     this.backgroundHeaderPosition(e);
-
-
-
   }
 
   updateData() {
