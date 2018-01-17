@@ -76,7 +76,7 @@ export default class IntroDescription extends Component {
     return (
 
       <div className={styles.container}>
-        <Wrap nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'}>
+        <Wrap nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'} ref='test'>
 
           <div className={styles.introduction}>
             <h2 className={styles.introductionHeader}>Sustainable Architecture</h2>

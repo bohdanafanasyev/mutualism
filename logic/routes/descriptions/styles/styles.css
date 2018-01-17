@@ -17,6 +17,7 @@ General
   cursor: default;
   display: flex;
   align-items: center;
+  scroll-behavior: smooth;
 }
 
 

@@ -139,9 +139,17 @@ class Wrap extends React.Component {
 
   onWheel(e) {
     // Rewriting default behavior
-    // e.preventDefault();
-    window.scrollBy({left: 1000, top: 0, behavior: 'smooth'});
-    var e = 600;
+    e.preventDefault();
+    // window.scrollBy(e.deltaY / 1.6, 0);
+
+    var i = 1;
+
+
+    if (i == 1) {
+      console.log('w')
+      i = 2
+
+    }
 
     // Depending methods
     this.scrollBarWidth();
@@ -210,7 +218,7 @@ class Wrap extends React.Component {
 
           return (
 
-            <div className={classNames(styles.container)} onWheel={this.onWheel} ref='container' onClick={() => this.onWheel()}>
+            <div className={classNames(styles.container)} onWheel={this.onWheel} ref='container'>
               <div className={!this.state.scrollBarHighlighted ? styles.scrollBar : classNames(styles.scrollBar, styles.scrollBarActive)} style={scrollBarWidth} />
 
               <div onMouseEnter={this.closeVisibility} onMouseLeave={this.closeVisibility} className={styles.close} style={closePosition} ref='close' onClick={() => this.manageClose()}>

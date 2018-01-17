@@ -91,7 +91,7 @@ Sub Header
   letter-spacing: 2px;
   margin: 0;
   transform: translateY(-59px);
-
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
   opacity: 0;
   animation: slideSubHeader .62s ease-out forwards;
   animation-delay: .76s;
@@ -107,6 +107,7 @@ Description
   font-family: Soleil Book;
   font-size: 15px;
   font-weight: normal;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, .6);
   line-height: 24px;
   width: 600px;
   display: inline-block;

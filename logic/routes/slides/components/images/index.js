@@ -38,6 +38,7 @@ export default class Images extends React.Component {
     return (
 
       <div className={styles.images}>
+        <div className={styles.imagesFilter} />
         <div className={styles.mainWrap} >
           <div className={classNames(styles.main, this.state.loaded ? styles.scaleMain : null, this.props.fadeEnter ? styles.fadeMain : styles.slideMain)} style={this.props.images.main} id='main'/>
         </div>
