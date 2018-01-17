@@ -32,7 +32,26 @@ export default class IntroDescription extends Component {
   //----------------------------------------------
 
   componentDidMount() {
-    window.addEventListener("scroll", this.elementsVisibility, false) }
+    window.addEventListener("scroll", this.elementsVisibility, false);
+
+    var triggers = {
+      Ken: true,
+      Renzo: true,
+
+    }
+
+    this.refs.container.addEventListener('click', () => {
+      if (triggers.Ken) {
+        window.scroll({ top: 0, left: 600, behavior: 'smooth' })
+        triggers.Ken = false
+      } else if (!triggers.Ken & triggers.Renzo) {
+        window.scroll({ top: 0, left: 1300, behavior: 'smooth' })
+        triggers.Renzo = false
+      } else if (!triggers.Ken & !triggers.Renzo) {
+        window.scroll({ top: 0, left: 2000, behavior: 'smooth' })
+      }
+    })
+  }
 
   componentDidUpdate() {
     if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }
@@ -78,6 +97,7 @@ export default class IntroDescription extends Component {
 
     return (
 
+      <div className={styles.container} ref='container'>
       <Wrap nextSlide={images.nextSlide} nextPart={'Start'} nextRoute={'/start/description'} header={'People'}>
 
         <div className={styles.introduction}>
@@ -141,6 +161,7 @@ export default class IntroDescription extends Component {
         </div>
 
       </Wrap>
+      </div>
     )
   }
 }

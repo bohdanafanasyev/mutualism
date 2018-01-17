@@ -31,7 +31,22 @@ export default class BenefitDescription extends Component {
   //----------------------------------------------
 
   componentDidMount() {
-    window.addEventListener("scroll", this.elementsVisibility, false) }
+    window.addEventListener("scroll", this.elementsVisibility, false);
+
+    var triggers = {
+      environment: true,
+      health: true
+    }
+
+    this.refs.container.addEventListener('click', () => {
+      if (triggers.environment) {
+        window.scroll({ top: 0, left: 600, behavior: 'smooth' })
+        triggers.environment = false
+      } else if (!triggers.environment & triggers.health) {
+        window.scroll({ top: 0, left: 1300, behavior: 'smooth' })
+      }
+    })
+  }
 
   componentDidUpdate() {
     if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }
@@ -70,6 +85,7 @@ export default class BenefitDescription extends Component {
 
     return (
 
+      <div className={styles.container} onWheel={this.onWheel} ref='container'>
       <Wrap nextSlide={nextSlide} nextPart={'People'} nextRoute={'/people/description'} header={'Benefit'}>
 
         <div className={styles.introduction}>
@@ -116,6 +132,7 @@ export default class BenefitDescription extends Component {
         </div>
 
       </Wrap>
+      </div>
     )
   }
 }

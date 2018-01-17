@@ -31,7 +31,22 @@ export default class IntroDescription extends Component {
   //----------------------------------------------
 
   componentDidMount() {
-    window.addEventListener("scroll", this.elementsVisibility, false) }
+    window.addEventListener("scroll", this.elementsVisibility, false);
+
+    var triggers = {
+      ASUClinic: true,
+      OneCentralPark: true
+    }
+
+    this.refs.container.addEventListener('click', () => {
+      if (triggers.ASUClinic) {
+        this.refs.ASUClinic.scrollIntoView({ behavior: 'smooth' })
+        triggers.ASUClinic = false
+      } else if (!triggers.ASUClinic & triggers.OneCentralPark) {
+        this.refs.OneCentralPark.scrollIntoView({ behavior: 'smooth' })
+      }
+    })
+  }
 
   componentDidUpdate() {
     if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }
@@ -75,7 +90,7 @@ export default class IntroDescription extends Component {
 
     return (
 
-      <div className={styles.container}>
+      <div className={styles.container} ref='container'>
         <Wrap nextPart={'Benefit'} nextRoute={'/benefit/description'} header={'Intro'}>
 
           <div className={styles.introduction}>
