@@ -33,6 +33,7 @@ Background
   position: absolute;
   background-repeat: no-repeat;
   background-position: center bottom;
+  background-size: cover;
   height: 100%;
 }
 
@@ -224,16 +225,4 @@ Animation Keyframes
 @keyframes slideInput {
   from { opacity: 0; transform: translateY(4px) }
   to { opacity: 1; transform: translateY(0) }
-}
-
-
-
-/*--------------------------------------------
-Image Fixes
---------------------------------------------*/
-
-@media (min-width: 1400px) {
-  .background {
-    background-size: cover;
-  }
 }

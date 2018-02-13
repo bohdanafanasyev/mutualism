@@ -16,7 +16,7 @@ Images
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, 0);
   }
 
   .upper, .main {
@@ -25,7 +25,8 @@ Images
     top: 0;
     left: 0;
     position: absolute;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    background-size: cover }
 }
 
 
@@ -76,14 +77,14 @@ Upper Image Shadow
 
 .imageShadow {
   height: 102vh;
-  width: 30px;
+  width: 50px;
   position: absolute;
   opacity: 0;
   background: url('../../assets/shadow.png');
   background-size: contain;
   transform: rotate(-181.2deg);
-  animation: slideImageShadow 1.625s ease-out forwards;
-  animation-delay: 1s;
+  animation: slideImageShadow 2s ease-out forwards;
+  animation-delay: 2.545s;
 
   &Hidden {
     animation: slideImageShadow 1s backwards;
@@ -186,9 +187,9 @@ Animation Keyframes
 }
 
 @keyframes slideImageShadow {
-  0% { left: 0; opacity: 0; }
-  80% { opacity: .15 }
-  100% { left: calc(38vw - 13px); opacity: .25 }
+  0% { left: calc(38vw - 23px); opacity: 0; }
+  25% { left: calc(38vw - 23px); opacity: .07; }
+  100% { left: calc(38vw - 33px); opacity: .25 }
 }
 
 
@@ -196,25 +197,15 @@ Animation Keyframes
 
 @keyframes filterFade {
   0% { opacity: 0;}
-  100% { opacity: .14}
+  100% { opacity: 0}
 }
 
 @keyframes filterHardFade {
   0% { opacity: 0;}
-  100% { opacity: .14}
+  100% { opacity: .05}
 }
 
 @keyframes gradientSide {
   0% { opacity: 0;}
   100% { opacity: .5}
-}
-
-
-/*--------------------------------------------
-Image Fixes
---------------------------------------------*/
-
-@media (min-width: 1400px) {
-  .main, .upper {
-    background-size: cover; }
 }

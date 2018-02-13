@@ -32,26 +32,7 @@ export default class StartDescription extends Component {
   //----------------------------------------------
 
   componentDidMount() {
-    window.addEventListener("scroll", this.elementsVisibility, false);
-
-    var triggers = {
-      Legislation: true,
-      Environment: true,
-
-    }
-
-    this.refs.container.addEventListener('click', () => {
-      if (triggers.Legislation) {
-        window.scroll({ top: 0, left: 820, behavior: 'smooth' })
-        triggers.Legislation = false
-      } else if (!triggers.Legislation & triggers.Environment) {
-        window.scroll({ top: 0, left: 1615, behavior: 'smooth' })
-        triggers.Environment = false
-      } else if (!triggers.Environment & !triggers.Environment) {
-        window.scroll({ top: 0, left: 2440, behavior: 'smooth' })
-      }
-    })
-  }
+    window.addEventListener("scroll", this.elementsVisibility, false) }
 
   componentDidUpdate() {
     if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }

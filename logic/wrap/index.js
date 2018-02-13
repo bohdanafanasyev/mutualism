@@ -95,22 +95,23 @@ class Wrap extends React.Component {
     let history = this.props.state.history,
         lastRoute = history[history.length - 1] || 'empty',
         currentRoute = location.pathname,
-        slidesRoutes = ['/intro', '/benefit', '/start', '/people'];
+        slidesRoutes = ['/intro', '/benefit', '/start', '/people'],
+        socialRoutes = ['/about', '/contact'];
 
     // 0.0 Initial Load
     if (this.props.state.history.length == 0) {
       this.setState({ fadeEnter: true, bottomCorner: false, topCorner: false })
     }
 
-    // 1.0 Slide over any Description, Social over All (Bottom Slide in)
+    // 1.0 Slide over any Description, Social over All (Top Unclip)
     if ((lastRoute.indexOf('d') > 0) && slidesRoutes.includes(currentRoute)) {
       this.setState({ fadeEnter: false, bottomCorner: false, topCorner: true })
       window.scroll({ left: 0, top: 0 })
-
     }
 
-    // 2.0 Slide over any Description, Social over All (Bottom Slide in)
-    if (slidesRoutes.includes(lastRoute) && slidesRoutes.includes(currentRoute)) {
+    // 2.0 Slide over any Description, Social over All (Bottom Unclip)
+    if (slidesRoutes.includes(lastRoute) && slidesRoutes.includes(currentRoute) ||
+        lastRoute != 'empty' && socialRoutes.includes(currentRoute)) {
       this.setState({ fadeEnter: false, bottomCorner: true, topCorner: false })
     }
   }

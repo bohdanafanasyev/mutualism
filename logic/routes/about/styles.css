@@ -32,6 +32,7 @@ Background
   position: absolute;
   background-repeat: no-repeat;
   background-position: center bottom;
+  background-size: cover;
 }
 
 .backgroundFilter {
@@ -140,16 +141,4 @@ Animation Keyframes
 @keyframes slideText {
   0% { opacity: 0; transform: translateY(8px); }
   100% { opacity: 1; transform: translateY(0); }
-}
-
-
-
-/*--------------------------------------------
-Image Fixes
---------------------------------------------*/
-
-@media (min-width: 1400px) {
-  .background {
-    background-size: cover;
-  }
 }

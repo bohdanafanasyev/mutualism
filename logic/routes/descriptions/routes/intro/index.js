@@ -31,22 +31,7 @@ export default class IntroDescription extends Component {
   //----------------------------------------------
 
   componentDidMount() {
-    window.addEventListener("scroll", this.elementsVisibility, false);
-
-    var triggers = {
-      ASUClinic: true,
-      OneCentralPark: true
-    }
-
-    this.refs.container.addEventListener('click', () => {
-      if (triggers.ASUClinic) {
-        this.refs.ASUClinic.scrollIntoView({ behavior: 'smooth' })
-        triggers.ASUClinic = false
-      } else if (!triggers.ASUClinic & triggers.OneCentralPark) {
-        this.refs.OneCentralPark.scrollIntoView({ behavior: 'smooth' })
-      }
-    })
-  }
+    window.addEventListener("scroll", this.elementsVisibility, false) }
 
   componentDidUpdate() {
     if (this.state.ASUClinic && this.state.OneCentralPark) window.removeEventListener("scroll", this.elementsVisibility, false) }

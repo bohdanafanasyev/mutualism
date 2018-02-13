@@ -16,7 +16,7 @@ Next Slide Image
   width: 100vw;
   display: inline-block;
   z-index: 5;
-  transition: 1s ease-out;
+  transition: clip-path 1s ease-out;
   position: absolute;
   top: 0;
   right: 0;
@@ -40,7 +40,7 @@ Next Slide Image
   background-position: center bottom;
   background-repeat: no-repeat;
   transform: translateX(0);
-  transition: .625s ease-out;
+  transition: transform .625s ease-out;
   pointer-events: none;
 
   &Move {
